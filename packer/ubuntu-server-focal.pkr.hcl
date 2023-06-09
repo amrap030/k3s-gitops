@@ -58,9 +58,9 @@ source "proxmox-iso" "ubuntu-server-focal" {
 
     # disks attached to the virtual machine
     disks {
-        disk_size = "32G"
+        disk_size = "64G"
         format = "raw"
-        storage_pool = "local-lvm"
+        storage_pool = "vm-data"
         type = "virtio"
     }
 
