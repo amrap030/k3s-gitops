@@ -140,9 +140,6 @@ build {
 
     # provisioning the VM template for cloud-Init integration in proxmox #3
     provisioner "shell" {
-        inline = [ "sudo cp /tmp/99-pve.cfg /etc/cloud/cloud.cfg.d/99-pve.cfg" ]
+        inline = [ "sudo cp /tmp/99-pve.cfg /etc/cloud/cloud.cfg.d/99-pve.cfg" ] # the /etc/cloud/cloud.cfg.d directory is the location where you can place additional configuration files that modify or extend the behavior of cloud-init. by placing additional configuration files in this directory, you can override or supplement the default behavior of cloud-init to suit your specific requirements.
     }
-
-    # Add additional provisioning scripts here
-    # ...
 }
