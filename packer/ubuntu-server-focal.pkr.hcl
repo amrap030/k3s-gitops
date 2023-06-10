@@ -21,7 +21,7 @@ variable "proxmox_api_token_id" {
 
 variable "proxmox_api_token_secret" {
     type = string
-    sensitive = true # case sensitive
+    sensitive = true # not included in logs
 }
 
 # resource definition for the VM template

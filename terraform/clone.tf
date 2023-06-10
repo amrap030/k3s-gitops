@@ -2,13 +2,13 @@
 # ---
 # Create a new VM from a clone
 
-variable "iterations" {
+variable "worker_nodes" {
   type    = number
   default = 3
 }
 
 resource "proxmox_vm_qemu" "test1" {
-  count = var.iterations
+  count = var.worker_nodes
 
   # VM General Settings
   target_node = "proxmox"
