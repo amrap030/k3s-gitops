@@ -68,7 +68,11 @@ source "proxmox-iso" "ubuntu-server-focal" {
     cores = "2"
     
     # VM memory settings
-    memory = "4096" 
+    memory = "4096"
+
+    sockets = 1
+    os = "l26"
+    cpu_type = "host"
 
     # VM network settings
     network_adapters {
@@ -79,7 +83,7 @@ source "proxmox-iso" "ubuntu-server-focal" {
 
     # VM cloud-init settings
     cloud_init = true
-    cloud_init_storage_pool = "local-lvm"
+    cloud_init_storage_pool = "vm-data"
 
     # packer boot commands
     boot_command = [
