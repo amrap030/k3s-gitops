@@ -6,3 +6,7 @@ namePrefix: kustomize-
 resources:
   - nginx-deployment.yaml
   - nginx-service.yaml
+
+replicas:
+  - name: nginx
+    count: 2
