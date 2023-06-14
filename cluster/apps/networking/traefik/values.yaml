@@ -12,10 +12,6 @@ image:
 # -- Add additional label to all resources
 commonLabels: {}
 
-configs:
-  cm:
-    kustomize.buildOptions: "--enable-helm"
-
 #
 # Configure the deployment
 #
