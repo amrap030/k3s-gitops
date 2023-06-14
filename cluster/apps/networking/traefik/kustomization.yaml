@@ -3,3 +3,10 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - config.yaml
+
+helmCharts:
+  - name: traefik
+    repo: https://helm.traefik.io/traefik
+    version: v2.10.1
+    namespace: traefik
+    valuesFile: values.yaml
