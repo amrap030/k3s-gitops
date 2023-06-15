@@ -19,7 +19,7 @@ terraform {
 provider "sops" {}
 
 data "sops_file" "secrets" {
-  source_file = "../secrets.env"
+  source_file = "../secrets.sops.env"
 }
 
 variable "proxmox_api_url" {
