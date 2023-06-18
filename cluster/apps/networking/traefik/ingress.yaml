@@ -9,7 +9,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`traefik.local.example.com`)
+    - match: Host(`amrap030.home`)
       kind: Rule
       middlewares:
         - name: traefik-dashboard-basicauth
@@ -17,3 +17,7 @@ spec:
       services:
         - name: api@internal
           kind: TraefikService
+  tls:
+    - hosts:
+        - amrap030.home
+      secretname: traefik-tls-secret
