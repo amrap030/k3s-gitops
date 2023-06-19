@@ -17,7 +17,5 @@ spec:
       services:
         - name: api@internal
           kind: TraefikService
-  # tls:
-  #   - hosts:
-  #       - amrap030.home
-  #     secretname: traefik-tls-secret
+  tls:
+    secretName: traefik-tls-secret

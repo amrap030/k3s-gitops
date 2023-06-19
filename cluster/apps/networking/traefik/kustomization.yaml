@@ -5,7 +5,7 @@ resources:
   - https://raw.githubusercontent.com/traefik/traefik/v2.10/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
   - https://raw.githubusercontent.com/traefik/traefik/v2.10/docs/content/reference/dynamic-configuration/kubernetes-crd-rbac.yml
   - default-headers.yaml
-  #- secrets.sops.yaml
+  - secrets.sops.yaml
   - middleware.yaml
   - ingress.yaml
 
