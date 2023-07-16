@@ -8,16 +8,13 @@ metadata:
 spec:
   project: default
   source:
-    path: cluster/apps # it watches over the apps directory
-    repoURL: https://github.com/amrap030/k3s-gitops.git # always put the .git extension here
-    targetRevision: HEAD
+    path: cluster/bootstrap/root
+    repoURL: https://github.com/amrap030/k3s-gitops.git
+    targetRevision: main
     directory:
       recurse: true
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
   syncPolicy:
-    syncOptions:
-      - CreateNamespace=false
-    automated:
-      selfHeal: false
+    automated: {}

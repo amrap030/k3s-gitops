@@ -1,0 +1,22 @@
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/amrap030/k3s-gitops.git
+    targetRevision: main
+
+apps:
+  - name: networking
+    namespace: networking
+    path: cluster/apps/networking/traefik
+    syncWave: 0
+    helm:
+      valueFiles:
+        - ./values.yaml
+  - name: cert-manager
+    namespace: cert-manager
+    path: cluster/apps/networking/cert-manager
+    syncWave: 1
+    helm:
+      valueFiles:
+        - ./values.yaml
