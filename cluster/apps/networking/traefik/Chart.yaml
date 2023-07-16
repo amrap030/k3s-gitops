@@ -1,18 +1,7 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: traefik-helm
-  namespace: argocd
-spec:
-  project: default
-  source:
-    chart: traefik
-    repoURL: https://traefik.github.io/charts
-    targetRevision: 23.1.0
-    helm:
-      releaseName: traefik
-      valueFiles:
-        - values.yaml
-  destination:
-    server: "https://kubernetes.default.svc"
-    namespace: networking
+apiVersion: v2
+name: traefik
+version: 0.0.0
+dependencies:
+  - name: traefik
+    version: 23.1.0
+    repository: https://helm.traefik.io/traefik
