@@ -1,0 +1,69 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflared
+  namespace: cloudflare
+spec:
+  selector:
+    matchLabels:
+      app: cloudflared
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cloudflared
+    spec:
+      containers:
+        - name: cloudflared
+          image: cloudflare/cloudflared:latest
+          args:
+            - tunnel
+            - --config
+            - /etc/cloudflared/config/config.yaml
+            - run
+          volumeMounts:
+            - name: config
+              mountPath: /etc/cloudflared/config
+              readOnly: true
+            - name: creds
+              mountPath: /etc/cloudflared/creds
+              readOnly: true
+          livenessProbe:
+            httpGet:
+              # Cloudflared has a /ready endpoint which returns 200 if and only if
+              # it has an active connection to the edge.
+              path: /ready
+              port: 2000
+            failureThreshold: 1
+            initialDelaySeconds: 10
+            periodSeconds: 10
+      volumes:
+        - name: creds
+          secret:
+            secretName: tunnel-credentials
+        - name: config
+          configMap:
+            name: cloudflared
+            items:
+              - key: config.yaml
+                path: config.yaml
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared
+  namespace: cloudflare
+data:
+  config.yaml: |
+    tunnel: homelab
+    credentials-file: /etc/cloudflared/creds/credentials.json
+    metrics: 0.0.0.0:2000
+    no-autoupdate: true
+    ingress:
+      - hostname: argocd.amrap030-homelab.ml
+        service: https://argocd-server.argocd
+        originRequest:
+          noTLSVerify: true
+      - service: http_status:404

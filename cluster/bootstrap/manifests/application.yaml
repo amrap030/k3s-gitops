@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: homelab
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: homelab
+  source:
+    path: cluster/apps # it watches over the apps directory
+    repoURL: https://github.com/amrap030/k3s-gitops.git # always put the .git extension here
+    targetRevision: HEAD
+    directory:
+      recurse: true
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: argocd
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=false
+    automated:
+      selfHeal: false

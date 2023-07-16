@@ -1,0 +1,18 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`amrap030.home`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`)) # Host needs to be adapted
+      kind: Rule
+      services:
+        - name: api@internal
+          kind: TraefikService
+  tls:
+    domains:
+      - main: amrap030.home # Host needs to be adapted
+    secretName: argocd-cert # has to match name of certificate in cert.yaml

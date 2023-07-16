@@ -1,0 +1,65 @@
+{
+  "apiVersion": "v1",
+  "kind": "Namespace",
+  "metadata": {
+    "annotations": {
+      "cattle.io/status": "{\"Conditions\":[{\"Type\":\"ResourceQuotaInit\",\"Status\":\"True\",\"Message\":\"\",\"LastUpdateTime\":\"2023-06-21T20:38:37Z\"},{\"Type\":\"InitialRolesPopulated\",\"Status\":\"True\",\"Message\":\"\",\"LastUpdateTime\":\"2023-06-21T20:38:38Z\"}]}",
+      "lifecycle.cattle.io/create.namespace-auth": "true"
+    },
+    "creationTimestamp": "2023-06-12T21:16:03Z",
+    "deletionGracePeriodSeconds": 0,
+    "deletionTimestamp": "2023-07-11T21:12:02Z",
+    "finalizers": [
+      "controller.cattle.io/namespace-auth"
+    ],
+    "labels": {
+      "kubernetes.io/metadata.name": "argocd"
+    },
+    "name": "argocd",
+    "resourceVersion": "2530666",
+    "uid": "9b958795-da86-4a3e-b4a4-d5dff5cdd61a"
+  },
+  "spec": {
+    "finalizers": []
+  },
+  "status": {
+    "conditions": [
+      {
+        "lastTransitionTime": "2023-07-11T21:12:14Z",
+        "message": "All resources successfully discovered",
+        "reason": "ResourcesDiscovered",
+        "status": "False",
+        "type": "NamespaceDeletionDiscoveryFailure"
+      },
+      {
+        "lastTransitionTime": "2023-07-11T21:12:14Z",
+        "message": "All legacy kube types successfully parsed",
+        "reason": "ParsedGroupVersions",
+        "status": "False",
+        "type": "NamespaceDeletionGroupVersionParsingFailure"
+      },
+      {
+        "lastTransitionTime": "2023-07-11T21:12:14Z",
+        "message": "Failed to delete all resource types, 1 remaining: Internal error occurred: failed calling webhook \"rancher.cattle.io.secrets\": failed to call webhook: Post \"https://rancher-webhook.cattle-system.svc:443/v1/webhook/mutation/secrets?timeout=15s\": service \"rancher-webhook\" not found",
+        "reason": "ContentDeletionFailed",
+        "status": "True",
+        "type": "NamespaceDeletionContentFailure"
+      },
+      {
+        "lastTransitionTime": "2023-07-11T21:12:14Z",
+        "message": "Some resources are remaining: rolebindings.rbac.authorization.k8s.io has 6 resource instances, roles.rbac.authorization.k8s.io has 5 resource instances",
+        "reason": "SomeResourcesRemain",
+        "status": "True",
+        "type": "NamespaceContentRemaining"
+      },
+      {
+        "lastTransitionTime": "2023-07-11T21:12:14Z",
+        "message": "Some content in the namespace has finalizers remaining: wrangler.cattle.io/auth-prov-v2-rb in 6 resource instances, wrangler.cattle.io/auth-prov-v2-role in 5 resource instances",
+        "reason": "SomeFinalizersRemain",
+        "status": "True",
+        "type": "NamespaceFinalizersRemaining"
+      }
+    ],
+    "phase": "Terminating"
+  }
+}

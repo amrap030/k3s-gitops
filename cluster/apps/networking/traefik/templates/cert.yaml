@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: traefik-cert # has to match secretName
+spec:
+  secretName: traefik-cert # has to match name
+  dnsNames:
+    - "*.amrap030.home" # Host needs to be adapted
+  issuerRef:
+    name: traefik-ca-issuer # has to match acme-ca.yaml name in cert-manager directory
+    kind: ClusterIssuer

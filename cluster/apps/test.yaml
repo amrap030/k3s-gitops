@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-repo-server
+  namespace: argocd
+spec:
+  template:
+    spec:
+      initContainers:
+        - name: install-ksops
+          image: viaductoss/ksops:v3.0.1
+          command: ["/bin/sh", "-c"]
+          args:
+            - echo "Installing KSOPS...";
+              export PKG_NAME=ksops;
+              mv ${PKG_NAME}.so /custom-tools/;
+              mv $GOPATH/bin/kustomize /custom-tools/;
+              echo "Done.";
+          volumeMounts:
+            - mountPath: /custom-tools
+              name: custom-tools
+        - name: import-gpg-key
+          image: argoproj/argocd:v2.1.7
+          command: ["gpg", "--import", "/sops-gpg/sops.asc"]
+          env:
+            - name: GNUPGHOME
+              value: /gnupg-home/.gnupg
+          volumeMounts:
+            - mountPath: /sops-gpg
+              name: sops-gpg
+            - mountPath: /gnupg-home
+              name: gnupg-home
+      containers:
+        - name: argocd-repo-server
+          env:
+            - name: XDG_CONFIG_HOME
+              value: /.config
+            - name: GNUPGHOME
+              value: /home/argocd/.gnupg
+          volumeMounts:
+            - mountPath: /home/argocd/.gnupg
+              name: gnupg-home
+              subPath: .gnupg
+            - mountPath: /usr/local/bin/kustomize
+              name: custom-tools
+              subPath: kustomize
+            - mountPath: /.config/kustomize/plugin/viaduct.ai/v1/ksops/ksops
+              name: custom-tools
+              subPath: ksops
+      volumes:
+        - name: custom-tools
+          emptyDir: {}
+        - name: gnupg-home
+          emptyDir: {}
+        - name: sops-gpg
+          secret:
+            secretName: sops-gpg
