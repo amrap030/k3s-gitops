@@ -14,3 +14,5 @@ spec:
     path: cluster/apps/networking
     repoURL: "{{ .Values.spec.source.repoURL }}"
     targetRevision: "{{ .Values.spec.source.targetRevision }}"
+    directory:
+      recurse: true
