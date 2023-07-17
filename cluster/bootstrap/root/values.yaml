@@ -13,10 +13,21 @@ apps:
     helm:
       valueFiles:
         - ./values.yaml
+  - name: secrets
+    namespace: default
+    path: cluster/apps/argocd/secrets
+    syncWave: 1
   - name: cert-manager
     namespace: cert-manager
     path: cluster/apps/networking/cert-manager
-    syncWave: 1
+    syncWave: 2
+    helm:
+      valueFiles:
+        - ./values.yaml
+  - name: traefik
+    namespace: networking
+    path: cluster/apps/networking/traefik
+    syncWave: 3
     helm:
       valueFiles:
         - ./values.yaml
