@@ -6,7 +6,7 @@ resources:
   - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
 generatorOptions:
- disableNameSuffixHash: true
+  disableNameSuffixHash: true
 
 secretGenerator:
   - name: sops-age
