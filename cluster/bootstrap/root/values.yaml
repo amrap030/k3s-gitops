@@ -6,13 +6,6 @@ spec:
     targetRevision: main
 
 apps:
-  - name: networking
-    namespace: networking
-    path: cluster/apps/networking/traefik
-    syncWave: 0
-    helm:
-      valueFiles:
-        - ./values.yaml
   - name: secrets
     namespace: default
     path: cluster/argocd/secrets
