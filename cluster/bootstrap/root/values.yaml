@@ -15,7 +15,7 @@ apps:
         - ./values.yaml
   - name: secrets
     namespace: default
-    path: cluster/apps/argocd/secrets
+    path: cluster/argocd/secrets
     syncWave: 1
   - name: cert-manager
     namespace: cert-manager
