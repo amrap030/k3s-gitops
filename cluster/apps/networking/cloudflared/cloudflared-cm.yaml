@@ -13,12 +13,6 @@ data:
         originRequest:
           noTLSVerify: true
       - service: http_status:404
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: cloudflared-configs
-data:
   TUNNEL_METRICS_UPDATE_FREQ: "120s"
   TUNNEL_METRICS: "0.0.0.0:2000"
   TUNNEL_RETRIES: "5"
