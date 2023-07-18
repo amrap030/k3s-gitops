@@ -12,19 +12,26 @@ apps:
     syncWave: 1
   - name: cert-manager
     namespace: cert-manager
-    path: cluster/apps/networking/cert-manager
+    path: cluster/core/cert-manager
     syncWave: 2
+    helm:
+      valueFiles:
+        - ./values.yaml
+  - name: cert-manager
+    namespace: cert-manager
+    path: cluster/core/longhorn
+    syncWave: 3
     helm:
       valueFiles:
         - ./values.yaml
   - name: traefik
     namespace: networking
     path: cluster/apps/networking/traefik
-    syncWave: 3
+    syncWave: 4
     helm:
       valueFiles:
         - ./values.yaml
   - name: cloudflared
     namespace: networking
     path: cluster/apps/networking/cloudflared
-    syncWave: 4
+    syncWave: 5
