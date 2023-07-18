@@ -44,7 +44,7 @@ spec:
             secretName: cloudflared-secret
         - name: config
           configMap:
-            name: cloudflared-cm
+            name: cloudflared
             items:
               - key: config.yaml
                 path: config.yaml
