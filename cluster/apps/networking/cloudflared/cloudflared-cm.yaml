@@ -2,9 +2,11 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: cloudflared
+  namespace: networking
 data:
   config.yaml: |
     tunnel: homelab
+    credentials-file: /etc/cloudflared/creds/credentials.json
     metrics: 0.0.0.0:2000
     no-autoupdate: true
     ingress:
@@ -13,10 +15,3 @@ data:
         originRequest:
           noTLSVerify: true
       - service: http_status:404
-  TUNNEL_METRICS_UPDATE_FREQ: "120s"
-  TUNNEL_METRICS: "0.0.0.0:2000"
-  TUNNEL_RETRIES: "5"
-  TUNNEL_LOGLEVEL: "warn"
-  TUNNEL_PROTO_LOGLEVEL: "warn"
-  TUNNEL_TRANSPORT_PROTOCOL: "auto"
-  TUNNEL_ORIGIN_CERT: "~/.cloudflared/cert.pem"
