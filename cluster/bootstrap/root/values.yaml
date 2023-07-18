@@ -24,3 +24,10 @@ apps:
     helm:
       valueFiles:
         - ./values.yaml
+  - name: cloudflared
+    namespace: networking
+    path: cluster/apps/networking/cloudflared
+    syncWave: 4
+    helm:
+      valueFiles:
+        - ./values.yaml
