@@ -38,9 +38,6 @@ spec:
             failureThreshold: 1
             initialDelaySeconds: 10
             periodSeconds: 10
-          envFrom:
-            - configMapRef:
-              name: cloudflared-configs
       volumes:
         - name: creds
           secret:
