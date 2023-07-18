@@ -22,6 +22,9 @@ spec:
             - --config
             - /etc/cloudflared/config/config.yaml
             - run
+          envFrom:
+            - configMapRef:
+              name: cloudflared-configs
           volumeMounts:
             - name: config
               mountPath: /etc/cloudflared/config
