@@ -22,9 +22,6 @@ spec:
             - --config
             - /etc/cloudflared/config/config.yaml
             - run
-          envFrom:
-            - configMapRef:
-              name: cloudflared-configs
           volumeMounts:
             - name: config
               mountPath: /etc/cloudflared/config
@@ -41,6 +38,9 @@ spec:
             failureThreshold: 1
             initialDelaySeconds: 10
             periodSeconds: 10
+          envFrom:
+            - configMapRef:
+              name: cloudflared-configs
       volumes:
         - name: creds
           secret:
