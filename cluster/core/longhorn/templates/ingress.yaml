@@ -17,7 +17,7 @@ spec:
               service:
                 name: longhorn-frontend
                 port:
-                  number: 8000
+                  number: 80
   tls:
     - hosts:
         - longhorn.amrap030.home
