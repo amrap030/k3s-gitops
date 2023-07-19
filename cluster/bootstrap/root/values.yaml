@@ -17,8 +17,8 @@ apps:
     helm:
       valueFiles:
         - ./values.yaml
-  - name: cert-manager
-    namespace: cert-manager
+  - name: longhorn
+    namespace: longhorn
     path: cluster/core/longhorn
     syncWave: 3
     helm:
