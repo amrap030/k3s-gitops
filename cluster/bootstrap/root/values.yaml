@@ -18,7 +18,7 @@ apps:
       valueFiles:
         - ./values.yaml
   - name: longhorn
-    namespace: longhorn
+    namespace: longhorn-system
     path: cluster/core/longhorn
     syncWave: 3
     helm:
