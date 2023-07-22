@@ -14,4 +14,8 @@ data:
         service: https://argocd-server.argocd
         originRequest:
           noTLSVerify: true
+      - hostname: uptime.amrap030.site
+        service: https://uptime-kuma.monitoring
+        originRequest:
+          noTLSVerify: true
       - service: http_status:404
