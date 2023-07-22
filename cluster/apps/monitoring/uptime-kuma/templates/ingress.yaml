@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: traefik-ca-issuer
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+  name: uptime-kuma-ingress
+  namespace: monitoring
+spec:
+  rules:
+    - host: uptime.amrap030.home
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: uptime-kuma
+                port:
+                  number: 3001    
+  tls:
+    - hosts:
+        - uptime.amrap030.home
+      secretName: traefik-cert
