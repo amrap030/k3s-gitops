@@ -17,16 +17,6 @@ spec:
               service:
                 name: uptime-kuma
                 port:
-                  number: 3001
-    - host: uptime.amrap030.site
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: uptime-kuma
-                port:
                   number: 3001    
   tls:
     - hosts:
