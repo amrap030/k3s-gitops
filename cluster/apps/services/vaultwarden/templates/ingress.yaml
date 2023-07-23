@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: traefik-ca-issuer
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+  name: uptime-kuma-ingress
+  namespace: services
+spec:
+  rules:
+    - host: vaultwarden.amrap030.home
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vaultwarden
+                port:
+                  number: 80    
+  tls:
+    - hosts:
+        - vaultwarden.amrap030.home
+      secretName: traefik-cert
