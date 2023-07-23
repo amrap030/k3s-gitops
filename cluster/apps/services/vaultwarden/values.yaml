@@ -2,16 +2,25 @@ vaultwarden:
   image:
     repository: vaultwarden/server
     tag: 1.28.1-alpine
+  envFrom:
+    - secretRef:
+        name: vaultwarden-secrets
   env:
     DATA_FOLDER: data
-    SIGNUPS_ALLOWED: false
+    DOMAIN: https://vaultwarden.amrap030.site
     INVITATIONS_ALLOWED: false
+    SIGNUPS_ALLOWED: false
+    SMTP_FROM_NAME: Vaultwarden
+    SMTP_FROM: kevin.hertwig@gmail.com
+    SMTP_HOST: smtp.gmail.com
+    SMTP_PORT: 465
+    SMTP_SECURITY: "force_tls"
+    SMTP_SSL: "false"
+    SMTP_USERNAME: kevin.hertwig@gmail.com
+    TZ: Europe/Berlin
     WEBSOCKET_ENABLED: true
     WEBSOCKET_ADDRESS: 0.0.0.0
     WEBSOCKET_PORT: 3012
-    DOMAIN: https://vaultwarden.amrap030.site
-    ADMIN_TOKEN: password 
-    TZ: Europe/Berlin
   ingress:
     main:
       enabled: false
