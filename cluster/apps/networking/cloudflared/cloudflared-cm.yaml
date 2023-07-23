@@ -18,4 +18,8 @@ data:
         service: http://uptime-kuma.monitoring:3001
         originRequest:
           noTLSVerify: true
+      - hostname: vaultwarden.amrap030.site
+        service: http://vaultwarden.services
+        originRequest:
+          noTLSVerify: true
       - service: http_status:404
