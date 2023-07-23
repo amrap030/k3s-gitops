@@ -21,4 +21,4 @@ spec:
   tls:
     - hosts:
         - photoprism.amrap030.home
-      secretName: traefik-cert
+      secretName: photoprism-cert
