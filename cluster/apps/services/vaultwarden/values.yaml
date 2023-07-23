@@ -1,75 +1,118 @@
 vaultwarden:
-  ## @section Vaultwarden settings
+  ## @section Global parameters
+  ## Global Docker image parameters
+  ## Please, note that this will override the image parameters, including dependencies, configured to use the global value
+  ## Current available global Docker image parameters: imageRegistry, imagePullSecrets and storageClass
+  ##
+
+  ## @param global.imageRegistry Global Docker image registry
+  ## @param global.imagePullSecrets Global Docker registry secret names as an array
+  ## @param global.storageClass Global StorageClass for Persistent Volume(s)
+  ##
+  global:
+    imageRegistry: ""
+    ## E.g.
+    ## imagePullSecrets:
+    ##   - myRegistryKeySecretName
+    ##
+    imagePullSecrets: []
+    storageClass: ""
+
+  ## @section Common parameters
+  ##
+
+  ## @param kubeVersion Force target Kubernetes version (using Helm capabilities if not set)
+  ##
+  kubeVersion: ""
+  ## @param nameOverride String to partially override common.names.fullname
+  ##
+  nameOverride: ""
+  ## @param fullnameOverride String to fully override common.names.fullname
+  ##
+  fullnameOverride: ""
+  ## @param namespaceOverride String to fully override common.names.namespace
+  ##
+  namespaceOverride: ""
+  ## @param commonLabels Labels to add to all deployed objects
+  ##
+  commonLabels: {}
+  ## @param commonAnnotations Annotations to add to all deployed objects
+  ##
+  commonAnnotations: {}
+  ## @param clusterDomain Default Kubernetes cluster domain
+  ##
+  clusterDomain: cluster.local
+  ## @param extraDeploy Array of extra objects to deploy with the release
+  ##
+  extraDeploy: []
+  ## Enable diagnostic mode in the statefulset
+  ##
+  diagnosticMode:
+    ## @param diagnosticMode.enabled Enable diagnostic mode (all probes will be disabled and the command will be overridden)
+    ##
+    enabled: false
+    ## @param diagnosticMode.command Command to override all containers in the the statefulset
+    ##
+    command:
+      - sleep
+    ## @param diagnosticMode.args Args to override all containers in the the statefulset
+    ##
+    args:
+      - infinity
+
+  ## @section Vaultwarden parameters
+
+  ## Vaultwarden image version
+  ## ref: https://hub.docker.com/r/vaultwarden/server/tags
+  ## @param image.registry Vaultwarden image registry
+  ## @param image.repository Vaultwarden image repository
+  ## @param image.tag Vaultwarden image tag (immutable tags are recommended)
+  ## @param image.digest Vaultwarden image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
+  ## @param image.pullPolicy Vaultwarden image pull policy
+  ## @param image.pullSecrets Specify docker-registry secret names as an array
+  ## @param image.debug Enable %%MAIN_CONTAINER%% image debug mode
   ##
   image:
-    ## @param image.registry Vaultwarden image registry
-    ##
     registry: docker.io
-    ## @param image.repository Vaultwarden image repository
-    ##
     repository: vaultwarden/server
-    ##
-    ## @param image.tag Vaultwarden image tag
-    ## Ref: https://hub.docker.com/r/vaultwarden/server/tags
-    ##
-    tag: "1.28.1"
-    ## @param image.pullPolicy Vaultwarden image pull policy
+    tag: 1.28.1-alpine
+    digest: ""
+    ## Specify a imagePullPolicy
+    ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
     ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
     ##
     pullPolicy: IfNotPresent
-    ## @param image.pullSecrets Specify docker-registry secret names
+    ## Optionally specify an array of imagePullSecrets.
+    ## Secrets must be manually created in the namespace.
     ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
     ## Example:
     ## pullSecrets:
     ##   - myRegistryKeySecretName
     ##
     pullSecrets: []
-  ## @param domain Domain name where the application is accessed
-  ## Example: https://warden.contoso.com:8443
-  ##
-  domain: ""
+    ## Enable debug mode
+    ##
+    debug: false
+
   ## @param websocket.enabled Enable websocket notifications
-  ## @param websocket.address Websocket listen address
-  ## @param websocket.port Websocket listen port
   ##
   websocket:
     enabled: true
-    address: "0.0.0.0"
-    port: 3012
-  ## @param rocket.port Rocket port
+
   ## @param rocket.workers Rocket number of workers
   ##
   rocket:
-    port: "8080"
     workers: "10"
+
   ## @param webVaultEnabled Enable Web Vault
   ##
   webVaultEnabled: "true"
 
-  ## @section Pod configuration
-  ##
-  ## @param podAnnotations Add extra annotations to the pod
-  ##
-  podAnnotations: {}
-  ## @param podLabels Add extra labels to the pod
-  ##
-  podLabels: {}
-
   ## @section Security settings
   ##
-  adminToken:
-    ## @param adminToken.existingSecret Specify an existing Kubernetes secret containing the admin token. Also set adminToken.existingSecretKey.
-    ## Example: admincreds_secret
-    ##
-    existingSecret: ""
-    ## @param adminToken.existingSecretKey When using adminToken.existingSecret, specify the key containing the token.
-    ## Example: ADMIN_TOKEN
-    ##
-    existingSecretKey: ""
-    ## @param adminToken.value Plain string containing the admin token.
-    ## Example: ADMIN_TOKEN
-    ##
-    value: "R@ndomToken$tring"
+  ## @param adminToken The admin token used for /admin
+  ##
+  adminToken: ""
   ## @param signupsAllowed By default, anyone who can access your instance can register for a new account.
   ## To disable this, set this parameter to false. Even when signupsAllowed=false, an existing user who is
   ## an organization owner or admin can still invite new users. If you want to disable this as well, set
@@ -85,71 +128,447 @@ vaultwarden:
   invitationsAllowed: true
   ## @param signupDomains List of domain names for users allowed to register
   ##
-  signupDomains: "contoso.com"
+  signupDomains: "example.com"
   ## @param signupsVerify Whether to require account verification for newly-registered users.
   ##
   signupsVerify: "true"
   ## @param showPassHint Whether a password hint should be shown in the page.
   ##
   showPassHint: "false"
-  ## @param fullnameOverride String to override the application name.
-  ##
-  fullnameOverride: ""
-  ## @param serviceAccount.create Create a service account
-  ## @param serviceAccount.name Name of the service account to create
-  ##
-  serviceAccount:
-    create: true
-    name: "vaultwarden-svc"
 
+  ## @param command Override default container command (useful when using custom images)
+  ##
+  command: []
+  ## @param args Override default container args (useful when using custom images)
+  ##
+  args: []
+  ## @param extraEnvVars Extra environment variables to be set on vaultwarden container
+  ## Example:
+  ## extraEnvVars:
+  ##   - name: FOO
+  ##     value: "bar"
+  ##
+  extraEnvVars: []
+  ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
+  ##
+  extraEnvVarsCM: ""
+  ## @param extraEnvVarsSecret Name of existing Secret containing extra env vars
+  ##
+  extraEnvVarsSecret: ""
 
-  ## @section Exposure Parameters
+  ## @section vaultwarden statefulset parameters
+
+  ## @param replicaCount Number of vaultwarden replicas to deploy
+  ##
+  replicaCount: 1
+  ## @param containerPorts.http vaultwarden HTTP container port
+  ## @param containerPorts.websocket vaultwarden websocket container port
+  ##
+  containerPorts:
+    http: 8080
+    websocket: 3012
+  ## @param extraContainerPorts Optionally specify extra list of additional port-mappings for vaultwarden container
+  ##
+  extraContainerPorts: []
+
+  ## vaultwarden pods' SecurityContext
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
+  ## @param podSecurityContext.enabled Enabled vaultwarden pods' Security Context
+  ## @param podSecurityContext.fsGroup Set vaultwarden pod's Security Context fsGroup
+  ##
+  podSecurityContext:
+    enabled: true
+    fsGroup: 1000
+  ## vaultwarden containers' Security Context
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
+  ## @param containerSecurityContext.enabled Enabled vaultwarden containers' Security Context
+  ## @param containerSecurityContext.runAsUser Set vaultwarden container's Security Context runAsUser
+  ## @param containerSecurityContext.runAsNonRoot Set vaultwarden container's Security Context runAsNonRoot
+  ##
+  containerSecurityContext:
+    enabled: true
+    runAsUser: 1000
+    runAsNonRoot: true
+  ## vaultwarden resource requests and limits
+  ## ref: https://kubernetes.io/docs/user-guide/compute-resources/
+  ## @param resources.limits The resources limits for the vaultwarden containers
+  ## @param resources.requests The requested resources for the vaultwarden containers
+  ##
+  resources:
+    limits: {}
+    requests: {}
+  ## Configure extra options for vaultwarden containers' liveness, readiness and startup probes
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#configure-probes
+  ## @param livenessProbe.enabled Enable livenessProbe on vaultwarden containers
+  ## @param livenessProbe.initialDelaySeconds Initial delay seconds for livenessProbe
+  ## @param livenessProbe.periodSeconds Period seconds for livenessProbe
+  ## @param livenessProbe.timeoutSeconds Timeout seconds for livenessProbe
+  ## @param livenessProbe.failureThreshold Failure threshold for livenessProbe
+  ## @param livenessProbe.successThreshold Success threshold for livenessProbe
+  ##
+  livenessProbe:
+    enabled: false
+    initialDelaySeconds: 300
+    periodSeconds: 1
+    timeoutSeconds: 5
+    failureThreshold: 3
+    successThreshold: 1
+  ## @param readinessProbe.enabled Enable readinessProbe on vaultwarden containers
+  ## @param readinessProbe.initialDelaySeconds Initial delay seconds for readinessProbe
+  ## @param readinessProbe.periodSeconds Period seconds for readinessProbe
+  ## @param readinessProbe.timeoutSeconds Timeout seconds for readinessProbe
+  ## @param readinessProbe.failureThreshold Failure threshold for readinessProbe
+  ## @param readinessProbe.successThreshold Success threshold for readinessProbe
+  ##
+  readinessProbe:
+    enabled: false
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 1
+    failureThreshold: 3
+    successThreshold: 1
+  ## When enabling this, make sure to set initialDelaySeconds to 0 for livenessProbe and readinessProbe
+  ## @param startupProbe.enabled Enable startupProbe on vaultwarden containers
+  ## @param startupProbe.initialDelaySeconds Initial delay seconds for startupProbe
+  ## @param startupProbe.periodSeconds Period seconds for startupProbe
+  ## @param startupProbe.timeoutSeconds Timeout seconds for startupProbe
+  ## @param startupProbe.failureThreshold Failure threshold for startupProbe
+  ## @param startupProbe.successThreshold Success threshold for startupProbe
+  ##
+  startupProbe:
+    enabled: false
+    initialDelaySeconds: 30
+    periodSeconds: 5
+    timeoutSeconds: 1
+    failureThreshold: 60
+    successThreshold: 1
+  ## @param customLivenessProbe Custom Liveness probes for vaultwarden
+  ##
+  customLivenessProbe: {}
+  ## @param customReadinessProbe Custom Rediness probes vaultwarden
+  ##
+  customReadinessProbe: {}
+  ## @param customStartupProbe Custom Startup probes for vaultwarden
+  ##
+  customStartupProbe: {}
+  ## @param lifecycleHooks LifecycleHooks to set additional configuration at startup
+  ##
+  lifecycleHooks: {}
+  ## @param hostAliases Deployment pod host aliases
+  ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
+  ##
+  hostAliases: []
+  ## @param podLabels Extra labels for vaultwarden pods
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+  ##
+  podLabels: {}
+  ## @param podAnnotations Annotations for vaultwarden pods
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  ##
+  podAnnotations: {}
+  ## @param podAffinityPreset Pod affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
+  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+  ##
+  podAffinityPreset: ""
+  ## @param podAntiAffinityPreset Pod anti-affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
+  ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+  ##
+  podAntiAffinityPreset: soft
+  ## Node affinity preset
+  ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
+  ##
+  nodeAffinityPreset:
+    ## @param nodeAffinityPreset.type Node affinity preset type. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
+    ##
+    type: ""
+    ## @param nodeAffinityPreset.key Node label key to match. Ignored if `affinity` is set.
+    ## E.g.
+    ## key: "kubernetes.io/e2e-az-name"
+    ##
+    key: ""
+    ## @param nodeAffinityPreset.values Node label values to match. Ignored if `affinity` is set.
+    ## E.g.
+    ## values:
+    ##   - e2e-az1
+    ##   - e2e-az2
+    ##
+    values: []
+  ## @param affinity Affinity for pod assignment
+  ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+  ##
+  affinity: {}
+  ## @param nodeSelector Node labels for pod assignment
+  ## ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ##
+  nodeSelector: {}
+  ## @param tolerations Tolerations for pod assignment
+  ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+  ##
+  tolerations: []
+  ## @param topologySpreadConstraints Topology Spread Constraints for pod assignment spread across your cluster among failure-domains. Evaluated as a template
+  ## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/#spread-constraints-for-pods
+  ##
+  topologySpreadConstraints: []
+  ## @param podManagementPolicy Pod management policy for the vaultwarden statefulset
+  ##
+  podManagementPolicy: Parallel
+  ## @param priorityClassName vaultwarden pods' Priority Class Name
+  ## ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/
+  ##
+  priorityClassName: ""
+  ## @param schedulerName Use an alternate scheduler, e.g. "stork".
+  ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
+  ##
+  schedulerName: ""
+  ## @param terminationGracePeriodSeconds Seconds vaultwarden pod needs to terminate gracefully
+  ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod/#termination-of-pods
+  ##
+  terminationGracePeriodSeconds: ""
+  ## @param updateStrategy.type vaultwarden statefulset strategy type
+  ## @param updateStrategy.rollingUpdate vaultwarden statefulset rolling update configuration parameters
+  ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies
+  ##
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate: {}
+  ## @param extraVolumes Optionally specify extra list of additional volumes for vaultwarden pods
+  ##
+  extraVolumes: []
+  ## @param extraVolumeMounts Optionally specify extra list of additional volumeMounts for vaultwarden container(s)
+  ##
+  extraVolumeMounts: []
+  ## @param initContainers Add additional init containers to the vaultwarden pods
+  ## Example:
+  ## initContainers:
+  ##   - name: your-image-name
+  ##     image: your-image
+  ##     imagePullPolicy: Always
+  ##     ports:
+  ##       - name: portname
+  ##         containerPort: 1234
+  ##
+  initContainers: []
+  ## @param sidecars Add additional sidecar containers to the vaultwarden pods
+  ## Example:
+  ## sidecars:
+  ##   - name: your-image-name
+  ##     image: your-image
+  ##     imagePullPolicy: Always
+  ##     ports:
+  ##       - name: portname
+  ##         containerPort: 1234
+  ##
+  sidecars: []
+
+  ## Enable persistence using Persistent Volume Claims
+  ## ref: https://kubernetes.io/docs/user-guide/persistent-volumes/
+  ##
+  persistence:
+    ## @param persistence.enabled Enable persistence
+    ##
+    enabled: true
+    ## @param persistence.storageClass data Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    storageClass: "default"
+    ## @param persistence.existingClaim Provide an existing `PersistentVolumeClaim`
+    ##
+    existingClaim: ""
+    ## @param persistence.accessModes Persistent Volume access modes
+    ##
+    accessModes:
+      - ReadWriteOnce
+    ## @param persistence.size Size for the PV
+    ##
+    size: 10Gi
+    ## @param persistence.annotations Persistent Volume Claim annotations
+    ##
+    annotations: {}
+    ## @param persistence.subPath The subdirectory of the volume to mount to, useful in dev environments and one PV for multiple services
+    ##
+    subPath: ""
+    ## @param persistence.selector Selector to match an existing Persistent Volume for WordPress data PVC
+    ## If set, the PVC can't have a PV dynamically provisioned for it
+    ## E.g.
+    ## selector:
+    ##   matchLabels:
+    ##     app: my-app
+    ##
+    selector: {}
+    ## @param persistence.dataSource Custom PVC data source
+    ##
+    dataSource: {}
+
+  ## @section Exposure parameters
   ##
 
-  ## Ingress configuration
-  ## Refer to the README for some examples
+  ## Service configuration
+  ##
+  service:
+    ## @param service.type Kubernetes service type
+    ##
+    type: ClusterIP
+    ## @param service.ports.http vaultwarden service HTTP port
+    ## @param service.ports.websocket vaultwarden service websocket port
+    ##
+    ports:
+      http: 8080
+      websocket: 3012
+    ## @param service.nodePorts [object] Specify the nodePort values for the LoadBalancer and NodePort service types.
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+    ##
+    nodePorts:
+      http: ""
+      websocket: ""
+    ## @param service.sessionAffinity Control where client requests go, to the same pod or round-robin
+    ## Values: ClientIP or None
+    ## ref: https://kubernetes.io/docs/user-guide/services/
+    ##
+    sessionAffinity: None
+    ## @param service.sessionAffinityConfig Additional settings for the sessionAffinity
+    ## sessionAffinityConfig:
+    ##   clientIP:
+    ##     timeoutSeconds: 300
+    ##
+    sessionAffinityConfig: {}
+    ## @param service.clusterIP vaultwarden service clusterIP IP
+    ## e.g:
+    ## clusterIP: None
+    ##
+    clusterIP: ""
+    ## @param service.loadBalancerIP loadBalancerIP for the SuiteCRM Service (optional, cloud specific)
+    ## ref: https://kubernetes.io/docs/user-guide/services/#type-loadbalancer
+    ##
+    loadBalancerIP: ""
+    ## @param service.loadBalancerSourceRanges Address that are allowed when service is LoadBalancer
+    ## https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service
+    ## Example:
+    ## loadBalancerSourceRanges:
+    ##   - 10.10.10.0/24
+    ##
+    loadBalancerSourceRanges: []
+    ## @param service.externalTrafficPolicy Enable client source IP preservation
+    ## ref https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
+    ##
+    externalTrafficPolicy: Cluster
+    ## @param service.annotations Additional custom annotations for vaultwarden service
+    ##
+    annotations: {}
+    ## @param service.extraPorts Extra port to expose on vaultwarden service
+    ##
+    extraPorts: []
+    ## @param service.extraHeadlessPorts Extra ports to expose on vaultwarden headless service
+    ##
+    extraHeadlessPorts: []
+
+  ## vaultwarden ingress parameters
+  ## ref: https://kubernetes.io/docs/user-guide/ingress/
   ##
   ingress:
-    ## @param ingress.enabled Deploy an ingress resource.
+    ## @param ingress.enabled Enable ingress record generation for vaultwarden
     ##
     enabled: false
-    ## @param ingress.class Ingress resource class
-    ## The Ingress class to use, e. g. "nginx" for a nginx ingress controller or "alb" for a AWS LB controller.
-    #
-    class: "nginx"
-    ## @param ingress.nginxIngressAnnotations Add nginx specific ingress annotations
-    ## This annotations are only makes sense for the kubernetes nginx ingress controller (https://kubernetes.github.io/ingress-nginx/)
+    ## @param ingress.ingressClassName IngressClass that will be be used to implement the Ingress (Kubernetes 1.18+)
+    ## This is supported in Kubernetes 1.18+ and required if you have more than one IngressClass marked as the default for your cluster .
+    ## ref: https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/
     ##
-    nginxIngressAnnotations: true
-    ## @param ingress.additionalAnnotations Additional annotations for the ingress resource.
+    ingressClassName: ""
+    ## @param ingress.pathType Ingress path type
     ##
-    additionalAnnotations: {}
-    ## @param ingress.labels Additional labels for the ingress resource.
+    pathType: ImplementationSpecific
+    ## @param ingress.apiVersion Force Ingress API version (automatically detected if not set)
     ##
-    labels: {}
-    ## @param ingress.tls Enable TLS on the ingress resource.
+    apiVersion: ""
+    ## @param ingress.hostname Default host for the ingress record (evaluated as template)
     ##
-    tls: true
-    ## @param ingress.hostname Hostname for the ingress.
+    hostname: vaultwarden.local
+    ## @param ingress.path Default path for the ingress record
     ##
-    hostname: "warden.contoso.com"
-    ## @param ingress.path Default application path for the ingress
-    ##
-    path: "/"
+    path: /
     ## @param ingress.pathWs Path for the websocket ingress
     ##
     pathWs: "/notifications/hub"
-    ## @param ingress.pathType Path type for the ingress
-    ## Ref: https://kubernetes.io/docs/concepts/services-networking/ingress/
+    ## @param ingress.servicePort Backend service port to use
+    ## Default is http. Alternative is https.
     ##
-    pathType: "Prefix"
-    ## @param ingress.pathTypeWs Path type for the ingress
-    ## Ref: https://kubernetes.io/docs/concepts/services-networking/ingress/
+    servicePort: http
+    ## @param ingress.annotations [object] Additional annotations for the Ingress resource. To enable certificate autogeneration, place here your cert-manager annotations.
+    ## Use this parameter to set the required annotations for cert-manager, see
+    ## ref: https://cert-manager.io/docs/usage/ingress/#supported-annotations
+    ## e.g:
+    ## annotations:
+    ##   kubernetes.io/ingress.class: nginx
+    ##   cert-manager.io/cluster-issuer: cluster-issuer-name
     ##
-    pathTypeWs: "Exact"
-    ## @param ingress.tlsSecret Kubernetes secret containing the SSL certificate when using the "nginx" class.
+    annotations: {}
+    ## @param ingress.tls Enable TLS configuration for the host defined at `ingress.hostname` parameter
+    ## TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" (tpl .Values.ingress.hostname .) }}`
+    ## You can:
+    ##   - Use the `ingress.secrets` parameter to create this TLS secret
+    ##   - Rely on cert-manager to create it by setting the corresponding annotations
+    ##   - Rely on Helm to create self-signed certificates by setting `ingress.selfSigned=true`
     ##
-    tlsSecret: ""
+    tls: false
+    ## @param ingress.selfSigned Create a TLS secret for this ingress record using self-signed certificates generated by Helm
+    ##
+    selfSigned: false
+    ## @param ingress.extraHosts An array with additional hostname(s) to be covered with the ingress record
+    ## e.g:
+    ## extraHosts:
+    ##   - name: vaultwarden.local
+    ##     path: /
+    ##
+    extraHosts: []
+    ## @param ingress.extraPaths Any additional arbitrary paths that may need to be added to the ingress under the main host.
+    ## For example: The ALB ingress controller requires a special rule for handling SSL redirection.
+    ## extraPaths:
+    ## - path: /*
+    ##   backend:
+    ##     serviceName: ssl-redirect
+    ##     servicePort: use-annotation
+    ##
+    extraPaths: []
+    ## @param ingress.extraTls The tls configuration for additional hostnames to be covered with this ingress record.
+    ## see: https://kubernetes.io/docs/concepts/services-networking/ingress/#tls
+    ## extraTls:
+    ## - hosts:
+    ##     - vaultwarden.local
+    ##   secretName: vaultwarden.local-tls
+    ##
+    extraTls: []
+    ## @param ingress.secrets If you're providing your own certificates, please use this to add the certificates as secrets
+    ## key and certificate should start with -----BEGIN CERTIFICATE----- or
+    ## -----BEGIN RSA PRIVATE KEY-----
+    ##
+    ## name should line up with a tlsSecret set further up
+    ## If you're using cert-manager, this is unneeded, as it will create the secret for you if it is not set
+    ##
+    ## It is also possible to create and manage the certificates outside of this helm chart
+    ## Please see README.md for more information
+    ## e.g:
+    ## - name: vaultwarden.local-tls
+    ##   key:
+    ##   certificate:
+    ##
+    secrets: []
+    ## @param ingress.extraRules Additional rules to be covered with this ingress record
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-rules
+    ## e.g:
+    ## extraRules:
+    ## - host: foo.local
+    ##     http:
+    ##       path: /
+    ##       backend:
+    ##         service:
+    ##           name: foo-svc
+    ##           port:
+    ##             name: http
+    ##
+    extraRules: []
     ## @param ingress.nginxAllowList Comma-separated list of IP addresses and subnets to allow.
     ##
     nginxAllowList: ""
@@ -158,62 +577,74 @@ vaultwarden:
     ##   - Support for multiple TLS hostnames.
     ##
 
-  ## Service configuration
-  service:
-    ## @param service.type Service type
+
+  ## @section RBAC parameter
+  ## Specifies whether a ServiceAccount should be created
+  ##
+  serviceAccount:
+    ## @param serviceAccount.create Enable the creation of a ServiceAccount for vaultwarden pods
     ##
-    type: "ClusterIP"
-    ## @param service.annotations Additional annotations for the vaultwarden service
+    create: true
+    ## @param serviceAccount.name Name of the created ServiceAccount
+    ## If not set and create is true, a name is generated using the fullname template
+    ##
+    name: ""
+    ## @param serviceAccount.automountServiceAccountToken Auto-mount the service account token in the pod
+    ##
+    automountServiceAccountToken: false
+    ## @param serviceAccount.annotations Additional custom annotations for the ServiceAccount
     ##
     annotations: {}
-    ## @param service.labels Additional labels for the service
-    ##
-    labels: {}
 
   ## @section Database Configuration
   ##
   database:
-    ## @param database.type Database type, either mysql or postgresql
+    ## @param database.type Database type, either default or postgresql
     ## Default is a sqlite database.
     ##
     type: "default"
-    ## @param database.host Database hostname or IP address
-    ##
+
+  ## @section Database parameters
+
+  ## PostgreSQL chart configuration
+  ## ref: https://github.com/bitnami/charts/blob/main/bitnami/postgresql/values.yaml
+  ## @param postgresql.enabled Switch to enable or disable the PostgreSQL helm chart
+  ## @param postgresql.auth.username Name for a custom user to create
+  ## @param postgresql.auth.password Password for the custom user to create
+  ## @param postgresql.auth.database Name for a custom database to create
+  ## @param postgresql.auth.existingSecret Name of existing secret to use for PostgreSQL credentials
+  ## @param postgresql.architecture PostgreSQL architecture (`standalone` or `replication`)
+  ##
+  postgresql:
+    enabled: false
+    auth:
+      username: bn_vaultwarden
+      password: ""
+      database: bitnami_vaultwarden
+      existingSecret: ""
+    architecture: standalone
+  ## External PostgreSQL configuration
+  ## All of these values are only used when postgresql.enabled is set to false
+  ## @param externalDatabase.host Database host
+  ## @param externalDatabase.port Database port number
+  ## @param externalDatabase.user Non-root username for vaultwarden
+  ## @param externalDatabase.password Password for the non-root username for vaultwarden
+  ## @param externalDatabase.database vaultwarden database name
+  ## @param externalDatabase.existingSecret Name of an existing secret resource containing the database credentials
+  ## @param externalDatabase.existingSecretPasswordKey Name of an existing secret key containing the database credentials
+  ##
+  externalDatabase:
     host: ""
-    ## @param database.port Database port
-    ## Default for MySQL is 3306, default for PostgreSQL is 5432
-    port: ""
-    ## @param database.username Database username
-    ##
-    username: ""
-    ## @param database.password Database password
-    ##
+    port: 5432
+    user: bn_vaultwarden
+    database: bitnami_vaultwarden
     password: ""
-    ## @param database.dbName Database name
-    ##
-    dbName: ""
-    ## @param database.uriOverride Manually specify the DB connection string
-    ##
-    uriOverride: ""
-    ## @param database.existingSecret Name of an existing secret containing the database URI
-    ##
     existingSecret: ""
-    ## @param database.existingSecretKey Key in the existing secret
-    ##
-    existingSecretKey: ""
-    ## @param database.connectionRetries Number of times to retry the database connection during startup, with 1 second delay between each retry, set to 0 to retry indefinitely.
-    ##
-    connectionRetries: 15
-    ## @param database.maxConnections Define the size of the connection pool used for connecting to the database.
-    ##
-    maxConnections: 10
+    existingSecretPasswordKey: ""
 
   ## @section SMTP Configuration
   ##
   smtp:
-    ## @param smtp.existingSecret Name of an existing secret containing the SMTP username and password. Also set smtp.username.existingSecretKey and smtp.password.existingSecretKey.
-    ##
-    existingSecret: ""
     ## @param smtp.host SMTP host
     ##
     host: ""
@@ -226,41 +657,23 @@ vaultwarden:
     security: "starttls"
     ## @param smtp.port SMTP port
     ##
-    port: 25
+    port: 587
     ## @param smtp.from SMTP sender email address
     ## Example: juan.delacruz@gmail.com
     ##
     from: ""
-    ## @param smtp.fromName SMTP sender FROM
+    ## @param smtp.username Username for the SMTP authentication.
+    ## Example: juan
     ##
-    fromName: ""
-    ## Username for SMTP authentication.
+    username: ""
+    ## @param smtp.password Password for the SMTP service.
     ##
-    username:
-      ## @param smtp.username.value Username string for the SMTP authentication.
-      ## Example: juan
-      ##
-      value: ""
-      ## @param smtp.username.existingSecretKey When using an existing secret, specify the key which contains the username.
-      ## Example: SMTP_USERNAME
-      ##
-      existingSecretKey: ""
-    ## Password for SMTP authentication.
-    ##
-    password:
-      ## @param smtp.password.value Password string for the SMTP authentication.
-      ## Example: Sup3rsecurepa$$word
-      ##
-      value: ""
-      ## @param smtp.password.existingSecretKey When using an existing secret, specify the key which contains the password.
-      ## Example: SMTP_PASSWORD
-      ##
-      existingSecretKey: ""
+    password: ""
     ## @param smtp.authMechanism SMTP authentication mechanism
     ## Possible values: "Plain", "Login", "Xoauth2"
     ## Multiple options need to be separated by a comma. (not tested)
     ##
-    authMechanism: "Plain"
+    authMechanism: "Login"
     ## @param smtp.acceptInvalidHostnames Accept Invalid Hostnames
     ##
     acceptInvalidHostnames: "false"
@@ -270,65 +683,3 @@ vaultwarden:
     ## @param smtp.debug SMTP debugging
     ##
     debug: false
-
-  ## @section Storage Configuration
-  ##
-  storage:
-    ## @param storage.enabled Enable configuration for persistent storage
-    ##
-    enabled: false
-    ## @param storage.size Storage size for /data
-    ##
-    size: "10Gi"
-    ## @param storage.class Specify the storage class
-    ##
-    class: "default"
-    ## @param storage.dataDir Specify the data directory
-    ##
-    dataDir: "/data"
-
-  ## @section Logging Configuration
-  ##
-  logging:
-    ## @param logging.enabled Enable logging to a file
-    ##
-    enabled: false
-    ## @param logging.logfile Specify logfile path for output log
-    ##
-    logfile: "/data/vaultwarden.log"
-    ## @param logging.loglevel Specify the log level
-    ##
-    loglevel: "warn"
-
-  ## @section Extra containers Configuration
-  ##
-
-  ## @param initContainers extra init containers for initializing the vaultwarden instance
-  ##
-  initContainers: []
-
-  ## @param sidecars extra containers running alongside the vaultwarden instance
-  ##
-  sidecars: []
-
-  ## @section Extra Configuration
-  ##
-
-  ## @param nodeSelector Node labels for pod assignment
-  ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector
-  ##
-  nodeSelector: {}
-
-  ## @param affinity Affinity for pod assignment
-  ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
-  ##
-  affinity: {}
-
-  ## @param tolerations Tolerations for pod assignment
-  ## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
-  ##
-  tolerations: []
-
-  ## @param statefulsetlabels Additional labels for the statefulset
-  ##
-  statefulsetlabels: {}

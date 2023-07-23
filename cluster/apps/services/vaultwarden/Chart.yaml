@@ -3,5 +3,5 @@ name: vaultwarden
 version: 0.0.0
 dependencies:
   - name: vaultwarden
-    version: 0.14.0
-    repository: https://philipsens.github.io/vaultwarden
+    version: 0.1.6
+    repository: https://charts.doca.cloud/charts/
