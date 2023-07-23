@@ -3,5 +3,5 @@ name: vaultwarden
 version: 0.0.0
 dependencies:
   - name: vaultwarden
-    version: 0.1.6
-    repository: https://charts.doca.cloud/charts/
+    version: 0.9.0
+    repository: https://charts.gabe565.com
