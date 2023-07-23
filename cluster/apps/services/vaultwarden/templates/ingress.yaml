@@ -17,8 +17,19 @@ spec:
               service:
                 name: vaultwarden
                 port:
-                  number: 80    
+                  number: 80   
+    - host: photoprism.amrap030.home
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: photoprism
+                port:
+                  number: 80     
   tls:
     - hosts:
         - vaultwarden.amrap030.home
+        - photoprism.amrap030.home
       secretName: traefik-cert
