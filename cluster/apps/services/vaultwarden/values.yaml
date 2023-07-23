@@ -15,7 +15,6 @@ vaultwarden:
     SMTP_HOST: smtp.gmail.com
     SMTP_PORT: 465
     SMTP_SECURITY: "force_tls"
-    SMTP_SSL: "false"
     SMTP_USERNAME: kevin.hertwig@gmail.com
     TZ: Europe/Berlin
     WEBSOCKET_ENABLED: true
