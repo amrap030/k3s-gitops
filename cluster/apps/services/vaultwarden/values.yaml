@@ -2,9 +2,6 @@ vaultwarden:
   image:
     repository: vaultwarden/server
     tag: 1.28.1-alpine
-  envFrom:
-    - secretRef:
-        name: vaultwarden-secret
   env:
     DATA_FOLDER: data
     SIGNUPS_ALLOWED: false
@@ -13,7 +10,7 @@ vaultwarden:
     WEBSOCKET_ADDRESS: 0.0.0.0
     WEBSOCKET_PORT: 3012
     DOMAIN: https://vaultwarden.amrap030.site
-    ADMIN_TOKEN: password
+    ADMIN_TOKEN: password 
     TZ: Europe/Berlin
   ingress:
     main:
