@@ -4,9 +4,6 @@ vaultwarden:
     tag: 1.28.1-alpine
   env:
     DATA_FOLDER: data
-  envFrom:
-    - secretRef:
-        name: vaultwarden
   ingress:
     main:
       enabled: false
