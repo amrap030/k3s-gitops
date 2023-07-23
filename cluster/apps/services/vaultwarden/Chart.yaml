@@ -1,0 +1,7 @@
+apiVersion: v2
+name: vaultwarden
+version: 0.0.0
+dependencies:
+  - name: charts/vaultwarden/
+    version: 0.14.0
+    repository: https://github.com/guerzon/vaultwarden
