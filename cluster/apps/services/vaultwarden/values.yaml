@@ -13,7 +13,8 @@ vaultwarden:
     WEBSOCKET_ADDRESS: 0.0.0.0
     WEBSOCKET_PORT: 3012
     DOMAIN: https://vaultwarden.amrap030.site
-    ADMIN_TOKEN: ${SECRET_VAULTWARDEN_ADMIN_TOKEN}
+    ADMIN_TOKEN: password
+    TZ: Europe/Berlin
   ingress:
     main:
       enabled: false
