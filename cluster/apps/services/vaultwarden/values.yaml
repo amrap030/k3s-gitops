@@ -374,7 +374,7 @@ vaultwarden:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass: "default"
+    storageClass: "longhorn"
     ## @param persistence.existingClaim Provide an existing `PersistentVolumeClaim`
     ##
     existingClaim: ""
