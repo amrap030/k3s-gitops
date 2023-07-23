@@ -6,3 +6,4 @@ resources:
   - base/storage/pvc.yaml
   - base/statefulset.yaml
   - base/service.yaml
+  - base/ingress.yaml

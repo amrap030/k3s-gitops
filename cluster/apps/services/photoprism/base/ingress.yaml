@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: traefik-ca-issuer
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+  name: photoprism-ingress
+  namespace: services
+spec:
+  rules:
+    - host: photoprism.amrap030.home
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: photoprism
+                port:
+                  number: 80    
+  tls:
+    - hosts:
+        - photoprism.amrap030.home
+      secretName: traefik-cert

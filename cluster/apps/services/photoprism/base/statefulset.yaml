@@ -78,6 +78,16 @@ spec:
           #    value: "gpu tensorflow" ## Run/install on first startup (options: update, gpu, tensorflow, davfs, nano, clean):
           #  - name: HOME
           #    value: "/photoprism"
+            - name: PHOTOPRISM_DATABASE_DRIVER
+              value: "mysql"
+            - name: PHOTOPRISM_DATABASE_SERVER
+              value: "photoprism-mariadb:3306"
+            - name: PHOTOPRISM_DATABASE_NAME
+              value: "photoprism"
+            - name: PHOTOPRISM_DATABASE_USER
+              value: "photoprism"
+            - name: TZ
+              value: "Europe/Berlin"
 
           # Load database DSN & admin password from secret
           envFrom:
