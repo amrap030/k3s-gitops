@@ -3,3 +3,6 @@ kind: Kustomization
 namespace: services
 resources:
   - maria-db
+  - base/storage/pvc.yaml
+  - base/statefulset.yaml
+  - base/service.yaml
