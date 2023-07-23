@@ -112,7 +112,7 @@ vaultwarden:
   ##
   ## @param adminToken The admin token used for /admin
   ##
-  adminToken: ""
+  adminToken: "password"
   ## @param signupsAllowed By default, anyone who can access your instance can register for a new account.
   ## To disable this, set this parameter to false. Even when signupsAllowed=false, an existing user who is
   ## an organization owner or admin can still invite new users. If you want to disable this as well, set
@@ -120,12 +120,12 @@ vaultwarden:
   ## of any of the restrictions above
   ##
   ## If signupDomains is set, then the value of signupsAllowed is ignored
-  signupsAllowed: true
+  signupsAllowed: false
   ## @param invitationsAllowed Even when registration is disabled, organization administrators or owners can
   ## invite users to join organization. After they are invited, they can register with the invited email even
   ## if signupsAllowed is actually set to false. You can disable this functionality completely by setting
   ## invitationsAllowed env variable to false
-  invitationsAllowed: true
+  invitationsAllowed: false
   ## @param signupDomains List of domain names for users allowed to register
   ##
   signupDomains: "example.com"
@@ -641,45 +641,3 @@ vaultwarden:
     password: ""
     existingSecret: ""
     existingSecretPasswordKey: ""
-
-  ## @section SMTP Configuration
-  ##
-  smtp:
-    ## @param smtp.host SMTP host
-    ##
-    host: ""
-    ## @param smtp.security SMTP Encryption method
-    ## Possible values:
-    ##  - starttls: explicit TLS using ports 587 or 25
-    ##  - force_tls: implicit TLS using port 465
-    ##  - off: no encryption, using port 25, unless using STARTTLS
-    ##
-    security: "starttls"
-    ## @param smtp.port SMTP port
-    ##
-    port: 587
-    ## @param smtp.from SMTP sender email address
-    ## Example: juan.delacruz@gmail.com
-    ##
-    from: ""
-    ## @param smtp.username Username for the SMTP authentication.
-    ## Example: juan
-    ##
-    username: ""
-    ## @param smtp.password Password for the SMTP service.
-    ##
-    password: ""
-    ## @param smtp.authMechanism SMTP authentication mechanism
-    ## Possible values: "Plain", "Login", "Xoauth2"
-    ## Multiple options need to be separated by a comma. (not tested)
-    ##
-    authMechanism: "Login"
-    ## @param smtp.acceptInvalidHostnames Accept Invalid Hostnames
-    ##
-    acceptInvalidHostnames: "false"
-    ## @param smtp.acceptInvalidCerts Accept Invalid Certificates
-    ##
-    acceptInvalidCerts: "false"
-    ## @param smtp.debug SMTP debugging
-    ##
-    debug: false
