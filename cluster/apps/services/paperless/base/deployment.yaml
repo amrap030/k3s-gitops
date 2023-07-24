@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: webserver
-          image: pitkley/paperless
+          image: ghcr.io/paperless-ngx/paperless-ngx:latest
           imagePullPolicy: IfNotPresent
           command: ["/sbin/docker-entrypoint.sh"]
           args: ["gunicorn", "-b", "0.0.0.0:8000"]
@@ -28,7 +28,7 @@ spec:
             - name: ALLOW_EMPTY_PASSWORD
               value: "yes"
             - name: PAPERLESS_REDIS
-              value: "redis://redis-server.services:6379"
+              value: "redis://redis-server:6379"
             - name: PAPERLESS_DBENGINE
               value: "mariadb"
             - name: PAPERLESS_DBHOST
