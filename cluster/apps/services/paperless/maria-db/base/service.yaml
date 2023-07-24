@@ -5,7 +5,7 @@ metadata:
   name: paperless-mariadb
 spec:
   ports:
-  - port: 3306
+  - port: 3307
   selector:
     app: mariadb
   clusterIP: None
