@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         app: paperless-mariadb
+        name: paperless-mariadb
     spec:
       containers:
       - image: mariadb
