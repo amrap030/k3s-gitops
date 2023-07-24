@@ -1,0 +1,62 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless
+  labels:
+    app: paperless
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless
+  template:
+    metadata:
+      labels:
+        app: paperless
+    spec:
+      containers:
+        - name: webserver
+          image: pitkley/paperless
+          imagePullPolicy: IfNotPresent
+          command: ["/sbin/docker-entrypoint.sh"]
+          args: ["gunicorn", "-b", "0.0.0.0:8000"]
+          env:
+            - name: ALLOW_EMPTY_PASSWORD
+              value: "yes"
+            - name: PAPERLESS_REDIS
+              value: "redis://redis-server:6379"
+            - name: PAPERLESS_DBENGINE
+              value: "mariadb"
+            - name: PAPERLESS_DBHOST
+              value: "paperless-mariadb"  
+            - name: PAPERLESS_DBNAME
+              value: "paperless"
+            - name: PAPERLESS_DBUSER
+              value: "paperless"
+            - name: PAPERLESS_URL
+              value: "https://paperless.amrap030.site" 
+            - name: PAPERLESS_ADMIN_USER
+              value: "amrap030" 
+            - name: PAPERLESS_ADMIN_PASSWORD
+              value: "password" 
+            - name: PAPERLESS_OCR_LANGUAGE
+              value: "deu+eng"
+            - name: PAPERLESS_TIME_ZONE
+              value: "Europe/Berlin"  
+          volumeMounts:
+            - name: paperless-data
+              mountPath: /usr/src/paperless/data
+            - name: paperless-media
+              mountPath: /usr/src/paperless/media
+            - name: paperless-media
+              mountPath: /usr/src/paperless/consume
+            - name: paperless-media
+              mountPath: /usr/src/paperless/export
+      volumes:
+        - name: paperless-data
+          persistentVolumeClaim:
+            claimName: paperless-data
+        - name: paperless-media
+          persistentVolumeClaim:
+            claimName: paperless-media

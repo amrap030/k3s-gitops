@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-server
+  namespace: services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-server
+  template:
+    metadata:
+      labels:
+        app: redis-server
+        name: redis-server
+    spec:
+      nodeSelector:
+        node-type: worker
+      containers:
+      - name: redis-server
+        image: redis:7.0.12-alpine
+        args: ["--appendonly", "yes"]
+        ports:
+          - name: redis-server
+            containerPort: 6379

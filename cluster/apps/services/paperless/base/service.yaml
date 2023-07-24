@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: paperless
+spec:
+  selector:
+    app: paperless
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
