@@ -14,12 +14,10 @@ spec:
         app: redis-server
         name: redis-server
     spec:
-      nodeSelector:
-        node-type: worker
       containers:
-      - name: redis-server
-        image: redis
-        args: ["--appendonly", "yes"]
-        ports:
-          - name: redis-server
-            containerPort: 6379
+        - name: redis
+          image: redis:latest
+          ports:
+            - containerPort: 6379
+          args:
+            - "redis-server"
