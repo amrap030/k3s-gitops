@@ -21,6 +21,9 @@ spec:
           imagePullPolicy: IfNotPresent
           command: ["/sbin/docker-entrypoint.sh"]
           args: ["gunicorn", "-b", "0.0.0.0:8000"]
+          envFrom:
+          - secretRef:
+              name: paperless-mariadb-secrets
           env:
             - name: ALLOW_EMPTY_PASSWORD
               value: "yes"
