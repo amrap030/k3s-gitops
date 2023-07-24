@@ -18,7 +18,7 @@ spec:
         node-type: worker
       containers:
       - name: redis-server
-        image: redis:7.0.12-alpine
+        image: redis
         args: ["--appendonly", "yes"]
         ports:
           - name: redis-server
