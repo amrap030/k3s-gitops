@@ -36,7 +36,7 @@ spec:
             - name: PAPERLESS_DBUSER
               value: "paperless"
             - name: PAPERLESS_DBPORT
-              value: "3307"
+              value: "3306"
             - name: PAPERLESS_URL
               value: "https://paperless.amrap030.site" 
             - name: PAPERLESS_ADMIN_USER
