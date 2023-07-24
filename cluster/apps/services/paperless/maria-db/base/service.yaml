@@ -3,9 +3,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: paperless-mariadb
+  namespace: monitoring
 spec:
   ports:
   - port: 3307
   selector:
-    app: paperless-mariadb
+    app: mariadb
   clusterIP: None

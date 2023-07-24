@@ -3,17 +3,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: paperless-mariadb
+  namespace: monitoring
 spec:
   selector:
     matchLabels:
-      app: paperless-mariadb
+      app: mariadb
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: paperless-mariadb
-        name: paperless-mariadb
+        app: mariadb
     spec:
       containers:
       - image: mariadb
@@ -45,7 +45,7 @@ spec:
 
         ports:
           - containerPort: 3307
-            name: paperless-mariadb
+            name: mariadb
 
         volumeMounts:
           - name: paperless-mariadb
