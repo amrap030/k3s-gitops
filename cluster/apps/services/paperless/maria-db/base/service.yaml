@@ -7,5 +7,5 @@ spec:
   ports:
   - port: 3307
   selector:
-    app: mariadb
+    app: paperless-mariadb
   clusterIP: None

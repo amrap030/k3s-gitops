@@ -6,13 +6,13 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: mariadb
+      app: paperless-mariadb
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: mariadb
+        app: paperless-mariadb
     spec:
       containers:
       - image: mariadb
@@ -44,7 +44,7 @@ spec:
 
         ports:
           - containerPort: 3307
-            name: mariadb
+            name: paperless-mariadb
 
         volumeMounts:
           - name: paperless-mariadb
