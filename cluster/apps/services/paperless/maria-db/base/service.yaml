@@ -4,8 +4,12 @@ kind: Service
 metadata:
   name: paperless-mariadb
 spec:
-  ports:
-  - port: 3306
+  type: ClusterIP
   selector:
     app: mariadb
-  clusterIP: None
+  type: ClusterIP
+  ports:
+    - name: redis-port
+      protocol: TCP
+      port: 3306
+      targetPort: 3306
