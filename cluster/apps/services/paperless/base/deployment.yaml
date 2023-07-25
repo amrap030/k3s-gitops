@@ -47,6 +47,10 @@ spec:
               value: "deu+eng"
             - name: PAPERLESS_TIME_ZONE
               value: "Europe/Berlin"  
+            - name: USERMAP_UID
+              value: "1000"
+            - name: USERMAP_GID
+              value: "1000"
           volumeMounts:
             - name: paperless-data
               mountPath: /usr/src/paperless/data
