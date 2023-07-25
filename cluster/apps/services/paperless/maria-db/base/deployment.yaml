@@ -47,7 +47,7 @@ spec:
             memory: 1Gi
 
         ports:
-          - containerPort: 3307
+          - containerPort: 3306
             name: mariadb
 
         volumeMounts:
