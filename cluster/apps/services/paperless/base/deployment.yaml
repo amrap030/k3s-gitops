@@ -29,6 +29,8 @@ spec:
               value: "redis://redis-server:6379"
             - name: PAPERLESS_DBENGINE
               value: "mariadb"
+            - name: PAPERLESS_PORT
+              value: "8000" 
             - name: PAPERLESS_DBHOST
               value: "paperless-mariadb"  
             - name: PAPERLESS_DBNAME
