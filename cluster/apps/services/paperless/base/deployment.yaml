@@ -19,8 +19,8 @@ spec:
         - name: webserver
           image: ghcr.io/paperless-ngx/paperless-ngx:latest
           imagePullPolicy: IfNotPresent
-          #command: ["/sbin/docker-entrypoint.sh"]
-          #args: ["gunicorn", "-b", "0.0.0.0:8000"]
+          command: ["/sbin/docker-entrypoint.sh"]
+          args: ["gunicorn", "-b", "0.0.0.0:8000"]
           envFrom:
           - secretRef:
               name: paperless-mariadb-secrets
