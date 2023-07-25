@@ -49,10 +49,10 @@ spec:
               value: "Europe/Berlin"
             - name: PAPERLESS_CSRF_TRUSTED_ORIGINS
               value: "https://paperless.amrap030.home,https://paperless.amrap030.site"  
-            # - name: USERMAP_UID
-            #   value: "1000"
-            # - name: USERMAP_GID
-            #   value: "1000"
+            - name: USERMAP_UID
+              value: "1000"
+            - name: USERMAP_GID
+              value: "1000"
           volumeMounts:
             - name: paperless-data
               mountPath: /usr/src/paperless/data
