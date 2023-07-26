@@ -35,10 +35,10 @@ spec:
             value: paperless
           - name: MARIADB_USER
             value: paperless
-          - name: PUID
-            value: "1000"
-          - name: PGID
-            value: "1000"
+          # - name: PUID
+          #   value: "1000"
+          # - name: PGID
+          #   value: "1000"
 
         resources:
           limits:
