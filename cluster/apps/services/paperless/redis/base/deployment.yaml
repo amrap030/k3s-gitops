@@ -14,6 +14,7 @@ spec:
         app: redis-server
         name: redis-server
     spec:
+      enableServiceLinks: false
       containers:
         - name: redis
           image: redis:latest
