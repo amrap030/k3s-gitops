@@ -20,7 +20,6 @@ spec:
         - name: webserver
           image: ghcr.io/paperless-ngx/paperless-ngx:latest
           imagePullPolicy: IfNotPresent
-          command: ["/sbin/docker-entrypoint.sh"]
           envFrom:
           - secretRef:
               name: paperless-mariadb-secrets
