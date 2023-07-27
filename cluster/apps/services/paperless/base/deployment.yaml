@@ -20,9 +20,9 @@ spec:
         - name: webserver
           image: ghcr.io/paperless-ngx/paperless-ngx:latest
           imagePullPolicy: IfNotPresent
-          envFrom:
-          - secretRef:
-              name: paperless-mariadb-secrets
+          # envFrom:
+          # - secretRef:
+          #     name: paperless-mariadb-secrets
           env:
             - name: PAPERLESS_REDIS
               value: "redis://redis-server:6379"
