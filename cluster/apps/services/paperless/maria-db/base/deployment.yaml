@@ -36,10 +36,8 @@ spec:
             value: paperless
           - name: MARIADB_USER
             value: paperless
-          - name: PUID
-            value: "1000"
-          - name: PGID
-            value: "1000"
+          - name: MARIADB_ALLOW_EMPTY_ROOT_PASSWORD
+            value: yes
 
         resources:
           limits:
