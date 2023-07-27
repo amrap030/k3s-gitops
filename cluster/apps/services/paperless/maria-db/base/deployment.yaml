@@ -32,12 +32,10 @@ spec:
           - secretRef:
               name: paperless-mariadb-secrets
         env:
-          - name: MARIADB_DATABASE
+          - name: POSTGRES_DB
             value: paperless
-          - name: MARIADB_USER
+          - name: POSTGRES_USER
             value: paperless
-          - name: MARIADB_ALLOW_EMPTY_ROOT_PASSWORD
-            value: yes
 
         resources:
           limits:

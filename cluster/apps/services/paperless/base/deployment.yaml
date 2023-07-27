@@ -20,24 +20,24 @@ spec:
         - name: webserver
           image: ghcr.io/paperless-ngx/paperless-ngx:latest
           imagePullPolicy: IfNotPresent
-          # envFrom:
-          # - secretRef:
-          #     name: paperless-mariadb-secrets
+          envFrom:
+          - secretRef:
+              name: paperless-mariadb-secrets
           env:
             - name: PAPERLESS_REDIS
               value: "redis://redis-server:6379"
-            # - name: PAPERLESS_DBENGINE
-            #   value: "mariadb"
-            # - name: PAPERLESS_PORT
-            #   value: "8000" 
-            # - name: PAPERLESS_DBHOST
-            #   value: "paperless-mariadb"  
-            # - name: PAPERLESS_DBNAME
-            #   value: "paperless"
-            # - name: PAPERLESS_DBUSER
-            #   value: "paperless"
-            # - name: PAPERLESS_DBPORT
-            #   value: "3306"
+            - name: PAPERLESS_DBENGINE
+              value: "postgresql"
+            - name: PAPERLESS_PORT
+              value: "8000" 
+            - name: PAPERLESS_DBHOST
+              value: "paperless-mariadb"  
+            - name: PAPERLESS_DBNAME
+              value: "paperless"
+            - name: PAPERLESS_DBUSER
+              value: "paperless"
+            - name: PAPERLESS_DBPORT
+              value: "5432"
             - name: PAPERLESS_URL
               value: "https://paperless.amrap030.site" 
             - name: PAPERLESS_ADMIN_USER
