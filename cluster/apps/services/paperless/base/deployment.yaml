@@ -26,18 +26,18 @@ spec:
           env:
             - name: PAPERLESS_REDIS
               value: "redis://redis-server:6379"
-            - name: PAPERLESS_DBENGINE
-              value: "mariadb"
-            - name: PAPERLESS_PORT
-              value: "8000" 
-            - name: PAPERLESS_DBHOST
-              value: "paperless-mariadb"  
-            - name: PAPERLESS_DBNAME
-              value: "paperless"
-            - name: PAPERLESS_DBUSER
-              value: "paperless"
-            - name: PAPERLESS_DBPORT
-              value: "3306"
+            # - name: PAPERLESS_DBENGINE
+            #   value: "mariadb"
+            # - name: PAPERLESS_PORT
+            #   value: "8000" 
+            # - name: PAPERLESS_DBHOST
+            #   value: "paperless-mariadb"  
+            # - name: PAPERLESS_DBNAME
+            #   value: "paperless"
+            # - name: PAPERLESS_DBUSER
+            #   value: "paperless"
+            # - name: PAPERLESS_DBPORT
+            #   value: "3306"
             - name: PAPERLESS_URL
               value: "https://paperless.amrap030.site" 
             - name: PAPERLESS_ADMIN_USER
@@ -50,10 +50,10 @@ spec:
               value: "Europe/Berlin"
             - name: PAPERLESS_CSRF_TRUSTED_ORIGINS
               value: "https://paperless.amrap030.home,https://paperless.amrap030.site"  
-            - name: USERMAP_UID
-              value: "1000"
-            - name: USERMAP_GID
-              value: "1000"
+            # - name: USERMAP_UID
+            #   value: "1000"
+            # - name: USERMAP_GID
+            #   value: "1000"
           volumeMounts:
             - name: paperless-data
               mountPath: /usr/src/paperless/data

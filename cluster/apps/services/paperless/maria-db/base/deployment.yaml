@@ -16,7 +16,7 @@ spec:
     spec:
       enableServiceLinks: false
       containers:
-      - image: mariadb:10.2
+      - image: mariadb
         name: mariadb
         args:
           - --lower-case-table-names=1
