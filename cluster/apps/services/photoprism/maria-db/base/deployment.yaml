@@ -36,6 +36,8 @@ spec:
             value: photoprism
           - name: MARIADB_USER
             value: photoprism
+          - name: MARIADB_ALLOW_EMPTY_ROOT_PASSWORD
+            value: yes
 
         resources:
           limits:
