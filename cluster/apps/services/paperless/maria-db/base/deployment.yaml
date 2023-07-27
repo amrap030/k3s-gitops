@@ -18,16 +18,16 @@ spec:
       containers:
       - image: postgres
         name: postgres
-        args:
-          - --lower-case-table-names=1
-          - --transaction-isolation=READ-COMMITTED
-          - --character-set-server=utf8mb4
-          - --collation-server=utf8mb4_unicode_ci
-          - --max-connections=512
-          - --innodb-rollback-on-timeout=OFF
-          - --innodb-lock-wait-timeout=120
-          - --innodb-buffer-pool-size=1G
-          - --innodb_log_file_size=256M
+        # args:
+        #   - --lower-case-table-names=1
+        #   - --transaction-isolation=READ-COMMITTED
+        #   - --character-set-server=utf8mb4
+        #   - --collation-server=utf8mb4_unicode_ci
+        #   - --max-connections=512
+        #   - --innodb-rollback-on-timeout=OFF
+        #   - --innodb-lock-wait-timeout=120
+        #   - --innodb-buffer-pool-size=1G
+        #   - --innodb_log_file_size=256M
         envFrom:
           - secretRef:
               name: paperless-mariadb-secrets
