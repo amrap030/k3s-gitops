@@ -16,8 +16,8 @@ spec:
     spec:
       enableServiceLinks: false
       containers:
-      - image: mariadb
-        name: mariadb
+      - image: postgres
+        name: postgres
         args:
           - --lower-case-table-names=1
           - --transaction-isolation=READ-COMMITTED
