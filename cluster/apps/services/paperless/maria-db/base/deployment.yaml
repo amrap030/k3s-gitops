@@ -32,6 +32,10 @@ spec:
           - secretRef:
               name: paperless-postgres-secrets
           env:
+          - name: POSTGRES_USER
+            value: "paperless"
+          - name: POSTGRES_DB
+            value: "paperless"
           - name: PUID
             value: "1000"
           - name: PGID
