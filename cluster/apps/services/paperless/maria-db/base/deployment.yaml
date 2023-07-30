@@ -42,7 +42,7 @@ spec:
             value: "1000"
           volumeMounts:
             # The volume mounts  for the container
-            - mountPath: /var/lib/postgres/data
+            - mountPath: /var/lib/postgresql/data
               name: paperless-postgres
       # Volumes attached to the pod
       volumes:
