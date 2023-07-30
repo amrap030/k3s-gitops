@@ -19,6 +19,7 @@ spec:
         # The label the pods created from the pod template should have
         app: postgres
     spec:
+      enableServiceLinks: false
       containers:
         # The container name to execute pods
         - name: postgres
