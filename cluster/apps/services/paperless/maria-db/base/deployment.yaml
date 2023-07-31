@@ -28,6 +28,7 @@ spec:
           - --innodb-lock-wait-timeout=120
           - --innodb-buffer-pool-size=1G
           - --innodb_log_file_size=256M
+          - --ignore-db-dir=lost+found
         envFrom:
           - secretRef:
               name: paperless-mariadb-secrets
