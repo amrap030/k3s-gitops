@@ -34,9 +34,11 @@ spec:
               name: paperless-mariadb-secrets
         env:
           - name: MARIADB_DATABASE
-            value: paperless
+            value: "paperless"
           - name: MARIADB_USER
-            value: paperless
+            value: "paperless"
+          - name: MARIADB_TCP_PORT
+            value: "3307"
           - name: PUID
             value: "1000"
           - name: PGID
@@ -47,7 +49,7 @@ spec:
           requests:
             memory: 1Gi
         ports:
-          - containerPort: 3306
+          - containerPort: 3307
             name: mariadb
         volumeMounts:
           - name: paperless-mariadb

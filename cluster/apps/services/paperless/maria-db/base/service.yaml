@@ -11,4 +11,4 @@ spec:
     - name: paperless-port
       protocol: TCP
       port: 3307
-      targetPort: 3306
+      targetPort: 3307
