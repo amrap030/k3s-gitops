@@ -1,63 +1,52 @@
 ---
+# Kubernetes API version
 apiVersion: apps/v1
+# Deployment object
 kind: Deployment
 metadata:
-  name: paperless-mariadb
+  # The name of the Deployment
+  name: paperless-postgres
 spec:
+  # Replicas for this Deployment
+  replicas: 1
   selector:
+    # labels the pods
     matchLabels:
-      app: mariadb
-  strategy:
-    type: Recreate
+      app: postgres
   template:
     metadata:
       labels:
-        app: mariadb
+        # The label the pods created from the pod template should have
+        app: postgres
     spec:
       enableServiceLinks: false
       containers:
-      - image: mariadb
-        name: mariadb
-        args:
-          - --bind-address=0.0.0.0
-          - --lower-case-table-names=1
-          - --transaction-isolation=READ-COMMITTED
-          - --character-set-server=utf8mb4
-          - --collation-server=utf8mb4_unicode_ci
-          - --max-connections=512
-          - --innodb-rollback-on-timeout=OFF
-          - --innodb-lock-wait-timeout=120
-          - --innodb-buffer-pool-size=1G
-          - --innodb_log_file_size=256M
-          - --ignore-db-dir=lost+found
-        envFrom:
+        # The container name to execute pods
+        - name: postgres
+          # pull postgresimage from docker hub
+          image: postgres
+          ports:
+            # Assign ports to expose container
+            - containerPort: 5432
+          envFrom:
           - secretRef:
-              name: paperless-mariadb-secrets
-        env:
-          - name: MARIADB_DATABASE
+              name: paperless-postgres-secrets
+          env:
+          - name: POSTGRES_USER
             value: "paperless"
-          - name: MARIADB_USER
+          - name: POSTGRES_DB
             value: "paperless"
-          - name: MYSQL_TCP_PORT
-            value: "3307"
-          - name: MYSQL_UNIX_PORT
-            value: "3307"
           - name: PUID
             value: "1000"
           - name: PGID
             value: "1000"
-        resources:
-          limits:
-            memory: 2Gi
-          requests:
-            memory: 1Gi
-        ports:
-          - containerPort: 3307
-            name: mariadb
-        volumeMounts:
-          - name: paperless-mariadb
-            mountPath: /var/lib/mysql 
+          volumeMounts:
+            # The volume mounts  for the container
+            - mountPath: /var/lib/postgres/data
+              name: paperless-postgres
+      # Volumes attached to the pod
       volumes:
-        - name: paperless-mariadb
+        - name: paperless-postgres
           persistentVolumeClaim:
-            claimName: paperless-mariadb
+            # reference the PersistentVolumeClaim
+            claimName: paperless-postgres

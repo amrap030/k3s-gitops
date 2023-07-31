@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: paperless-mariadb
+  name: paperless-postgres
 spec:
   type: ClusterIP
   selector:
-    app: mariadb
+    app: postgres
   ports:
     - name: paperless-port
       protocol: TCP
-      port: 3307
-      targetPort: 3307
+      port: 5432
+      targetPort: 5432

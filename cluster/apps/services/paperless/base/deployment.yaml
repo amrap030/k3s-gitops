@@ -22,26 +22,28 @@ spec:
           imagePullPolicy: IfNotPresent
           envFrom:
           - secretRef:
-              name: paperless-mariadb-secrets
+              name: paperless-postgres-secrets
           env:
             - name: PAPERLESS_REDIS
               value: "redis://redis-server:6379"
             - name: PAPERLESS_DBENGINE
-              value: "mariadb"
+              value: "postgresql"
             - name: PAPERLESS_PORT
               value: "8000" 
             - name: PAPERLESS_DBHOST
-              value: "paperless-mariadb.services.svc.cluster.local"  
+              value: "paperless-postgres"  
             - name: PAPERLESS_DBNAME
               value: "paperless"
             - name: PAPERLESS_DBUSER
               value: "paperless"
             - name: PAPERLESS_DBPORT
-              value: "3307"
+              value: "5432"
             - name: PAPERLESS_URL
               value: "https://paperless.amrap030.site" 
             - name: PAPERLESS_ADMIN_USER
-              value: "admin"
+              value: "amrap030" 
+            - name: PAPERLESS_ADMIN_PASSWORD
+              value: "password" 
             - name: PAPERLESS_OCR_LANGUAGE
               value: "deu+eng"
             - name: PAPERLESS_TIME_ZONE
