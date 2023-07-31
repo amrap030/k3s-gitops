@@ -19,6 +19,7 @@ spec:
       - image: mariadb
         name: mariadb
         args:
+          - --bind-address=0.0.0.0
           - --lower-case-table-names=1
           - --transaction-isolation=READ-COMMITTED
           - --character-set-server=utf8mb4
@@ -29,7 +30,6 @@ spec:
           - --innodb-buffer-pool-size=1G
           - --innodb_log_file_size=256M
           - --ignore-db-dir=lost+found
-          - --bind-address=0.0.0.0
         envFrom:
           - secretRef:
               name: paperless-mariadb-secrets

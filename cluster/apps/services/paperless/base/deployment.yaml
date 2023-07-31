@@ -31,7 +31,7 @@ spec:
             - name: PAPERLESS_PORT
               value: "8000" 
             - name: PAPERLESS_DBHOST
-              value: "paperless-mariadb"  
+              value: "paperless-mariadb.services.svc.cluster.local"  
             - name: PAPERLESS_DBNAME
               value: "paperless"
             - name: PAPERLESS_DBUSER
