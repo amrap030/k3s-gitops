@@ -27,7 +27,7 @@ data:
         originRequest:
           noTLSVerify: true
       - hostname: paperless.amrap030.site
-        service: http://paperless.services
+        service: http://paperless.services:8000
         originRequest:
           noTLSVerify: true
       - service: http_status:404
