@@ -26,4 +26,8 @@ data:
         service: http://photoprism.services
         originRequest:
           noTLSVerify: true
+      - hostname: paperless.amrap030.site
+        service: http://paperless.services
+        originRequest:
+          noTLSVerify: true
       - service: http_status:404
