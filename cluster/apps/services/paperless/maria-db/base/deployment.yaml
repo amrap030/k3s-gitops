@@ -40,6 +40,8 @@ spec:
             value: "1000"
           - name: PGID
             value: "1000"
+          - name: PGDATA
+            value: "/var/lib/postgresql/data/some_name/"
           volumeMounts:
             # The volume mounts  for the container
             - mountPath: /var/lib/postgresql/data
