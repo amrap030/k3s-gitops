@@ -41,9 +41,7 @@ spec:
             - name: PAPERLESS_URL
               value: "https://paperless.amrap030.site" 
             - name: PAPERLESS_ADMIN_USER
-              value: "amrap030" 
-            - name: PAPERLESS_ADMIN_PASSWORD
-              value: "password" 
+              value: "admin" 
             - name: PAPERLESS_OCR_LANGUAGE
               value: "deu+eng"
             - name: PAPERLESS_TIME_ZONE
