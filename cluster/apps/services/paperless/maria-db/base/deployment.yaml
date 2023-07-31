@@ -37,9 +37,9 @@ spec:
             value: "paperless"
           - name: MARIADB_USER
             value: "paperless"
-          - name: MARIADB_TCP_PORT
+          - name: MYSQL_TCP_PORT
             value: "3307"
-          - name: MARIADB_UNIX_PORT
+          - name: MYSQL_UNIX_PORT
             value: "3307"
           - name: PUID
             value: "1000"
