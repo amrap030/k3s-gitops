@@ -39,6 +39,8 @@ spec:
             value: "paperless"
           - name: MARIADB_TCP_PORT
             value: "3307"
+          - name: MARIADB_UNIX_PORT
+            value: "3307"
           - name: PUID
             value: "1000"
           - name: PGID
