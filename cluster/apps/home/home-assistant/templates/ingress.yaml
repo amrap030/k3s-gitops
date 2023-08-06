@@ -21,4 +21,4 @@ spec:
   tls:
     - hosts:
         - ha.amrap030.home
-      secretName: traefik-cert
+      secretName: ha-cert
