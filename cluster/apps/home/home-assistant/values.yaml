@@ -36,10 +36,10 @@ home-assistant:
       enabled: false
 
   # -- Enable devices to be discoverable
-  # hostNetwork: true
+  hostNetwork: true
 
   # -- When hostNetwork is true set dnsPolicy to ClusterFirstWithHostNet
-  # dnsPolicy: ClusterFirstWithHostNet
+  dnsPolicy: ClusterFirstWithHostNet
 
   securityContext:
     # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
@@ -57,7 +57,7 @@ home-assistant:
     usb:
       enabled: true
       type: hostPath
-      hostPath: /dev/ttyACM0
+      hostPath: /dev/serial/by-id/usb-Texas_Instruments_XDS110__03.00.00.22__Embed_with_CMSIS-DAP_L1100D7N-if00
 
   # -- Enable and configure mariadb database subchart under this key.
   #    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)
