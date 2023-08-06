@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: traefik-ca-issuer
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+  name: home-assistant-ingress
+  namespace: monitoring
+spec:
+  rules:
+    - host: ha.amrap030.home
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: home-assistant
+                port:
+                  number: 8123    
+  tls:
+    - hosts:
+        - ha.amrap030.home
+      secretName: traefik-cert
