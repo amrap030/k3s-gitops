@@ -12,7 +12,6 @@ spec:
       http:
         paths:
           - path: /
-            pathType: Prefix
             backend:
               service:
                 name: home-assistant
