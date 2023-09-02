@@ -30,4 +30,8 @@ data:
         service: http://paperless.services:8000
         originRequest:
           noTLSVerify: true
+      - hostname: homeassistant.amrap030.site
+        service: http://home-assistant.home:8123
+        originRequest:
+          noTLSVerify: true
       - service: http_status:404
