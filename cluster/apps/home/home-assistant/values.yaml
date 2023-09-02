@@ -57,7 +57,7 @@ home-assistant:
     usb:
       enabled: true
       type: hostPath
-      hostPath: /dev/ttyACM1
+      hostPath: /dev/ttyACM0
 
   # -- Enable and configure mariadb database subchart under this key.
   #    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)
@@ -143,7 +143,7 @@ home-assistant:
     #    This allows for easy access to configuration.yaml
     # @default -- See values.yaml
     codeserver:
-      enabled: false
+      enabled: true
       args:
         - --auth
         - none
