@@ -8,7 +8,7 @@ metadata:
   namespace: home
 spec:
   rules:
-    - host: ha.amrap030.home
+    - host: homeassistant.amrap030.home
       http:
         paths:
           - path: /
@@ -17,7 +17,17 @@ spec:
               service:
                 name: home-assistant
                 port:
-                  number: 8123    
+                  number: 8123
+    - host: codeserver.amrap030.home
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: home-assistant-codeserver
+                port:
+                  number: 12321    
   tls:
     - hosts:
         - ha.amrap030.home
