@@ -529,6 +529,7 @@ traefik:
   additionalArguments:
     - "--serversTransport.insecureSkipVerify=true"
     - "--log.level=INFO"
+    - "--entryPoints.mqtt.address=:1883/tcp"
   #  - "--providers.kubernetesingress.ingressclass=traefik-internal"
   #  - "--log.level=DEBUG"
 
