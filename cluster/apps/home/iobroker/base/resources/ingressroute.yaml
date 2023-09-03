@@ -1,0 +1,18 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: mqtt-ingress
+  namespace: home
+spec:
+  entryPoints:
+  - mqtt
+  routes:
+  - match: HostSNI(`shelly.amrap030.home`)
+    services:
+    - name: iobroker
+      port: 1883
+  tls:
+    passthrough: false
+    options:
+      name: default
+      namespace: home
