@@ -8,6 +8,7 @@ spec:
   - mqtt
   routes:
   - match: HostSNI(`*`)
+    kind: Rule  
     services:
     - name: iobroker
       port: 1883
