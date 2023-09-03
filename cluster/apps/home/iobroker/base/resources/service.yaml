@@ -15,5 +15,9 @@ spec:
     protocol: TCP
     port: 8082
     targetPort: 8081
+  - name: iobroker
+    protocol: TCP
+    port: 1880
+    targetPort: 1880
   type: ClusterIP
   clusterIP: None

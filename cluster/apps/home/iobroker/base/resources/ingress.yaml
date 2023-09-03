@@ -18,6 +18,16 @@ spec:
                 name: iobroker
                 port:
                   number: 8082   
+    - host: nodered.amrap030.home
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: iobroker
+                port:
+                  number: 1880   
   tls:
     - hosts:
         - iobroker.amrap030.home
