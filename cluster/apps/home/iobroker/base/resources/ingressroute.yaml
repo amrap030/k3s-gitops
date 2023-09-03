@@ -7,7 +7,7 @@ spec:
   entryPoints:
   - mqtt
   routes:
-  - match: HostSNI(`shelly.amrap030.home`)
+  - match: HostSNI(`*`)
     services:
     - name: iobroker
       port: 1883

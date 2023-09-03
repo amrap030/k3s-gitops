@@ -555,6 +555,10 @@ traefik:
   #     name: secret-name
 
   ports:
+    mqtt:
+      port: 1883
+      protocol: TCP
+      exposedPort: 1883
     traefik:
       port: 9000
       # -- Use hostPort if set.
