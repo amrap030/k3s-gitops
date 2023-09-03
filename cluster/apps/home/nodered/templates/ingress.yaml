@@ -17,7 +17,7 @@ spec:
               service:
                 name: node-red
                 port:
-                  number: 8082  
+                  number: 1880  
   tls:
     - hosts:
         - node-red.amrap030.home
