@@ -19,5 +19,9 @@ spec:
     protocol: TCP
     port: 1880
     targetPort: 1880
+  - name: shelly
+    protocol: TCP
+    port: 1883
+    targetPort: 1883
   type: ClusterIP
   clusterIP: None
