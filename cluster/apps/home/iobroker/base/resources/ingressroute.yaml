@@ -9,7 +9,7 @@ spec:
   entryPoints:
   - mqtt
   routes:
-  - match: Port(1883)
+  - match: HostSNI(`*`)
     services:
     - name: iobroker
       port: 1883
