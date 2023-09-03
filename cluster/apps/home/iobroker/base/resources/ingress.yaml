@@ -31,4 +31,5 @@ spec:
   tls:
     - hosts:
         - iobroker.amrap030.home
+        - nodered.amrap030.home
       secretName: iobroker-cert
