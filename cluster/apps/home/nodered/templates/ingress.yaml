@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: traefik-ca-issuer
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+  name: node-red-ingress
+  namespace: home
+spec:
+  rules:
+    - host: node-red.amrap030.home
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: node-red
+                port:
+                  number: 8082  
+  tls:
+    - hosts:
+        - node-red.amrap030.home
+      secretName: node-red-cert
