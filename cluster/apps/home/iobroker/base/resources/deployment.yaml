@@ -36,9 +36,9 @@ spec:
         securityContext:
           privileged: true
         volumeMounts:
-        - name: iobroker-storage
+        - name: iobroker-data
           mountPath: /opt/iobroker
       volumes:
-      - name: iobroker-storage
+      - name: iobroker-data
         persistentVolumeClaim:
-          claimName: iobroker-volume-claim
+          claimName: iobroker-data
