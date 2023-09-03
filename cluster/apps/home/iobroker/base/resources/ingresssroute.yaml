@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: mqtt-ingress
+  namespace: home
+  labels:
+    app.kubernetes.io/name: iobroker
+spec:
+  entryPoints:
+  - mqtt
+  routes:
+  - match: HostSNI(`*`)
+    services:
+    - name: iobroker
+      port: 1883

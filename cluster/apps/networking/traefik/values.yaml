@@ -529,6 +529,7 @@ traefik:
   additionalArguments:
     - "--serversTransport.insecureSkipVerify=true"
     - "--log.level=INFO"
+    - "--entrypoints.mqtt.address=:1883/tcp"
   #  - "--providers.kubernetesingress.ingressclass=traefik-internal"
   #  - "--log.level=DEBUG"
 
@@ -555,6 +556,11 @@ traefik:
   #     name: secret-name
 
   ports:
+    mqtt:
+      port: 1883
+      protocol: TCP
+      exposedPort: 1883
+      expose: true
     traefik:
       port: 9000
       # -- Use hostPort if set.
