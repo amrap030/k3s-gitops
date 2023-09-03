@@ -33,6 +33,9 @@ spec:
       containers:
       - name: iobroker
         image: buanet/iobroker:v8.1.0
+        env:
+          - name: USBDEVICES
+            value: "/dev/ttyACM0"
         securityContext:
           privileged: true
         volumeMounts:
