@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: traefik-ca-issuer
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+  name: iobroker-ingress
+  namespace: home
+spec:
+  rules:
+    - host: iobroker.amrap030.home
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: iobroker
+                port:
+                  number: 8082   
+  tls:
+    - hosts:
+        - iobroker.amrap030.home
+      secretName: iobroker-cert
