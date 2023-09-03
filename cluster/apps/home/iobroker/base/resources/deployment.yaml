@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: iobroker
-  namespace: iobroker
+  namespace: home
   labels:
     app.kubernetes.io/instance: iobroker
     app.kubernetes.io/name: iobroker
