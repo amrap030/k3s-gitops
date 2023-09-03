@@ -15,7 +15,7 @@ spec:
     protocol: TCP
     port: 8082
     targetPort: 8081
-  - name: iobroker
+  - name: node-red
     protocol: TCP
     port: 1880
     targetPort: 1880
