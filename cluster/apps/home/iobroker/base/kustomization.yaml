@@ -1,0 +1,4 @@
+resources:
+- resources/persistent-volume-claim.yaml
+- resources/deployment.yaml
+- resources/service.yaml
