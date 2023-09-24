@@ -119,7 +119,7 @@ uptime-kuma:
     # line and define the storage class name
     # storageClassName:
     # Reuse your own pre-existing PVC.
-    existingClaim: "uptima-kuma-data"
+    existingClaim: "uptime-kuma-data"
 
   strategy:
     type: Recreate

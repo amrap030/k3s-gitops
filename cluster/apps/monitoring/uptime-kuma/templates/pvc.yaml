@@ -5,7 +5,6 @@ metadata:
   name: uptime-kuma-data
   namespace: monitoring
   annotations:
-    argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/sync-options: Delete=false
 spec:
   storageClassName: longhorn
