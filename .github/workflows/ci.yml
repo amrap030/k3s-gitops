@@ -41,7 +41,7 @@ jobs:
           # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
           GITHUB_TOKEN: ${{ github.token }}
       - name: Lint cluster
-        run: tflint -f compact --chdir=cluster/--recursive
+        run: tflint -f compact --chdir=./cluster --recursive
   tfsec:
     name: Terraform Security Check
     runs-on: ubuntu-latest
