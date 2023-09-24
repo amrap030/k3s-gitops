@@ -113,13 +113,13 @@ uptime-kuma:
 
   volume:
     enabled: true
-    accessMode: ReadWriteOnce
-    size: 4Gi
+    # accessMode: ReadWriteOnce
+    # size: 4Gi
     # If you want to use a storage class other than the default, uncomment this
     # line and define the storage class name
     # storageClassName:
     # Reuse your own pre-existing PVC.
-    existingClaim: ""
+    existingClaim: "uptima-kuma-data"
 
   strategy:
     type: Recreate
