@@ -1,5 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
+  "kubernetes": {
+    "fileMatch": [
+      "cluster/apps/.+\\.yaml$",
+      "cluster/core/.+\\.yaml$",
+      "cluster/bootstrap/argocd/.+\\.yaml$"
+    ]
+  },
   "prHourlyLimit": 10
 }
