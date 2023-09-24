@@ -20,7 +20,7 @@ spec:
             - mountPath: /custom-tools
               name: custom-tools
         - name: import-gpg-key
-          image: argoproj/argocd:v2.1.7
+          image: argoproj/argocd:v2.6.15
           command: ["gpg", "--import", "/sops-gpg/sops.asc"]
           env:
             - name: GNUPGHOME
