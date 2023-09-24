@@ -51,7 +51,7 @@ cookiecutter==2.1.1
     # via molecule
 cryptography==38.0.3
     # via ansible-core
-distlib==0.3.6
+distlib==0.3.7
     # via virtualenv
 distro==1.8.0
     # via selinux
