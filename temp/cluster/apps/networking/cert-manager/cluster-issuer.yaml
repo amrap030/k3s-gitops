@@ -1,7 +1,0 @@
-apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
-metadata:
-  name: traefik-ca-issuer
-spec:
-  ca:
-    secretName: traefik-ca-secret
