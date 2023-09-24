@@ -82,7 +82,7 @@ jsonpatch==1.32
     # via -r requirements.in
 jsonpointer==2.3
     # via jsonpatch
-jsonschema==4.17.0
+jsonschema==4.19.1
     # via
     #   ansible-compat
     #   ansible-lint
