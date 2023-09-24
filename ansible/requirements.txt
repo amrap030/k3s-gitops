@@ -61,7 +61,7 @@ filelock==3.8.0
     # via
     #   ansible-lint
     #   virtualenv
-google-auth==2.14.0
+google-auth==2.23.0
     # via kubernetes
 identify==2.5.29
     # via pre-commit
