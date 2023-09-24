@@ -1,10 +1,13 @@
 apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRouteTCP
+kind: IngressRoute
 metadata:
-  name: proxmox-ingress
+  name: proxmox-redirect
 spec:
+  entryPoints:
+    - web
   routes:
-    - match: HostSNI(`proxmox.amrap030.home`)
+    - match: Host(`proxmox.amrap030.home`)
+      kind: Rule
       services:
-        - name: 192.168.1.100
+        - name: proxmox-redirect-service
           port: 8006
