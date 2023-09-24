@@ -4,6 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: paperless-postgres
   namespace: services
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
 spec:
   storageClassName: longhorn
   accessModes:
