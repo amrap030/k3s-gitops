@@ -41,7 +41,7 @@ jobs:
           # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
           GITHUB_TOKEN: ${{ github.token }}
       - name: Lint cluster
-        run: tflint -f compact --chdir=./cluster
+        run: tflint -f compact --chdir=./terraform
   tfsec:
     name: Terraform Security Check
     runs-on: ubuntu-latest
@@ -52,6 +52,8 @@ jobs:
           fetch-depth: 0
       - name: Execute security check
         uses: aquasecurity/tfsec-action@v1.0.0
+        with:
+          working_directory: ./terraform
   checkov:
     name: Static Code Analysis
     runs-on: ubuntu-latest
@@ -66,5 +68,5 @@ jobs:
         id: checkov
         uses: bridgecrewio/checkov-action@master
         with:
-          directory: cluster
+          directory: terraform
           framework: terraform
