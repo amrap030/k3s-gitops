@@ -3,6 +3,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: iobroker-data
   namespace: home
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
   labels:
     app: iobroker
 spec:

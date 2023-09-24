@@ -1,5 +1,5 @@
 resources:
-- resources/persistent-volume-claim.yaml
+- resources/pvc.yaml
 - resources/deployment.yaml
 - resources/service.yaml
 - resources/ingress.yaml
