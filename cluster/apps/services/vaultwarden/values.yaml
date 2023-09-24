@@ -26,10 +26,11 @@ vaultwarden:
   persistence:
     data:
       enabled: true
-      type: pvc
-      accessMode: ReadWriteOnce
-      storageClass: longhorn
-      size: 10Gi
+      # type: pvc
+      # accessMode: ReadWriteOnce
+      # storageClass: longhorn
+      # size: 10Gi
+      existingClaim: "vaultwarden-data"
       mountPath: /data
   postgresql:
     enabled: false
