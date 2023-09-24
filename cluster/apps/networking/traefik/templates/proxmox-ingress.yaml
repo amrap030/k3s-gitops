@@ -1,0 +1,19 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: proxmox-ingress
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`proxmox.amrap030.home`)
+      kind: Rule
+      services:
+        - name: proxmox-service
+          kind: Service
+          port: 8006
+  tls:
+    - hosts:
+        - proxmox.amrap030.home
+      secretName: traefik-cert
