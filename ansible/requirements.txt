@@ -137,7 +137,7 @@ pygments==2.13.0
     # via rich
 pyparsing==3.0.9
     # via packaging
-pyrsistent==0.19.2
+pyrsistent==0.19.3
     # via jsonschema
 python-dateutil==2.8.2
     # via
