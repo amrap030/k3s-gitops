@@ -427,3 +427,5 @@ terraform.rc
 
 # sops/age
 keys.txt
+
+/temp
