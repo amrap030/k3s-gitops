@@ -529,8 +529,6 @@ traefik:
   additionalArguments:
     - "--serversTransport.insecureSkipVerify=true"
     - "--log.level=INFO"
-    - "--providers.kubernetesingress.allowexternalnameservices"
-    - "--providers.kubernetescrd.allowexternalnameservices"
   #  - "--providers.kubernetesingress.ingressclass=traefik-internal"
   #  - "--log.level=DEBUG"
 
