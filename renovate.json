@@ -8,5 +8,12 @@
       "cluster/bootstrap/argocd/.+\\.yaml$"
     ]
   },
+  "ansible": {
+    "fileMatch": [
+      "ansible/(^|/)requirements\\.ya?ml$",
+      "ansible/(^|/)requirements\\.in$",
+      "ansible/(^|/)galaxy\\.ya?ml$"
+    ]
+  },
   "prHourlyLimit": 10
 }
