@@ -196,7 +196,7 @@ urllib3==1.26.16
     # via
     #   kubernetes
     #   requests
-virtualenv==20.16.6
+virtualenv==20.24.5
     # via pre-commit
 wcmatch==8.4.1
     # via ansible-lint
