@@ -3,7 +3,8 @@
     "name": "traefik",
     "namespace": "networking",
     "path": "networking",
-    "syncwave": 4
+    "syncwave": 4,
+    "helm": false
   },
   "destination": {
     "server": "https://kubernetes.default.svc"
