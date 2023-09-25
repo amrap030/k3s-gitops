@@ -198,7 +198,7 @@ urllib3==1.26.16
     #   requests
 virtualenv==20.16.6
     # via pre-commit
-wcmatch==8.4.1
+wcmatch==8.5
     # via ansible-lint
 websocket-client==1.4.2
     # via kubernetes
