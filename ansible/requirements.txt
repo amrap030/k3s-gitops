@@ -115,7 +115,7 @@ pathspec==0.11.2
     # via
     #   black
     #   yamllint
-platformdirs==2.5.2
+platformdirs==2.6.2
     # via
     #   black
     #   virtualenv
