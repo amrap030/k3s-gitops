@@ -51,7 +51,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Execute security check
-        uses: aquasecurity/tfsec-action@v1.0.0
+        uses: aquasecurity/tfsec-action@v1.0.3
         with:
           working_directory: ./terraform
   checkov:
