@@ -31,7 +31,7 @@ data:
         originRequest:
           noTLSVerify: true
       - hostname: iobroker.amrap030.site
-        service: http://iobroker.home:8082
+        service: http://iobroker.home:8081
         originRequest:
           noTLSVerify: true
       - service: http_status:404
