@@ -97,7 +97,7 @@ molecule==4.0.4
     #   molecule-vagrant
 molecule-vagrant==2.0.0
     # via -r requirements.in
-mypy-extensions==0.4.4
+mypy-extensions==1.0.0
     # via black
 netaddr==0.9.0
     # via -r requirements.in
