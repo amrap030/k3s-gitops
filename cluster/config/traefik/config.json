@@ -1,0 +1,11 @@
+{
+  "app": {
+    "name": "traefik",
+    "namespace": "networking",
+    "path": "networking",
+    "syncwave": 1
+  },
+  "destination": {
+    "server": "https://kubernetes.default.svc"
+  }
+}
