@@ -25,14 +25,15 @@ jobs:
         with:
           node-version: "18"
           cache: pnpm
+          cache-dependency-path: ./docs
       - name: Install dependencies
-        run: pnpm i
+        run: cd ./docs && pnpm i
       - name: Build with Next.js
-        run: pnpm build
+        run: cd ./docs &&  pnpm build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./out
+          path: ./docs/out
 
   deploy:
     environment:
