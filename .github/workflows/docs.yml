@@ -38,7 +38,7 @@ jobs:
         with:
           node-version: "18"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-          cache-dependency-dir: ./docs
+          cache-dependency-path: ./docs
       # REMOVED because it didn't respect changes to the menu structure.
       #- name: Restore cache
       #  uses: actions/cache@v3
