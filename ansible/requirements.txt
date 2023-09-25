@@ -4,7 +4,7 @@
 #
 #    pip-compile requirements.in
 #
-ansible-compat==3.0.2
+ansible-compat==4.1.10
     # via molecule
 ansible-core==2.15.4
     # via
