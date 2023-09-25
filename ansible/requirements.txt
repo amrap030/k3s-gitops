@@ -111,7 +111,7 @@ packaging==21.3
     #   ansible-core
     #   ansible-lint
     #   molecule
-pathspec==0.10.1
+pathspec==0.11.2
     # via
     #   black
     #   yamllint
