@@ -51,6 +51,7 @@ jobs:
         with:
           node-version: "16"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
+          cache-dependency-path: ./docs
       - name: Install dependencies
         run: yarn install
       - name: Setup Pages
@@ -82,7 +83,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./out
+          path: ./docs/out
 
   # Deployment job
   deploy:
