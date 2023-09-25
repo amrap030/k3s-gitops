@@ -44,11 +44,11 @@ jobs:
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
       - name: Install dependencies
-        run: pnpm i
+        run: cd ./docs && pnpm i
       - name: Build with Next.js
-        run: pnpm next build
+        run: cd ./docs &&  pnpm next build
       - name: Static HTML export with Next.js
-        run: pnpm next export
+        run: cd ./docs &&  pnpm next export
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
