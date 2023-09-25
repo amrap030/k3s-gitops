@@ -95,7 +95,7 @@ molecule==4.0.4
     # via
     #   -r requirements.in
     #   molecule-vagrant
-molecule-vagrant==1.0.0
+molecule-vagrant==2.0.0
     # via -r requirements.in
 mypy-extensions==0.4.4
     # via black
