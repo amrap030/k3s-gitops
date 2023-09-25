@@ -429,3 +429,8 @@ terraform.rc
 keys.txt
 
 /temp
+
+# docs
+.next
+node_modules
+dist
