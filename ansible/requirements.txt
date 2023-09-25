@@ -125,7 +125,7 @@ pre-commit==2.21.0
     # via -r requirements.in
 pre-commit-hooks==4.4.0
     # via -r requirements.in
-pyasn1==0.4.8
+pyasn1==0.5.0
     # via
     #   pyasn1-modules
     #   rsa
