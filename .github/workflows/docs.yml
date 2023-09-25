@@ -55,7 +55,7 @@ jobs:
       - name: Build with Next.js
         run: cd ./docs && ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Add .nojekyll file
-        run: touch ./docs/dist/_next/.nojekyll
+        run: touch ./docs/dist/.nojekyll
       # - name: Static HTML export with Next.js
       #   run: cd ./docs && ${{ steps.detect-package-manager.outputs.runner }} next export
       - name: Upload artifact
