@@ -36,6 +36,7 @@ jobs:
             echo "manager=pnpm" >> $GITHUB_OUTPUT
             echo "command=ci" >> $GITHUB_OUTPUT
             echo "runner=yarn" >> $GITHUB_OUTPUT
+            echo "hi"
             exit 0
           elif [ -f "./docs/package.json" ]; then
             echo "manager=npm" >> $GITHUB_OUTPUT
