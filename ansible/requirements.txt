@@ -11,7 +11,7 @@ ansible-core==2.15.4
     #   -r requirements.in
     #   ansible-compat
     #   ansible-lint
-ansible-lint==6.20.0
+ansible-lint==6.20.1
     # via -r requirements.in
 arrow==1.2.3
     # via jinja2-time
@@ -29,7 +29,7 @@ certifi==2023.7.22
     # via
     #   kubernetes
     #   requests
-cffi==1.15.1
+cffi==1.16.0
     # via cryptography
 cfgv==3.4.0
     # via pre-commit
@@ -61,7 +61,7 @@ filelock==3.12.4
     # via
     #   ansible-lint
     #   virtualenv
-google-auth==2.23.1
+google-auth==2.23.2
     # via kubernetes
 identify==2.5.29
     # via pre-commit
@@ -175,7 +175,7 @@ rich==13.5.3
     #   molecule
 rsa==4.9
     # via google-auth
-ruamel-yaml==0.17.32
+ruamel-yaml==0.17.33
     # via
     #   ansible-lint
     #   pre-commit-hooks
