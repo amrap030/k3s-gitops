@@ -1,11 +1,41 @@
 # Introduction
- 
-Welcome to Nextra! This is a basic docs template. You can use it as a starting point for your own project :)
 
-## What is Nextra?
+This is an ArgoCD based GitOps repository for my home lab infrastructure.
 
-A **simple**, **powerful** and **flexible** site generation framework with everything you love from Next.js.
+<div style={{ display: "flex", marginTop: "10px" }}>
+  <img src="https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white" />
+  <img
+    style={{ marginLeft: "5px" }}
+    src="https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white"
+  />
+  <img
+    style={{ marginLeft: "5px" }}
+    src="https://img.shields.io/badge/ansible-%231A1918.svg?style=for-the-badge&logo=ansible&logoColor=white"
+  />
+  <img
+    style={{ marginLeft: "5px" }}
+    src="https://img.shields.io/badge/packer-%23E7EEF0.svg?style=for-the-badge&logo=packer&logoColor=%2302A8EF"
+  />
+  <img
+    style={{ marginLeft: "5px" }}
+    src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white"
+  />
+  <img
+    style={{ marginLeft: "5px" }}
+    src="https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white"
+  />
+</div>
 
-## Documentation
+# Requirements
 
-The documentation is available at [https://nextra.site](https://nextra.site).
+- [Terraform](https://www.terraform.io/) to deploy virtual machines on Proxmox VE
+- [ArgoCD](https://argoproj.github.io/cd/) for managing the cluster as a GitOps operator
+- [Task](https://taskfile.dev/) to easily execute scripts and commands
+- [Node.js](https://nodejs.org/) + [Yarn](https://yarnpkg.com/) for local repository management and docs only
+- [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) for provisioning and configuring the K3s cluster
+- [Packer](https://www.packer.io/) to create golden ubuntu images for cluster nodes
+- [SOPS](https://github.com/getsops/sops) as an editor for encrypted files
+- [age](https://github.com/FiloSottile/age) as a modern and secure file encryption tool
+- [Helm](https://helm.sh/) as the package manager for K3s
+- [Kustomize](https://kustomize.io/) to customize K3s application configuration
+- [kubectl](https://kubernetes.io/de/docs/tasks/tools/install-kubectl/) as the cli tool for K3s
