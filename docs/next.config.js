@@ -4,7 +4,6 @@ const withNextra = require("nextra")({
 });
 
 module.exports = withNextra({
-  basePath: "/k3s-gitops",
   output: "export",
   distDir: "dist",
   images: {
