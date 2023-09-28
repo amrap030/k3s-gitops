@@ -44,6 +44,8 @@ jobs:
         run: cd ./docs && ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Add .nojekyll file
         run: touch ./docs/dist/.nojekyll
+      - name: Add CNAME
+        run: echo "amrap030.site" > ./docs/dist/CNAME
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
