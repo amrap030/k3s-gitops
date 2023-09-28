@@ -175,7 +175,7 @@ rich==13.5.3
     #   molecule
 rsa==4.9
     # via google-auth
-ruamel-yaml==0.17.32
+ruamel-yaml==0.17.33
     # via
     #   ansible-lint
     #   pre-commit-hooks
