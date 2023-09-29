@@ -47,7 +47,7 @@ click-help-colors==0.9.2
     # via molecule
 commonmark==0.9.1
     # via rich
-cookiecutter==2.3.1
+cookiecutter==2.4.0
     # via molecule
 cryptography==41.0.4
     # via ansible-core
