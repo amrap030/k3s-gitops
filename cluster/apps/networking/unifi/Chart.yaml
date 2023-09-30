@@ -1,0 +1,7 @@
+apiVersion: v2
+name: unifi
+version: 0.0.0
+dependencies:
+  - name: unifi
+    version: 2.2.0
+    repository: https://qonstrukt.github.io/helm-charts/
