@@ -42,6 +42,8 @@ unifi:
   podSecurityContext:
     fsGroup: 999
 
+  hostNetwork: true
+
   # -- Configures service settings for the chart.
   # @default -- See values.yaml
   service:
