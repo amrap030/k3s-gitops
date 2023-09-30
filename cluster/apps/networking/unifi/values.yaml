@@ -1,4 +1,4 @@
-unifi:
+unifi-controller:
   image:
     repository: linuxserver/unifi-controller
     pullPolicy: IfNotPresent

@@ -1,7 +1,7 @@
 apiVersion: v2
-name: unifi
+name: unifi-controller
 version: 0.0.0
 dependencies:
-  - name: unifi
+  - name: unifi-controller
     version: 2.2.0
     repository: https://qonstrukt.github.io/helm-charts/
