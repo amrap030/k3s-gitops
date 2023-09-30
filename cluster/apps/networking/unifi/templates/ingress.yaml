@@ -15,7 +15,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: unifi-controller-tcp
+                name: unifi-controller-tcp 
                 port:
                   number: 8443
 
