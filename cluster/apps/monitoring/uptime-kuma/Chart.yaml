@@ -3,5 +3,5 @@ name: uptime-kuma
 version: 0.0.0
 dependencies:
   - name: uptime-kuma
-    version: 2.14.1
+    version: 2.14.2
     repository: https://helm.irsigler.cloud
