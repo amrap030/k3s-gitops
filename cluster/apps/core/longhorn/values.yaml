@@ -139,7 +139,7 @@ longhorn:
     replicaZoneSoftAntiAffinity: ~
     nodeDownPodDeletionPolicy: ~
     nodeDrainPolicy: ~
-    replicaReplenishmentWaitInterval: ~
+    replicaReplenishmentWaitInterval: 3600
     concurrentReplicaRebuildPerNodeLimit: ~
     concurrentVolumeBackupRestorePerNodeLimit: ~
     disableRevisionCounter: ~
