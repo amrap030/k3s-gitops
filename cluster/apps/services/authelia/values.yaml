@@ -1,4 +1,3 @@
----
 authelia:
   ## @formatter:off
   ## values.yaml
@@ -125,7 +124,7 @@ authelia:
       enabled: false
 
       ## Use a standard Ingress object, not an IngressRoute.
-      disableIngressRoute: true
+      disableIngressRoute: false
 
       # matchOverride: Host(`auth.example.com`) && PathPrefix(`/`)
 
@@ -212,7 +211,7 @@ authelia:
 
   pod:
     # Must be Deployment, DaemonSet, or StatefulSet.
-    kind: DaemonSet
+    kind: Deployment
 
     annotations: {}
     # annotations:
@@ -416,7 +415,7 @@ authelia:
 
     key: configuration.yaml
 
-    existingConfigMap: ""
+    existingConfigMap: "authelia-configmap"
 
     ##
     ## Server Configuration
@@ -521,7 +520,7 @@ authelia:
     ##
     ## Note: this parameter is optional. If not provided, user won't be redirected upon successful authentication.
     ## Default is https://www.<domain> (value at the top of the values.yaml).
-    default_redirection_url: ""
+    default_redirection_url: "https://amrap030.site"
     # default_redirection_url: https://example.com
 
     ## Set the default 2FA method for new users and for when a user has a preferred method configured that has been
@@ -541,7 +540,7 @@ authelia:
 
       ## The issuer name displayed in the Authenticator application of your choice.
       ## Defaults to <domain>.
-      issuer: "amrap030.site"
+      issuer: ""
 
       ## The TOTP algorithm to use.
       ## It is CRITICAL you read the documentation before changing this option:
@@ -974,7 +973,7 @@ authelia:
       expiration: 1h
 
       ## The inactivity time in seconds before the session is reset.
-      inactivity: 5m
+      inactivity: 10m
 
       ## The remember me duration.
       ## Value is in seconds, or duration notation. Value of 0 disables remember me.
@@ -992,7 +991,7 @@ authelia:
       redis:
         enabled: true
         enabledSecret: false
-        host: redis.databases.svc.cluster.local
+        host: redis.services.svc.cluster.local
         port: 6379
 
         ## Optional username to be used with authentication.
@@ -1091,7 +1090,7 @@ authelia:
       ## Important: Kubernetes (or HA) users must read https://www.authelia.com/overview/authorization/statelessness/
       ##
       local:
-        enabled: false
+        enabled: true
         path: /config/db.sqlite3
 
       ##
@@ -1131,7 +1130,7 @@ authelia:
       ## PostgreSQL (Storage Provider)
       ##
       postgres:
-        enabled: true
+        enabled: false
         host: postgres.databases.svc.cluster.local
         port: 5432
         database: authelia
@@ -1402,7 +1401,7 @@ authelia:
   ## and use the existingSecrets. All secrets can be stored in a single k8s secret if desired using the key option.
   ##
   secret:
-    existingSecret: ""
+    existingSecret: "authelia-secrets"
     # existingSecret: authelia
 
     annotations: {}
