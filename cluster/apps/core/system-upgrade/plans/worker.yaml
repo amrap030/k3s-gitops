@@ -12,7 +12,7 @@ spec:
   nodeSelector:
     # only worker nodes
     matchExpressions:
-      - key: node-role.kubernetes.io/control-plane
+      - key: node-role.kubernetes.io/master
         operator: DoesNotExist
   prepare:
     image: rancher/k3s-upgrade

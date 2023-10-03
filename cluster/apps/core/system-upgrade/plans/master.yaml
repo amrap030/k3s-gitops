@@ -13,10 +13,10 @@ spec:
   nodeSelector:
     matchExpressions:
       # only control-plane nodes (2)
-      - key: node-role.kubernetes.io/control-plane
+      - key: node-role.kubernetes.io/master
         operator: Exists
   tolerations:
-    - key: node-role.kubernetes.io/control-plane
+    - key: node-role.kubernetes.io/master
       operator: Exists
       effect: NoSchedule
   upgrade:
