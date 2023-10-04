@@ -48,7 +48,7 @@ authelia:
         - authelia
       args:
         - '--config=/configuration.yaml'
-        - '--config=/config/configuration.oidc.yaml'
+        - '--config=/configuration.oidc.yaml'
 
   # nameOverride: authelia-deployment-name
   # appNameOverride: authelia
@@ -357,7 +357,7 @@ authelia:
         subPath: users_database.yml
       - name: config-oidc
         readOnly: true
-        mountPath: /config/configuration.oidc.yaml
+        mountPath: /configuration.oidc.yaml
         subPath: configuration.oidc.yaml
     extraVolumes:
       - name: users-database
