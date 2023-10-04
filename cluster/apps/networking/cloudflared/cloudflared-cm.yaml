@@ -34,4 +34,8 @@ data:
         service: http://iobroker.home:8081
         originRequest:
           noTLSVerify: true
+      - hostname: auth.amrap030.site
+        service: http://authelia.authelia
+        originRequest:
+          noTLSVerify: true
       - service: http_status:404
