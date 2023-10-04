@@ -898,6 +898,7 @@ kube-prometheus-stack:
     admin:
       ## Name of the secret. Can be templated.
       existingSecret: "grafana-secret"
+      userKey: adminUser
       passwordKey: adminPassword
 
     persistence:
