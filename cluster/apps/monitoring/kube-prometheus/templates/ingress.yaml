@@ -21,4 +21,4 @@ spec:
   tls:
     - hosts:
         - grafana.amrap030.home
-      secretName: traefik-cert
+      secretName: grafana-cert
