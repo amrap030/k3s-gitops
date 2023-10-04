@@ -348,8 +348,8 @@ authelia:
         subPath: users_database.yml
     extraVolumes:
       - name: users-database
-        configMap:
-          name: users-database
+        secret:
+          secretName: users-database
 
   ##
   ## Kubernetes Pod Disruption Budget
