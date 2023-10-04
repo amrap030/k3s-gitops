@@ -37,7 +37,8 @@ data:
           access:
             required: true
             teamName: amrap030.cloudflareaccess.com
-            audTag: cd68c56f9f79dcc814b9e06f9b1bc2cea4604e1f8deb59a44f946cc764e42a3a
+            audTag:
+              - cd68c56f9f79dcc814b9e06f9b1bc2cea4604e1f8deb59a44f946cc764e42a3a
       - hostname: auth.amrap030.site
         service: http://authelia.authelia
         originRequest:
