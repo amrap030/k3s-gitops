@@ -656,7 +656,7 @@ authelia:
       ldap:
 
         ## Enable LDAP Backend.
-        enabled: true
+        enabled: false
 
         ## The LDAP implementation, this affects elements like the attribute utilised for resetting a password.
         ## Acceptable options are as follows:
@@ -787,7 +787,7 @@ authelia:
       ## Important: Kubernetes (or HA) users must read https://www.authelia.com/overview/authorization/statelessness/
       ##
       file:
-        enabled: false
+        enabled: true
         path: /config/users_database.yml
         watch: true
         search:
