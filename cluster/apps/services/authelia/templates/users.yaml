@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: authelia-configmap
+  name: authelia-users
   namespace: authelia
 data:
-  configuration.yaml: |
+  users_database.yml: |
     users:
       amrap030:
         email: kevin.hertwig@gmail.com
