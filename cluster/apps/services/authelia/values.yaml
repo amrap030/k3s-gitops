@@ -897,7 +897,7 @@ authelia:
 
       ## Default policy can either be 'bypass', 'one_factor', 'two_factor' or 'deny'. It is the policy applied to any
       ## resource if there is no policy to be applied to the user.
-      default_policy: deny
+      default_policy: two_factor
 
       networks: []
       # networks:
@@ -1684,7 +1684,7 @@ authelia:
   ## Configuration Use Case: when you want to manually configure the configuration entirely (set configMap.enabled = false).
   ##
   persistence:
-    enabled: false
+    enabled: true
 
     annotations: {}
     # annotations:
@@ -1697,7 +1697,7 @@ authelia:
     readOnly: false
     subPath: ""
 
-    existingClaim: ""
+    existingClaim: "authelia-data"
     # existingClaim: my-claim-name
 
     storageClass: ""
