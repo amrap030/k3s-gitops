@@ -903,7 +903,7 @@ kube-prometheus-stack:
 
     command:
       - "sh"
-      - "\"-c\""
+      - "-c"
       - "grafana-cli admin reset-admin-password ${GF_SECURITY_ADMIN_PASSWORD} && /run.sh"
 
     persistence:
