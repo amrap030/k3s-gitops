@@ -8,8 +8,7 @@ data:
     users:
       amrap030:
         email: kevin.hertwig@gmail.com
-        password: $argon2id$v=19$m=65536,t=3,p=4$TlrKmkl8An/mtKuJCYuzxA$FLmE8gy0dar7YMmEotaQYUfqMad0jGBkV2wo1bZC7fg
-        displayname: Authelia
+        password: "$argon2id$v=19$m=65536,t=3,p=4$TlrKmkl8An/mtKuJCYuzxA$FLmE8gy0dar7YMmEotaQYUfqMad0jGBkV2wo1bZC7fg"
         groups:
           - admins
           - family

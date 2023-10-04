@@ -408,7 +408,7 @@ authelia:
 
     key: configuration.yaml
 
-    existingConfigMap: ""
+    existingConfigMap: "authelia-configmap"
 
     ##
     ## Server Configuration
@@ -1250,7 +1250,26 @@ authelia:
         ## The issuer_certificate_chain is an optional PEM encoded certificate chain. It's used in conjunction with the
         ## issuer_private_key to sign JWT's. All certificates in the chain must be within the validity period, and every
         ## certificate included must be signed by the certificate immediately after it if provided.
-        issuer_certificate_chain: ""
+        issuer_certificate_chain: |
+          -----BEGIN CERTIFICATE-----
+          MIIDETCCAfmgAwIBAgIQYngH8k+2N2vJ5B9UhK54BzANBgkqhkiG9w0BAQsFADAp
+          MREwDwYDVQQKEwhBdXRoZWxpYTEUMBIGA1UEAxMLZXhhbXBsZS5jb20wHhcNMjMx
+          MDA0MTI1MTAyWhcNMjQxMDAzMTI1MTAyWjApMREwDwYDVQQKEwhBdXRoZWxpYTEU
+          MBIGA1UEAxMLZXhhbXBsZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+          AoIBAQCkZBtRIQu8NcniQC7/PyEKBAWXrPzKxKVzJzNZ04yFfiJPC1aq0hBeowbi
+          38piO0+IzA/LKNNHvidvQY114xLglyW02TAtr4CKo8R/BLkuLB1R/XuFqIJ0j5MT
+          AeXusVc0YAeN1NwLQHMFyQ6+kBHn45JYyUl7BHwbMYlae7JVHvFwvJKYTmkVTdRW
+          WOnmpbjAvHtd2xWmVjc1RQL84BWKEiPwyJtxRDMp8Qhhr68mQdBzoKReVrxOpZ4c
+          hcT9Xckrl+Kdzl/O9WyZ/7DNKHj+4bUtlzjp8nXOo49gMh4DheT7tdL9jH0Id/Tf
+          lB7OnnbZSFBXLLHcXMjDb+zIS9OdAgMBAAGjNTAzMA4GA1UdDwEB/wQEAwIFoDAT
+          BgNVHSUEDDAKBggrBgEFBQcDATAMBgNVHRMBAf8EAjAAMA0GCSqGSIb3DQEBCwUA
+          A4IBAQAyxPc13379eYNgu7eAoHlJ7uupGvCZpivuFwWdXMv0wSjcUf+Dm5Kah7NS
+          BXGEEyYxzSpH4xhrl7Dgzi0Yxsd3gna7hgXLj+KN3BqQSB89oXsE/4WotNj8ATGw
+          kk76ygglOt8j4rSXYHcD4VB/h0+/SFdANLVIrgOnTAzYljgK5pynbWceuZAjq+Qo
+          yH82zHng5EnwwWVqEA8SAaDTqqlfPah5a2TlOEgx2cwpD+61AE8xupY+wVuwhlC6
+          p+QiP8HiBYuc4NR7gWxhiPp+8Wt7qTTXwjqplIT02NJpOHibkQKfI+5Xj1wEwXC0
+          Nw+3AVppeTsMAhRm5o3/bIKNbtnc
+          -----END CERTIFICATE-----
         # issuer_certificate_chain: |
         #   -----BEGIN CERTIFICATE-----
         #   MIIC5jCCAc6gAwIBAgIRAK4Sj7FiN6PXo/urPfO4E7owDQYJKoZIhvcNAQELBQAw
