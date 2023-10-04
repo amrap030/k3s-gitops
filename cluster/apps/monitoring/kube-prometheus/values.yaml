@@ -901,6 +901,11 @@ kube-prometheus-stack:
       userKey: adminUser
       passwordKey: adminPassword
 
+    command:
+      - "sh"
+      - "\"-c\""
+      - "grafana-cli admin reset-admin-password ${GF_SECURITY_ADMIN_PASSWORD} && /run.sh"
+
     persistence:
       enabled: true
       type: pvc
