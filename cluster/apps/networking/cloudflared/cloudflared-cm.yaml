@@ -15,7 +15,7 @@ data:
         originRequest:
           noTLSVerify: true
       - hostname: uptime.amrap030.site
-        service: http://uptime.amrap030.home
+        service: http://uptime-kuma.monitoring:3001
         originRequest:
           noTLSVerify: true
       - hostname: vaultwarden.amrap030.site
@@ -32,6 +32,10 @@ data:
           noTLSVerify: true
       - hostname: iobroker.amrap030.site
         service: http://iobroker.home:8081
+        originRequest:
+          noTLSVerify: true
+      - hostname: auth.amrap030.site
+        service: http://authelia.authelia
         originRequest:
           noTLSVerify: true
       - service: http_status:404
