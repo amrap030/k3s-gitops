@@ -896,12 +896,7 @@ kube-prometheus-stack:
     defaultDashboardsTimezone: utc
 
     adminUser: amrap030
-
-    envValueFrom:
-      GF_SECURITY_ADMIN_PASSWORD:
-        secretKeyRef:
-          name: grafana-secret
-          key: GF_SECURITY_ADMIN_PASSWORD
+    adminPassword: prom-operator
 
     persistence:
       enabled: true
