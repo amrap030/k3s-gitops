@@ -895,10 +895,10 @@ kube-prometheus-stack:
     ##
     defaultDashboardsTimezone: utc
 
-    adminUser: amrap030
+    # adminUser: amrap030
     admin:
       ## Name of the secret. Can be templated.
-      existingSecret: "grafana-secret"
+      existingSecret: grafana-secret
       userKey: adminUser
       passwordKey: adminPassword
 
