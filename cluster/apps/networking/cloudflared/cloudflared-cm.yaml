@@ -34,6 +34,9 @@ data:
         service: http://iobroker.home:8081
         originRequest:
           noTLSVerify: true
+          access:
+            required: true
+          	audTag: cd68c56f9f79dcc814b9e06f9b1bc2cea4604e1f8deb59a44f946cc764e42a3a
       - hostname: auth.amrap030.site
         service: http://authelia.authelia
         originRequest:
