@@ -500,7 +500,7 @@ authelia:
           idle: 30s
 
         serviceMonitor:
-          enabled: true
+          enabled: false
           annotations: {}
           labels: {}
 
