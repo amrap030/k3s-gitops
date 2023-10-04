@@ -1225,7 +1225,7 @@ authelia:
       oidc:
         ## Enables this in the config map. Currently in beta stage.
         ## See https://www.authelia.com/r/openid-connect/
-        enabled: false
+        enabled: true
 
         access_token_lifespan: 1h
         authorize_code_lifespan: 1m
@@ -1312,7 +1312,19 @@ authelia:
           ## provided they have the scheme http or https and do not have the hostname of localhost.
           allowed_origins_from_client_redirect_uris: true
 
-        clients: []
+        clients:
+          - id: cloudflare
+            description: Cloudflare ZeroTrust
+            secret: '$pbkdf2-sha512$310000$9qoahWKzgfG38kDUcI/1jw$0OsFl7BvwD1t8NqaVaj6BPD2/Br684fozJwifgfDjONlgP5FwintZ1QkjN3f5sqNBeVDnRGOuL8ukGti2TglJg'  # The digest of 'insecure_secret'.
+            public: false
+            authorization_policy: two_factor
+            redirect_uris:
+              - https://amrap030.cloudflareaccess.com/cdn-cgi/access/callback
+            scopes:
+              - openid
+              - profile
+              - email
+            userinfo_signing_algorithm: none
         # clients:
         # -
         ## The ID is the OpenID Connect ClientID which is used to link an application to a configuration.
