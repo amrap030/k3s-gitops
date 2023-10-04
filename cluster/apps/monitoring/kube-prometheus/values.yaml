@@ -908,10 +908,6 @@ kube-prometheus-stack:
     grafana.ini:
       date_formats:
         default_timezone: UTC
-      server:
-        domain: grafana.amrap030.home
-        root_url: https://grafana.amrap030.home/grafana/
-        serve_from_sub_path: true
 
     rbac:
       ## If true, Grafana PSPs will be created
