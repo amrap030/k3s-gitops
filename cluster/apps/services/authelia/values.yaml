@@ -40,6 +40,15 @@ authelia:
     pullSecrets: []
     # pullSecrets:
     #   - myPullSecretName
+  
+  containers:
+    - name: authelia
+      image: docker.io/authelia/authelia:4.37.5
+      command:
+        - authelia
+      args:
+        - '--config=/configuration.yaml'
+        - '--config=/config/configuration.oidc.yaml'
 
   # nameOverride: authelia-deployment-name
   # appNameOverride: authelia
@@ -215,15 +224,6 @@ authelia:
     labels: {}
     # labels:
     #   myLabel: myValue
-
-    containers:
-      - name: authelia
-        image: docker.io/authelia/authelia:4.37.5
-        command:
-          - authelia
-        args:
-          - '--config=/configuration.yaml'
-          - '--config=/config/configuration.oidc.yaml'
 
     replicas: 1
     revisionHistoryLimit: 5
