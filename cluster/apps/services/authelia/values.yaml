@@ -1247,180 +1247,180 @@ authelia:
           ## Maximum TLS version for the connection.
           maximum_version: TLS1.3
 
-    identity_providers:
-      oidc:
-        ## Enables this in the config map. Currently in beta stage.
-        ## See https://www.authelia.com/r/openid-connect/
-        enabled: true
+    # identity_providers:
+    #   oidc:
+    #     ## Enables this in the config map. Currently in beta stage.
+    #     ## See https://www.authelia.com/r/openid-connect/
+    #     enabled: true
 
-        access_token_lifespan: 1h
-        authorize_code_lifespan: 1m
-        id_token_lifespan: 1h
-        refresh_token_lifespan: 90m
+    #     access_token_lifespan: 1h
+    #     authorize_code_lifespan: 1m
+    #     id_token_lifespan: 1h
+    #     refresh_token_lifespan: 90m
 
-        ## Adjusts the PKCE enforcement. Options are always, public_clients_only, never.
-        ## For security reasons it's recommended this option is public_clients_only or always, however always is not
-        ## compatible with all clients.
-        enforce_pkce: public_clients_only
+    #     ## Adjusts the PKCE enforcement. Options are always, public_clients_only, never.
+    #     ## For security reasons it's recommended this option is public_clients_only or always, however always is not
+    #     ## compatible with all clients.
+    #     enforce_pkce: public_clients_only
 
-        ## Enables the plain PKCE challenge which is not recommended for security reasons but may be necessary for some clients.
-        enable_pkce_plain_challenge: false
+    #     ## Enables the plain PKCE challenge which is not recommended for security reasons but may be necessary for some clients.
+    #     enable_pkce_plain_challenge: false
 
-        ## SECURITY NOTICE: It's not recommended changing this option, and highly discouraged to have it below 8 for
-        ## security reasons.
-        minimum_parameter_entropy: 8
+    #     ## SECURITY NOTICE: It's not recommended changing this option, and highly discouraged to have it below 8 for
+    #     ## security reasons.
+    #     minimum_parameter_entropy: 8
 
-        ## Enables additional debug messages.
-        enable_client_debug_messages: false
+    #     ## Enables additional debug messages.
+    #     enable_client_debug_messages: false
 
-        ## The issuer_certificate_chain is an optional PEM encoded certificate chain. It's used in conjunction with the
-        ## issuer_private_key to sign JWT's. All certificates in the chain must be within the validity period, and every
-        ## certificate included must be signed by the certificate immediately after it if provided.
-        issuer_certificate_chain: |
-          -----BEGIN CERTIFICATE-----
-          MIIDETCCAfmgAwIBAgIQYngH8k+2N2vJ5B9UhK54BzANBgkqhkiG9w0BAQsFADAp
-          MREwDwYDVQQKEwhBdXRoZWxpYTEUMBIGA1UEAxMLZXhhbXBsZS5jb20wHhcNMjMx
-          MDA0MTI1MTAyWhcNMjQxMDAzMTI1MTAyWjApMREwDwYDVQQKEwhBdXRoZWxpYTEU
-          MBIGA1UEAxMLZXhhbXBsZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
-          AoIBAQCkZBtRIQu8NcniQC7/PyEKBAWXrPzKxKVzJzNZ04yFfiJPC1aq0hBeowbi
-          38piO0+IzA/LKNNHvidvQY114xLglyW02TAtr4CKo8R/BLkuLB1R/XuFqIJ0j5MT
-          AeXusVc0YAeN1NwLQHMFyQ6+kBHn45JYyUl7BHwbMYlae7JVHvFwvJKYTmkVTdRW
-          WOnmpbjAvHtd2xWmVjc1RQL84BWKEiPwyJtxRDMp8Qhhr68mQdBzoKReVrxOpZ4c
-          hcT9Xckrl+Kdzl/O9WyZ/7DNKHj+4bUtlzjp8nXOo49gMh4DheT7tdL9jH0Id/Tf
-          lB7OnnbZSFBXLLHcXMjDb+zIS9OdAgMBAAGjNTAzMA4GA1UdDwEB/wQEAwIFoDAT
-          BgNVHSUEDDAKBggrBgEFBQcDATAMBgNVHRMBAf8EAjAAMA0GCSqGSIb3DQEBCwUA
-          A4IBAQAyxPc13379eYNgu7eAoHlJ7uupGvCZpivuFwWdXMv0wSjcUf+Dm5Kah7NS
-          BXGEEyYxzSpH4xhrl7Dgzi0Yxsd3gna7hgXLj+KN3BqQSB89oXsE/4WotNj8ATGw
-          kk76ygglOt8j4rSXYHcD4VB/h0+/SFdANLVIrgOnTAzYljgK5pynbWceuZAjq+Qo
-          yH82zHng5EnwwWVqEA8SAaDTqqlfPah5a2TlOEgx2cwpD+61AE8xupY+wVuwhlC6
-          p+QiP8HiBYuc4NR7gWxhiPp+8Wt7qTTXwjqplIT02NJpOHibkQKfI+5Xj1wEwXC0
-          Nw+3AVppeTsMAhRm5o3/bIKNbtnc
-          -----END CERTIFICATE-----
-        # issuer_certificate_chain: |
-        #   -----BEGIN CERTIFICATE-----
-        #   MIIC5jCCAc6gAwIBAgIRAK4Sj7FiN6PXo/urPfO4E7owDQYJKoZIhvcNAQELBQAw
-        #   EzERMA8GA1UEChMIQXV0aGVsaWEwHhcNNzAwMTAxMDAwMDAwWhcNNzEwMTAxMDAw
-        #   MDAwWjATMREwDwYDVQQKEwhBdXRoZWxpYTCCASIwDQYJKoZIhvcNAQEBBQADggEP
-        #   ADCCAQoCggEBAPKv3pSyP4ozGEiVLJ14dIWFCEGEgq7WUMI0SZZqQA2ID0L59U/Q
-        #   /Usyy7uC9gfMUzODTpANtkOjFQcQAsxlR1FOjVBrX5QgjSvXwbQn3DtwMA7XWSl6
-        #   LuYx2rBYSlMSN5UZQm/RxMtXfLK2b51WgEEYDFi+nECSqKzR4R54eOPkBEWRfvuY
-        #   91AMjlhpivg8e4JWkq4LVQUKbmiFYwIdK8XQiN4blY9WwXwJFYs5sQ/UYMwBFi0H
-        #   kWOh7GEjfxgoUOPauIueZSMSlQp7zqAH39N0ZSYb6cS0Npj57QoWZSY3ak87ebcR
-        #   Nf4rCvZLby7LoN7qYCKxmCaDD3x2+NYpWH8CAwEAAaM1MDMwDgYDVR0PAQH/BAQD
-        #   AgWgMBMGA1UdJQQMMAoGCCsGAQUFBwMBMAwGA1UdEwEB/wQCMAAwDQYJKoZIhvcN
-        #   AQELBQADggEBAHSITqIQSNzonFl3DzxHPEzr2hp6peo45buAAtu8FZHoA+U7Icfh
-        #   /ZXjPg7Xz+hgFwM/DTNGXkMWacQA/PaNWvZspgRJf2AXvNbMSs2UQODr7Tbv+Fb4
-        #   lyblmMUNYFMCFVAMU0eIxXAFq2qcwv8UMcQFT0Z/35s6PVOakYnAGGQjTfp5Ljuq
-        #   wsdc/xWmM0cHWube6sdRRUD7SY20KU/kWzl8iFO0VbSSrDf1AlEhnLEkp1SPaxXg
-        #   OdBnl98MeoramNiJ7NT6Jnyb3zZ578fjaWfThiBpagItI8GZmG4s4Ovh2JbheN8i
-        #   ZsjNr9jqHTjhyLVbDRlmJzcqoj4JhbKs6/I^invalid DO NOT USE=
-        #   -----END CERTIFICATE-----
-        #   -----BEGIN CERTIFICATE-----
-        #   MIIDBDCCAeygAwIBAgIRALJsPg21kA0zY4F1wUCIuoMwDQYJKoZIhvcNAQELBQAw
-        #   EzERMA8GA1UEChMIQXV0aGVsaWEwHhcNNzAwMTAxMDAwMDAwWhcNNzEwMTAxMDAw
-        #   MDAwWjATMREwDwYDVQQKEwhBdXRoZWxpYTCCASIwDQYJKoZIhvcNAQEBBQADggEP
-        #   ADCCAQoCggEBAMXHBvVxUzYk0u34/DINMSF+uiOekKOAjOrC6Mi9Ww8ytPVO7t2S
-        #   zfTvM+XnEJqkFQFgimERfG/eGhjF9XIEY6LtnXe8ATvOK4nTwdufzBaoeQu3Gd50
-        #   5VXr6OHRo//ErrGvFXwP3g8xLePABsi/fkH3oDN+ztewOBMDzpd+KgTrk8ysv2ou
-        #   kNRMKFZZqASvCgv0LD5KWvUCnL6wgf1oTXG7aztduA4oSkUP321GpOmBC5+5ElU7
-        #   ysoRzvD12o9QJ/IfEaulIX06w9yVMo60C/h6A3U6GdkT1SiyTIqR7v7KU/IWd/Qi
-        #   Lfftcj91VhCmJ73Meff2e2S2PrpjdXbG5FMCAwEAAaNTMFEwDgYDVR0PAQH/BAQD
-        #   AgKkMA8GA1UdJQQIMAYGBFUdJQAwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQU
-        #   Z7AtA3mzFc0InSBA5fiMfeLXA3owDQYJKoZIhvcNAQELBQADggEBAEE5hm1mtlk/
-        #   kviCoHH4evbpw7rxPxDftIQlqYTtvMM4eWY/6icFoSZ4fUHEWYyps8SsPu/8f2tf
-        #   71LGgZn0FdHi1QU2H8m0HHK7TFw+5Q6RLrLdSyk0PItJ71s9en7r8pX820nAFEHZ
-        #   HkOSfJZ7B5hFgUDkMtVM6bardXAhoqcMk4YCU96e9d4PB4eI+xGc+mNuYvov3RbB
-        #   D0s8ICyojeyPVLerz4wHjZu68Z5frAzhZ68YbzNs8j2fIBKKHkHyLG1iQyF+LJVj
-        #   2PjCP+auJsj6fQQpMGoyGtpLcSDh+ptcTngUD8JsWipzTCjmaNqdPHAOYmcgtf4b
-        #   qocikt3WAdU^invalid DO NOT USE=
-        #   -----END CERTIFICATE-----
+    #     ## The issuer_certificate_chain is an optional PEM encoded certificate chain. It's used in conjunction with the
+    #     ## issuer_private_key to sign JWT's. All certificates in the chain must be within the validity period, and every
+    #     ## certificate included must be signed by the certificate immediately after it if provided.
+    #     issuer_certificate_chain: |
+    #       -----BEGIN CERTIFICATE-----
+    #       MIIDETCCAfmgAwIBAgIQYngH8k+2N2vJ5B9UhK54BzANBgkqhkiG9w0BAQsFADAp
+    #       MREwDwYDVQQKEwhBdXRoZWxpYTEUMBIGA1UEAxMLZXhhbXBsZS5jb20wHhcNMjMx
+    #       MDA0MTI1MTAyWhcNMjQxMDAzMTI1MTAyWjApMREwDwYDVQQKEwhBdXRoZWxpYTEU
+    #       MBIGA1UEAxMLZXhhbXBsZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+    #       AoIBAQCkZBtRIQu8NcniQC7/PyEKBAWXrPzKxKVzJzNZ04yFfiJPC1aq0hBeowbi
+    #       38piO0+IzA/LKNNHvidvQY114xLglyW02TAtr4CKo8R/BLkuLB1R/XuFqIJ0j5MT
+    #       AeXusVc0YAeN1NwLQHMFyQ6+kBHn45JYyUl7BHwbMYlae7JVHvFwvJKYTmkVTdRW
+    #       WOnmpbjAvHtd2xWmVjc1RQL84BWKEiPwyJtxRDMp8Qhhr68mQdBzoKReVrxOpZ4c
+    #       hcT9Xckrl+Kdzl/O9WyZ/7DNKHj+4bUtlzjp8nXOo49gMh4DheT7tdL9jH0Id/Tf
+    #       lB7OnnbZSFBXLLHcXMjDb+zIS9OdAgMBAAGjNTAzMA4GA1UdDwEB/wQEAwIFoDAT
+    #       BgNVHSUEDDAKBggrBgEFBQcDATAMBgNVHRMBAf8EAjAAMA0GCSqGSIb3DQEBCwUA
+    #       A4IBAQAyxPc13379eYNgu7eAoHlJ7uupGvCZpivuFwWdXMv0wSjcUf+Dm5Kah7NS
+    #       BXGEEyYxzSpH4xhrl7Dgzi0Yxsd3gna7hgXLj+KN3BqQSB89oXsE/4WotNj8ATGw
+    #       kk76ygglOt8j4rSXYHcD4VB/h0+/SFdANLVIrgOnTAzYljgK5pynbWceuZAjq+Qo
+    #       yH82zHng5EnwwWVqEA8SAaDTqqlfPah5a2TlOEgx2cwpD+61AE8xupY+wVuwhlC6
+    #       p+QiP8HiBYuc4NR7gWxhiPp+8Wt7qTTXwjqplIT02NJpOHibkQKfI+5Xj1wEwXC0
+    #       Nw+3AVppeTsMAhRm5o3/bIKNbtnc
+    #       -----END CERTIFICATE-----
+    #     # issuer_certificate_chain: |
+    #     #   -----BEGIN CERTIFICATE-----
+    #     #   MIIC5jCCAc6gAwIBAgIRAK4Sj7FiN6PXo/urPfO4E7owDQYJKoZIhvcNAQELBQAw
+    #     #   EzERMA8GA1UEChMIQXV0aGVsaWEwHhcNNzAwMTAxMDAwMDAwWhcNNzEwMTAxMDAw
+    #     #   MDAwWjATMREwDwYDVQQKEwhBdXRoZWxpYTCCASIwDQYJKoZIhvcNAQEBBQADggEP
+    #     #   ADCCAQoCggEBAPKv3pSyP4ozGEiVLJ14dIWFCEGEgq7WUMI0SZZqQA2ID0L59U/Q
+    #     #   /Usyy7uC9gfMUzODTpANtkOjFQcQAsxlR1FOjVBrX5QgjSvXwbQn3DtwMA7XWSl6
+    #     #   LuYx2rBYSlMSN5UZQm/RxMtXfLK2b51WgEEYDFi+nECSqKzR4R54eOPkBEWRfvuY
+    #     #   91AMjlhpivg8e4JWkq4LVQUKbmiFYwIdK8XQiN4blY9WwXwJFYs5sQ/UYMwBFi0H
+    #     #   kWOh7GEjfxgoUOPauIueZSMSlQp7zqAH39N0ZSYb6cS0Npj57QoWZSY3ak87ebcR
+    #     #   Nf4rCvZLby7LoN7qYCKxmCaDD3x2+NYpWH8CAwEAAaM1MDMwDgYDVR0PAQH/BAQD
+    #     #   AgWgMBMGA1UdJQQMMAoGCCsGAQUFBwMBMAwGA1UdEwEB/wQCMAAwDQYJKoZIhvcN
+    #     #   AQELBQADggEBAHSITqIQSNzonFl3DzxHPEzr2hp6peo45buAAtu8FZHoA+U7Icfh
+    #     #   /ZXjPg7Xz+hgFwM/DTNGXkMWacQA/PaNWvZspgRJf2AXvNbMSs2UQODr7Tbv+Fb4
+    #     #   lyblmMUNYFMCFVAMU0eIxXAFq2qcwv8UMcQFT0Z/35s6PVOakYnAGGQjTfp5Ljuq
+    #     #   wsdc/xWmM0cHWube6sdRRUD7SY20KU/kWzl8iFO0VbSSrDf1AlEhnLEkp1SPaxXg
+    #     #   OdBnl98MeoramNiJ7NT6Jnyb3zZ578fjaWfThiBpagItI8GZmG4s4Ovh2JbheN8i
+    #     #   ZsjNr9jqHTjhyLVbDRlmJzcqoj4JhbKs6/I^invalid DO NOT USE=
+    #     #   -----END CERTIFICATE-----
+    #     #   -----BEGIN CERTIFICATE-----
+    #     #   MIIDBDCCAeygAwIBAgIRALJsPg21kA0zY4F1wUCIuoMwDQYJKoZIhvcNAQELBQAw
+    #     #   EzERMA8GA1UEChMIQXV0aGVsaWEwHhcNNzAwMTAxMDAwMDAwWhcNNzEwMTAxMDAw
+    #     #   MDAwWjATMREwDwYDVQQKEwhBdXRoZWxpYTCCASIwDQYJKoZIhvcNAQEBBQADggEP
+    #     #   ADCCAQoCggEBAMXHBvVxUzYk0u34/DINMSF+uiOekKOAjOrC6Mi9Ww8ytPVO7t2S
+    #     #   zfTvM+XnEJqkFQFgimERfG/eGhjF9XIEY6LtnXe8ATvOK4nTwdufzBaoeQu3Gd50
+    #     #   5VXr6OHRo//ErrGvFXwP3g8xLePABsi/fkH3oDN+ztewOBMDzpd+KgTrk8ysv2ou
+    #     #   kNRMKFZZqASvCgv0LD5KWvUCnL6wgf1oTXG7aztduA4oSkUP321GpOmBC5+5ElU7
+    #     #   ysoRzvD12o9QJ/IfEaulIX06w9yVMo60C/h6A3U6GdkT1SiyTIqR7v7KU/IWd/Qi
+    #     #   Lfftcj91VhCmJ73Meff2e2S2PrpjdXbG5FMCAwEAAaNTMFEwDgYDVR0PAQH/BAQD
+    #     #   AgKkMA8GA1UdJQQIMAYGBFUdJQAwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQU
+    #     #   Z7AtA3mzFc0InSBA5fiMfeLXA3owDQYJKoZIhvcNAQELBQADggEBAEE5hm1mtlk/
+    #     #   kviCoHH4evbpw7rxPxDftIQlqYTtvMM4eWY/6icFoSZ4fUHEWYyps8SsPu/8f2tf
+    #     #   71LGgZn0FdHi1QU2H8m0HHK7TFw+5Q6RLrLdSyk0PItJ71s9en7r8pX820nAFEHZ
+    #     #   HkOSfJZ7B5hFgUDkMtVM6bardXAhoqcMk4YCU96e9d4PB4eI+xGc+mNuYvov3RbB
+    #     #   D0s8ICyojeyPVLerz4wHjZu68Z5frAzhZ68YbzNs8j2fIBKKHkHyLG1iQyF+LJVj
+    #     #   2PjCP+auJsj6fQQpMGoyGtpLcSDh+ptcTngUD8JsWipzTCjmaNqdPHAOYmcgtf4b
+    #     #   qocikt3WAdU^invalid DO NOT USE=
+    #     #   -----END CERTIFICATE-----
 
-        ## Cross-Origin Resource Sharing (CORS) settings.
-        cors:
-          ## List of endpoints in addition to the metadata endpoints to permit cross-origin requests on.
-          # endpoints:
-          #    - authorization
-          #    - token
-          #    - revocation
-          #    - introspection
-          #    - userinfo
-          endpoints: []
+    #     ## Cross-Origin Resource Sharing (CORS) settings.
+    #     cors:
+    #       ## List of endpoints in addition to the metadata endpoints to permit cross-origin requests on.
+    #       # endpoints:
+    #       #    - authorization
+    #       #    - token
+    #       #    - revocation
+    #       #    - introspection
+    #       #    - userinfo
+    #       endpoints: []
 
-          ## List of allowed origins.
-          ## Any origin with https is permitted unless this option is configured or the
-          ## allowed_origins_from_client_redirect_uris option is enabled.
-          # allowed_origins:
-          #   - https://example.com
-          allowed_origins: []
+    #       ## List of allowed origins.
+    #       ## Any origin with https is permitted unless this option is configured or the
+    #       ## allowed_origins_from_client_redirect_uris option is enabled.
+    #       # allowed_origins:
+    #       #   - https://example.com
+    #       allowed_origins: []
 
-          ## Automatically adds the origin portion of all redirect URI's on all clients to the list of allowed_origins,
-          ## provided they have the scheme http or https and do not have the hostname of localhost.
-          allowed_origins_from_client_redirect_uris: true
+    #       ## Automatically adds the origin portion of all redirect URI's on all clients to the list of allowed_origins,
+    #       ## provided they have the scheme http or https and do not have the hostname of localhost.
+    #       allowed_origins_from_client_redirect_uris: true
 
-        clients: []
-        # clients:
-        # -
-        ## The ID is the OpenID Connect ClientID which is used to link an application to a configuration.
-        # id: myapp
+    #     clients: []
+    #     # clients:
+    #     # -
+    #     ## The ID is the OpenID Connect ClientID which is used to link an application to a configuration.
+    #     # id: myapp
 
-        ## The description to show to users when they end up on the consent screen. Defaults to the ID above.
-        # description: My Application
+    #     ## The description to show to users when they end up on the consent screen. Defaults to the ID above.
+    #     # description: My Application
 
-        ## The client secret is a shared secret between Authelia and the consumer of this client.
-        # secret: apple123
+    #     ## The client secret is a shared secret between Authelia and the consumer of this client.
+    #     # secret: apple123
 
-        ## Sector Identifiers are occasionally used to generate pairwise subject identifiers. In most cases this is not
-        ## necessary. Read the documentation for more information.
-        ## The subject identifier must be the host component of a URL, which is a domain name with an optional port.
-        # sector_identifier: example.com
+    #     ## Sector Identifiers are occasionally used to generate pairwise subject identifiers. In most cases this is not
+    #     ## necessary. Read the documentation for more information.
+    #     ## The subject identifier must be the host component of a URL, which is a domain name with an optional port.
+    #     # sector_identifier: example.com
 
-        ## Sets the client to public. This should typically not be set, please see the documentation for usage.
-        # public: false
+    #     ## Sets the client to public. This should typically not be set, please see the documentation for usage.
+    #     # public: false
 
-        ## The policy to require for this client; one_factor or two_factor.
-        # authorization_policy: two_factor
+    #     ## The policy to require for this client; one_factor or two_factor.
+    #     # authorization_policy: two_factor
 
-        ## The consent mode controls how consent is obtained.
-        # consent_mode: auto
+    #     ## The consent mode controls how consent is obtained.
+    #     # consent_mode: auto
 
-        ## This value controls the duration a consent on this client remains remembered when the consent mode is
-        ## configured as 'auto' or 'pre-configured'.
-        # pre_configured_consent_duration: 30d
+    #     ## This value controls the duration a consent on this client remains remembered when the consent mode is
+    #     ## configured as 'auto' or 'pre-configured'.
+    #     # pre_configured_consent_duration: 30d
 
-        ## Audience this client is allowed to request.
-        # audience: []
+    #     ## Audience this client is allowed to request.
+    #     # audience: []
 
-        ## Scopes this client is allowed to request.
-        # scopes:
-        #   - openid
-        #   - profile
-        #   - email
-        #   - groups
+    #     ## Scopes this client is allowed to request.
+    #     # scopes:
+    #     #   - openid
+    #     #   - profile
+    #     #   - email
+    #     #   - groups
 
-        ## Redirect URI's specifies a list of valid case-sensitive callbacks for this client.
-        # redirect_uris:
-        #   - https://oidc.example.com/oauth2/callback
+    #     ## Redirect URI's specifies a list of valid case-sensitive callbacks for this client.
+    #     # redirect_uris:
+    #     #   - https://oidc.example.com/oauth2/callback
 
-        ## Grant Types configures which grants this client can obtain.
-        ## It's not recommended to configure this unless you know what you're doing.
-        # grant_types:
-        #   - refresh_token
-        #   - authorization_code
+    #     ## Grant Types configures which grants this client can obtain.
+    #     ## It's not recommended to configure this unless you know what you're doing.
+    #     # grant_types:
+    #     #   - refresh_token
+    #     #   - authorization_code
 
-        ## Response Types configures which responses this client can be sent.
-        ## It's not recommended to configure this unless you know what you're doing.
-        # response_types:
-        #   - code
+    #     ## Response Types configures which responses this client can be sent.
+    #     ## It's not recommended to configure this unless you know what you're doing.
+    #     # response_types:
+    #     #   - code
 
-        ## Response Modes configures which response modes this client supports.
-        ## It's not recommended to configure this unless you know what you're doing.
-        # response_modes:
-        #   - form_post
-        #   - query
-        #   - fragment
+    #     ## Response Modes configures which response modes this client supports.
+    #     ## It's not recommended to configure this unless you know what you're doing.
+    #     # response_modes:
+    #     #   - form_post
+    #     #   - query
+    #     #   - fragment
 
-        ## The algorithm used to sign userinfo endpoint responses for this client, either none or RS256.
-        # userinfo_signing_algorithm: none
+    #     ## The algorithm used to sign userinfo endpoint responses for this client, either none or RS256.
+    #     # userinfo_signing_algorithm: none
 
   ##
   ## Authelia Secret Generator.
