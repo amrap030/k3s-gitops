@@ -15,7 +15,7 @@ data:
         originRequest:
           noTLSVerify: true
       - hostname: uptime.amrap030.site
-        service: http://uptime-kuma.monitoring:3001
+        service: http://uptime.amrap030.home
         originRequest:
           noTLSVerify: true
       - hostname: vaultwarden.amrap030.site
