@@ -897,7 +897,7 @@ authelia:
 
       ## Default policy can either be 'bypass', 'one_factor', 'two_factor' or 'deny'. It is the policy applied to any
       ## resource if there is no policy to be applied to the user.
-      default_policy: "two_factor"
+      default_policy: two_factor
 
       networks: []
       # networks:
@@ -1174,7 +1174,7 @@ authelia:
       ## Important: Kubernetes (or HA) users must read https://www.authelia.com/overview/authorization/statelessness/
       ##
       filesystem:
-        enabled: false
+        enabled: true
         filename: /config/notification.txt
 
       ##
@@ -1188,7 +1188,7 @@ authelia:
       ##   - validate the SMTP server x509 certificate during the TLS handshake against the hosts trusted certificates
       ##     (configure in tls section)
       smtp:
-        enabled: true
+        enabled: false
         enabledSecret: false
         host: smtp.mail.svc.cluster.local
         port: 25
@@ -1700,7 +1700,7 @@ authelia:
     existingClaim: "authelia-data"
     # existingClaim: my-claim-name
 
-    storageClass: ""
+    storageClass: "longhorn"
     # storageClass: "my-storage-class"
 
     ## Persistent Volume Name
