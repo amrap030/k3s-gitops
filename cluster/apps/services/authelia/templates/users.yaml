@@ -8,7 +8,7 @@ data:
     users:
       amrap030:
         email: kevin.hertwig@gmail.com
-        password: "$argon2id$v=19$m=65536,t=3,p=4$TlrKmkl8An/mtKuJCYuzxA$FLmE8gy0dar7YMmEotaQYUfqMad0jGBkV2wo1bZC7fg"
+        password: "$argon2id$v=19$m=65536,t=3,p=4$KLCZhN919sP90MTv/CySZw$/k1s7Xml0V21ZJI2kCT6sFoagLS8hh7x6dfzPXZGY4U"
         groups:
           - admins
           - family
