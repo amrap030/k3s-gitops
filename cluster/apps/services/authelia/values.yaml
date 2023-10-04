@@ -444,10 +444,10 @@ authelia:
       ## Server Buffers configuration.
       buffers:
         ## Read buffer.
-        read: 4096
+        read: 8192
 
         ## Write buffer.
-        write: 4096
+        write: 8192
 
       ## Server Timeouts configuration.
       timeouts:
