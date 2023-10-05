@@ -2437,7 +2437,7 @@ kube-prometheus-stack:
     thanosImage:
       registry: quay.io
       repository: thanos/thanos
-      tag: v0.32.2
+      tag: v0.32.4
       sha: ""
 
     ## Set a Label Selector to filter watched prometheus and prometheusAgent
@@ -3877,7 +3877,7 @@ kube-prometheus-stack:
       image:
         registry: quay.io
         repository: thanos/thanos
-        tag: v0.32.2
+        tag: v0.32.4
         sha: ""
 
       ## Namespaces to be selected for PrometheusRules discovery.
