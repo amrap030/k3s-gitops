@@ -38,4 +38,8 @@ data:
         service: http://authelia.authelia
         originRequest:
           noTLSVerify: true
+      - hostname: grafana.amrap030.site
+        service: http://kube-prometheus-grafana.monitoring
+        originRequest:
+          noTLSVerify: true
       - service: http_status:404
