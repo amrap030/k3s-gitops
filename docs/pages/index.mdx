@@ -26,7 +26,7 @@ This is an ArgoCD based GitOps repository for my home lab infrastructure.
   />
 </div>
 
-# Requirements
+## Requirements
 
 - [Terraform](https://www.terraform.io/) to deploy virtual machines on Proxmox VE
 - [ArgoCD](https://argoproj.github.io/cd/) for managing the cluster as a GitOps operator
@@ -39,3 +39,45 @@ This is an ArgoCD based GitOps repository for my home lab infrastructure.
 - [Helm](https://helm.sh/) as the package manager for K3s
 - [Kustomize](https://kustomize.io/) to customize K3s application configuration
 - [kubectl](https://kubernetes.io/de/docs/tasks/tools/install-kubectl/) as the cli tool for K3s
+
+>
+
+## Installation
+
+1. Initially, to be able to provision a cluster, it is necessary to install the previously mentioned tools. This project uses [Task](https://taskfile.dev/) to easily execute scripts and commands. Accordingly, run the following commands to install the necessary tools.
+
+```bash copy
+task tools:install
+```
+
+2. After installing the tools, it is necessary to build a [golden image](https://developer.hashicorp.com/packer/tutorials/cloud-production/golden-image-with-hcp-packer) for each cluster node. We use [Packer](https://www.packer.io/) to create golden ubuntu images for cluster nodes. Run the following command to build a golden image with the latest ubuntu version and to upload it to your proxmox instance as a template.
+
+```bash copy
+task packer:build
+```
+
+> Prior to building the image, it is necessary to adjust some [variables](https://github.com/amrap030/k3s-gitops/blob/main/packer/credentials.pkr.hcl) according to your environment.
+
+3. Now a golden image is available in your proxmox instance to be used. Accordingly, run the following commands to provision a specified amount of virtual machines as cluster nodes via [Terraform](https://www.terraform.io/).
+
+```bash copy
+task terraform:init
+task terraform:plan
+task terraform:apply
+```
+
+> Prior to deploying the virtual machines, it is necessary to adjust the number of master and worker nodes and other [variables](https://github.com/amrap030/k3s-gitops/blob/main/terraform/credentials.auto.tfvars) according to your environment.
+
+4. Finally, run the following command to install [K3s - Lightweight Kubernetes](https://docs.k3s.io/) on the cluster nodes.
+
+```bash copy
+task cluster:provision
+```
+
+> Prior to installing [K3s](https://docs.k3s.io/) on the cluster nodes, specify your master and worker nodes in the ansible [inventory](https://github.com/amrap030/k3s-ansible/blob/master/inventory/cluster/hosts.ini) file.
+
+5. In the last step, we are bootstrapping [ArgoCD](https://argoproj.github.io/cd/) for managing the cluster as a GitOps operator. It automatically deploys every application specified in the repository into the cluster.
+
+```bash copy
+task cluster:bootstrap
+```

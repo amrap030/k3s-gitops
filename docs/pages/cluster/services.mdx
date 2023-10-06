@@ -1,0 +1,159 @@
+## Authelia
+
+[Authelia](https://www.authelia.com) is an open-source authentication and authorization server providing two-factor authentication and single sign-on (SSO) for your applications via a web portal. It acts as a companion for reverse proxies by allowing, denying, or redirecting requests.
+
+![authelia](/authelia-ui.png)
+
+Authelia is used for all services that are publicly exposed, but don't have a dedicated authentication mechanism.
+
+### Configuration
+
+#### `domain`
+
+If Authelia is served from `\*.example.com` it should be `example.com`. In my homelab it is set to `amrap030.site`.
+
+#### `ingress.enabled`
+
+Set to `false` because it is served by `cloudflared`.
+
+#### `pod.kind`
+
+Set to `Deployment` instead of default value `DaemonSet`.
+
+#### `pod.extraVolumeMounts`
+
+It is used to mount the users database into the application. The users database is a secret of the following values:
+
+```yaml filename="authelia-users.sops.yaml" copy
+apiVersion: v1
+kind: Secret
+metadata:
+  name: users-database
+  namespace: authelia
+stringData:
+  users_database.yml: |
+    users:
+      amrap030:
+        displayname: "***"
+        email: ***
+        password: "***" # argon2 hash
+        groups:
+          - admins
+          - family
+type: Opaque
+```
+
+The password was created by running `docker run authelia/authelia:latest authelia crypto hash generate argon2 --password '<password>'`.
+
+#### `pod.extraVolumes`
+
+This is used in conjunction with `pod.extraVolumeMounts` to mount the users database as a secret into the cluster.
+
+#### `configMap.authentication_backend.file.enabled`
+
+Set to `true`, to use the mounted users database as the authentication backend.
+
+#### `configMap.access_control.rules`
+
+One rule was added to set `two_factor` authentication as the default policy for our domain.
+
+```yaml filename="values.yaml" copy
+- domain_regex: '^.*\.amrap030.site$'
+  policy: two_factor
+```
+
+#### `configMap.storage.local.enabeld`
+
+Set to `true` to store data in the local SQLite3 database. All other storage solutions are set to `false`.
+
+#### `configMap.notifier.filesystem.enabled`
+
+Set to `true` to send the TOTP registration link to the filesystem in the pod under `/config/notification.txt`. To access the registration link, run `kubectl exec -it <pod> -n authelia -- bash "cat /config/notification.txt"`.
+
+#### `configMap.identity_providers.oidc.enabled`
+
+Set to `true` to enable oidc as the authentication provider.
+
+#### `configMap.identity_providers.oidc.clients`
+
+Since we use cloudflare zero trust as a client to authenticate against the Authelia authorization server, the following client must be configured.
+
+```yaml filename="values.yaml" copy
+- id: cloudflare
+  description: Cloudflare ZeroTrust
+  secret: "***"
+  public: false
+  authorization_policy: two_factor
+  redirect_uris:
+    - https://amrap030.cloudflareaccess.com/cdn-cgi/access/callback
+  scopes:
+    - openid
+    - profile
+    - email
+  userinfo_signing_algorithm: none
+```
+
+To find more information on the authelia cloudflare zero trust integration visit the [documentation](https://www.authelia.com/integration/openid-connect/cloudflare-zerotrust/).
+
+#### `secret.existingSecret`
+
+Set to `authelia-secret` to use specified environment variables in the secret.
+
+```yaml filename="authelia-secrets.sops.yaml" copy
+apiVersion: v1
+kind: Secret
+metadata:
+  name: authelia-secrets
+  namespace: authelia
+data:
+  JWT_TOKEN: ***
+  SESSION_ENCRYPTION_KEY: ***
+  STORAGE_ENCRYPTION_KEY: ***
+  OIDC_HMAC_SECRET: ***
+  OIDC_PRIVATE_KEY: ****
+type: Opaque
+```
+
+The `OIDC_PRIVATE_KEY` was created by running `docker run -u "$(id -u):$(id -g)" -v "$(pwd)":/keys authelia/authelia:latest authelia crypto pair rsa generate --bits 4096 --directory /keys`. The `OIDC_HMAC_SECRET`, `SESSION_ENCRYPTION_KEY`, `JWT_TOKEN` and `STORAGE_ENCRYPTION_KEY` are random alphanumeric strings with 64 or more characters created by `docker run authelia/authelia:latest authelia crypto rand --length 64 --charset alphanumeric`.
+
+#### `persistence.enabled`
+
+Set to `true` to persist authelia data into the persistent volume `authelia-data`.
+
+#### `persistence.existingClaim`
+
+Specifies the existing claim `authelia-data` from the persistent volume created in the cluster. It has a size of `2Gi` and is stored on the `longhorn` storage class.
+
+```yaml filename="pvc.yaml" copy
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: authelia-data
+  namespace: authelia
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+  storageClassName: longhorn
+```
+
+> The `argocd.argoproj.io/sync-options: Delete=false` annotation prevents deleting persistent volumes when deleting ArgoCD applications.
+
+### Created Resources
+
+| Kind       | Name                                                  |
+| :--------- | :---------------------------------------------------- |
+| Helm Chart | `https://charts.authelia.com`                         |
+| Namespace  | `authelia`                                            |
+| PVC        | `authelia-data`                                       |
+| Secret     | `authelia-oidc`, `authelia-secrets`, `users-database` |
+
+### Links
+
+- [Documentation](https://www.authelia.com/integration/prologue/get-started/)
+- [Helm Chart](https://github.com/authelia/chartrepo/)
+- [GitHub Repository](https://github.com/authelia/authelia/)

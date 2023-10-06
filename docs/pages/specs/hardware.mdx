@@ -1,0 +1,34 @@
+# Hardware
+
+## Components
+
+The homeserver is build of the following components:
+
+| Component                                                                                                                                                                              | Usage      | Description                                                                                                                                                                                                                                                                     |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [Intel(R) Xeon(R) CPU E3-1235L v5 @ 2.00GHz 4 cores](https://www.intel.com/content/www/us/en/products/sku/88170/intel-xeon-processor-e31235l-v5-8m-cache-2-00-ghz/specifications.html) | CPU        | CPU with low TDP                                                                                                                                                                                                                                                                |
+| [Samsung SSD 970 EVO Plus 1TB NVME](https://www.samsung.com/de/memory-storage/nvme-ssd/970-evo-plus-nvme-m-2-ssd-1tb-mz-v7s1t0bw/)                                                     | Storage    | Fast storage drive used for vm data of each cluster node (`vm-data` on proxmox).                                                                                                                                                                                                |
+| [Samsung SSD 970 EVO Plus 500GB NVME](https://www.samsung.com/de/memory-storage/nvme-ssd/970-evo-plus-nvme-m-2-ssd-500gb-mz-v7s500bw/)                                                 | Storage    | Fast storage drive used for the proxmox installation, iso images and for [TrueNAS](https://www.truenas.com/) vm data (`local` and `local-lvm` on proxmox). It is also used for `longhorn` cloud-native distributed storage, hence it contains several PVs (Persistent Volumes). |
+| [WDC WD60EDAZ-11U78B0 6TB](https://smarthdd.com/database/WDC-WD60EDAZ-11U78B0/80.00A80/)                                                                                               | Storage    | Slow storage drive used for storing application media on a mirrored RAID 1 on [TrueNAS Scale](https://www.truenas.com/truenas-scale/) with ZFS using `sda` and `sdb` on the proxmox host.                                                                                       |
+| [Kingston 16GB DIMM DDR4 ECC](https://www.kingston.com/de/memory/server-premier/ddr4-2666mts-ecc-unbuffered-dimm)                                                                      | Memory     | ECC memory compatible with CPU.                                                                                                                                                                                                                                                 |
+| [SilverStone SST-DS380B](https://www.silverstonetek.com/de/product/info/computer-chassis/DS380/)                                                                                       | Case       | 8 bay case with plenty of space for more hard drives.                                                                                                                                                                                                                           |
+| [Noctua NH-L9i](https://noctua.at/de/nh-l9i)                                                                                                                                           | CPU Cooler | Extremely silent CPU cooler.                                                                                                                                                                                                                                                    |
+| [ASRock Rack C236 WSI](https://www.asrockrack.com/general/productdetail.de.asp?Model=C236%20WSI#Specifications)                                                                        | Mainboard  | Server mainboard that supprts ECC memory and has 8 SATA ports.                                                                                                                                                                                                                  |
+| [PCIe Bifurcation Card x8x8](https://c-payne.com/products/pcie-bifurcation-card-x8x8-low-profile-adapter-ncase-m1-and-others)                                                          | PCIe Riser | The PCIe riser adds capacity for more NVME drives and potentially other PCIe cards such as a 10GB NIC.                                                                                                                                                                          |
+
+## Hostnames
+
+Every node has configured a hostname which follows a particular naming scheme:
+
+```bash filename="/etc/hosts" copy
+<service>.amrap030.site # external
+<service>.amrap030.site # internal
+```
+
+## DNS
+
+### Internal
+
+All services with a UI running in my cluster have a dedicated subdomain configured. Those domains are managed by [Pi-hole](https://pi-hole.net/) which is configured as the main DNS server in my home network. It also performs network-wide ad blocking based on some block lists. [Pi-hole](https://pi-hole.net/) is installed on a [Raspberry Pi 3 Model B+](https://www.raspberrypi.com/products/raspberry-pi-3-model-b-plus/).
+
+### External
