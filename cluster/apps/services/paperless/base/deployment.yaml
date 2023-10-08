@@ -54,18 +54,8 @@ spec:
               value: "1000"
           volumeMounts:
             - name: paperless-data
-              mountPath: /usr/src/paperless/data
-            - name: paperless-consume
-              mountPath: /usr/src/paperless/consume
-            - name: paperless-media
-              mountPath: /usr/src/paperless/media
+              mountPath: /usr/src/paperless
       volumes:
         - name: paperless-data
           persistentVolumeClaim:
             claimName: paperless-data
-        - name: paperless-consume
-          persistentVolumeClaim:
-            claimName: paperless-consume
-        - name: paperless-media
-          persistentVolumeClaim:
-            claimName: paperless-media
