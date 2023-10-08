@@ -47,7 +47,7 @@ data:
         originRequest:
           noTLSVerify: true
       - hostname: paperless-webdav.amrap030.site
-        service: https://192.168.1.192:8081/webdav
+        service: https://192.168.1.192:8081
         originRequest:
           noTLSVerify: true
       - service: http_status:404
