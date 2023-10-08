@@ -55,12 +55,17 @@ spec:
           volumeMounts:
             - name: paperless-data
               mountPath: /usr/src/paperless/data
-            - name: paperless-media
+            - name: paperless-consume
               mountPath: /usr/src/paperless/consume
+            - name: paperless-media
+              mountPath: /usr/src/paperless/media
       volumes:
         - name: paperless-data
           persistentVolumeClaim:
             claimName: paperless-data
+        - name: paperless-consume
+          persistentVolumeClaim:
+            claimName: paperless-consume
         - name: paperless-media
           persistentVolumeClaim:
             claimName: paperless-media
