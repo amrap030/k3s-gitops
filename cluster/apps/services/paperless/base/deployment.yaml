@@ -52,6 +52,8 @@ spec:
               value: "1000"
             - name: USERMAP_GID
               value: "1000"
+            - name: PAPERLESS_CONSUMER_POLLING
+              value: "30"
           volumeMounts:
             - name: paperless-data
               mountPath: /usr/src/paperless/data
