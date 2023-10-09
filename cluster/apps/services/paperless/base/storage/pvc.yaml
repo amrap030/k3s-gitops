@@ -35,35 +35,14 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  labels:
-    app.kubernetes.io/instance: paperless
-    app.kubernetes.io/name: paperless
-  annotations:
-    volume.beta.kubernetes.io/storage-class: "truenas-nfs"
-    argocd.argoproj.io/sync-options: Delete=false
   name: paperless-consume
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
-  storageClassName: truenas-nfs
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  labels:
-    app.kubernetes.io/instance: paperless
-    app.kubernetes.io/name: paperless
+  namespace: services
   annotations:
-    volume.beta.kubernetes.io/storage-class: "truenas-nfs"
     argocd.argoproj.io/sync-options: Delete=false
-  name: paperless-export
 spec:
   accessModes:
-    - ReadWriteOnce
+  - ReadWriteOnce
   resources:
     requests:
       storage: 5Gi
-  storageClassName: truenas-nfs
+  storageClassName: longhorn
