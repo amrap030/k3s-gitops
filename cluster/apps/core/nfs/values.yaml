@@ -35,9 +35,9 @@ democratic-csi:
 
   # if your cluster supports snapshots you may enable below
   volumeSnapshotClasses:
-  - name: nfs
-    parameters:
-      detachedSnapshots: "true"
+  # - name: nfs
+  #   parameters:
+  #     detachedSnapshots: "true"
   #- name: freenas-nfs-csi
   #  parameters:
   #  # if true, snapshots will be created with zfs send/receive
