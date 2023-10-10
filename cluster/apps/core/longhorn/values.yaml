@@ -180,13 +180,13 @@ longhorn:
       ## Allowed values are `plain` or `json`.
       format: plain
     priorityClass: ~
-    tolerations: []
+    tolerations:
     ## If you want to set tolerations for Longhorn Manager DaemonSet, delete the `[]` in the line above
     ## and uncomment this example block
-    # - key: "key"
-    #   operator: "Equal"
-    #   value: "value"
-    #   effect: "NoSchedule"
+    - key: "storage"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
     nodeSelector: {}
     ## If you want to set node selector for Longhorn Manager DaemonSet, delete the `{}` in the line above
     ## and uncomment this example block
@@ -200,13 +200,13 @@ longhorn:
 
   longhornDriver:
     priorityClass: ~
-    tolerations: []
+    tolerations:
     ## If you want to set tolerations for Longhorn Driver Deployer Deployment, delete the `[]` in the line above
     ## and uncomment this example block
-    # - key: "key"
-    #   operator: "Equal"
-    #   value: "value"
-    #   effect: "NoSchedule"
+    - key: "storage"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
     nodeSelector: {}
     ## If you want to set node selector for Longhorn Driver Deployer Deployment, delete the `{}` in the line above
     ## and uncomment this example block
@@ -216,13 +216,13 @@ longhorn:
   longhornUI:
     replicas: 2
     priorityClass: ~
-    tolerations: []
+    tolerations:
     ## If you want to set tolerations for Longhorn UI Deployment, delete the `[]` in the line above
     ## and uncomment this example block
-    # - key: "key"
-    #   operator: "Equal"
-    #   value: "value"
-    #   effect: "NoSchedule"
+    - key: "storage"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
     nodeSelector: {}
     ## If you want to set node selector for Longhorn UI Deployment, delete the `{}` in the line above
     ## and uncomment this example block
@@ -232,13 +232,13 @@ longhorn:
   longhornConversionWebhook:
     replicas: 2
     priorityClass: ~
-    tolerations: []
+    tolerations:
     ## If you want to set tolerations for Longhorn conversion webhook Deployment, delete the `[]` in the line above
     ## and uncomment this example block
-    # - key: "key"
-    #   operator: "Equal"
-    #   value: "value"
-    #   effect: "NoSchedule"
+    - key: "storage"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
     nodeSelector: {}
     ## If you want to set node selector for Longhorn conversion webhook Deployment, delete the `{}` in the line above
     ## and uncomment this example block
@@ -248,13 +248,13 @@ longhorn:
   longhornAdmissionWebhook:
     replicas: 2
     priorityClass: ~
-    tolerations: []
+    tolerations:
     ## If you want to set tolerations for Longhorn admission webhook Deployment, delete the `[]` in the line above
     ## and uncomment this example block
-    # - key: "key"
-    #   operator: "Equal"
-    #   value: "value"
-    #   effect: "NoSchedule"
+    - key: "storage"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
     nodeSelector: {}
     ## If you want to set node selector for Longhorn admission webhook Deployment, delete the `{}` in the line above
     ## and uncomment this example block
@@ -264,13 +264,13 @@ longhorn:
   longhornRecoveryBackend:
     replicas: 2
     priorityClass: ~
-    tolerations: []
+    tolerations:
     ## If you want to set tolerations for Longhorn recovery backend Deployment, delete the `[]` in the line above
     ## and uncomment this example block
-    # - key: "key"
-    #   operator: "Equal"
-    #   value: "value"
-    #   effect: "NoSchedule"
+    - key: "storage"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
     nodeSelector: {}
     ## If you want to set node selector for Longhorn recovery backend Deployment, delete the `{}` in the line above
     ## and uncomment this example block
