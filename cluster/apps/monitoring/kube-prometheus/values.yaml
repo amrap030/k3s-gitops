@@ -3272,7 +3272,9 @@ kube-prometheus-stack:
             resources:
               requests:
                 storage: 10Gi
-      #    selector: {}
+            selector:
+              matchLabels:
+                app.kubernetes.io/name: prometheus-metrics
 
       ## Using tmpfs volume
       ##
