@@ -99,8 +99,8 @@ longhorn:
       dataSourceParameters: ~
       expectedChecksum: ~
     defaultNodeSelector:
-      enable: true # disable by default
-      selector: "storage"
+      enable: false # disable by default
+      selector: ""
     removeSnapshotsDuringFilesystemTrim: ignored # "enabled" or "disabled" otherwise
 
   csi:
@@ -180,15 +180,15 @@ longhorn:
       ## Allowed values are `plain` or `json`.
       format: plain
     priorityClass: ~
-    tolerations:
+    tolerations: []
     ## If you want to set tolerations for Longhorn Manager DaemonSet, delete the `[]` in the line above
     ## and uncomment this example block
-    - key: "storage"
-      operator: "Equal"
-      value: "true"
-      effect: "NoSchedule"
-    nodeSelector:
-      workload: storage
+    # - key: "storage"
+    #   operator: "Equal"
+    #   value: "true"
+    #   effect: "NoSchedule"
+    # nodeSelector:
+    #   workload: storage
     ## If you want to set node selector for Longhorn Manager DaemonSet, delete the `{}` in the line above
     ## and uncomment this example block
     #  label-key1: "label-value1"
@@ -201,15 +201,15 @@ longhorn:
 
   longhornDriver:
     priorityClass: ~
-    tolerations:
+    tolerations: []
     ## If you want to set tolerations for Longhorn Driver Deployer Deployment, delete the `[]` in the line above
     ## and uncomment this example block
-    - key: "storage"
-      operator: "Equal"
-      value: "true"
-      effect: "NoSchedule"
-    nodeSelector:
-      workload: storage
+    # - key: "storage"
+    #   operator: "Equal"
+    #   value: "true"
+    #   effect: "NoSchedule"
+    # nodeSelector:
+    #   workload: storage
     ## If you want to set node selector for Longhorn Driver Deployer Deployment, delete the `{}` in the line above
     ## and uncomment this example block
     #  label-key1: "label-value1"
@@ -218,15 +218,15 @@ longhorn:
   longhornUI:
     replicas: 2
     priorityClass: ~
-    tolerations:
+    tolerations: []
     ## If you want to set tolerations for Longhorn UI Deployment, delete the `[]` in the line above
     ## and uncomment this example block
-    - key: "storage"
-      operator: "Equal"
-      value: "true"
-      effect: "NoSchedule"
-    nodeSelector:
-      workload: storage
+    # - key: "storage"
+    #   operator: "Equal"
+    #   value: "true"
+    #   effect: "NoSchedule"
+    # nodeSelector:
+    #   workload: storage
     ## If you want to set node selector for Longhorn UI Deployment, delete the `{}` in the line above
     ## and uncomment this example block
     #  label-key1: "label-value1"
@@ -235,15 +235,15 @@ longhorn:
   longhornConversionWebhook:
     replicas: 2
     priorityClass: ~
-    tolerations:
+    tolerations: []
     ## If you want to set tolerations for Longhorn conversion webhook Deployment, delete the `[]` in the line above
     ## and uncomment this example block
-    - key: "storage"
-      operator: "Equal"
-      value: "true"
-      effect: "NoSchedule"
-    nodeSelector:
-      workload: storage
+    # - key: "storage"
+    #   operator: "Equal"
+    #   value: "true"
+    #   effect: "NoSchedule"
+    # nodeSelector:
+    #   workload: storage
     ## If you want to set node selector for Longhorn conversion webhook Deployment, delete the `{}` in the line above
     ## and uncomment this example block
     #  label-key1: "label-value1"
@@ -252,15 +252,15 @@ longhorn:
   longhornAdmissionWebhook:
     replicas: 2
     priorityClass: ~
-    tolerations:
+    tolerations: []
     ## If you want to set tolerations for Longhorn admission webhook Deployment, delete the `[]` in the line above
     ## and uncomment this example block
-    - key: "storage"
-      operator: "Equal"
-      value: "true"
-      effect: "NoSchedule"
-    nodeSelector:
-      workload: storage
+    # - key: "storage"
+    #   operator: "Equal"
+    #   value: "true"
+    #   effect: "NoSchedule"
+    # nodeSelector:
+    #   workload: storage
     ## If you want to set node selector for Longhorn admission webhook Deployment, delete the `{}` in the line above
     ## and uncomment this example block
     #  label-key1: "label-value1"
@@ -269,15 +269,15 @@ longhorn:
   longhornRecoveryBackend:
     replicas: 2
     priorityClass: ~
-    tolerations:
+    tolerations: []
     ## If you want to set tolerations for Longhorn recovery backend Deployment, delete the `[]` in the line above
     ## and uncomment this example block
-    - key: "storage"
-      operator: "Equal"
-      value: "true"
-      effect: "NoSchedule"
-    nodeSelector:
-      workload: storage
+    # - key: "storage"
+    #   operator: "Equal"
+    #   value: "true"
+    #   effect: "NoSchedule"
+    # nodeSelector:
+    #   workload: storage
     ## If you want to set node selector for Longhorn recovery backend Deployment, delete the `{}` in the line above
     ## and uncomment this example block
     #  label-key1: "label-value1"
