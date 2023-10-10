@@ -99,8 +99,8 @@ longhorn:
       dataSourceParameters: ~
       expectedChecksum: ~
     defaultNodeSelector:
-      enable: false # disable by default
-      selector: ""
+      enable: true # disable by default
+      selector: "storage"
     removeSnapshotsDuringFilesystemTrim: ignored # "enabled" or "disabled" otherwise
 
   csi:
