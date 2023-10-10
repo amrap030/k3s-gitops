@@ -187,6 +187,8 @@ longhorn:
       operator: "Equal"
       value: "true"
       effect: "NoSchedule"
+    nodeSelector:
+      workload: storage
     ## If you want to set node selector for Longhorn Manager DaemonSet, delete the `{}` in the line above
     ## and uncomment this example block
     #  label-key1: "label-value1"
