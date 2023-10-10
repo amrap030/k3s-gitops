@@ -14,8 +14,8 @@ spec:
     matchExpressions:
       - key: node-role.kubernetes.io/master
         operator: DoesNotExist
-  prepare:
-    image: rancher/k3s-upgrade
-    args: ["prepare", "master"]
+  # prepare:
+  #   image: rancher/k3s-upgrade
+  #   args: ["prepare", "master"]
   upgrade:
     image: rancher/k3s-upgrade
