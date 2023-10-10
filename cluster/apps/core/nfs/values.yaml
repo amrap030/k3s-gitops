@@ -199,7 +199,7 @@ democratic-csi:
     # https://github.com/kubernetes-csi/external-health-monitor
     externalHealthMonitorController:
       enabled: false
-      image: registry.k8s.io/sig-storage/csi-external-health-monitor-controller:v0.9.0
+      image: registry.k8s.io/sig-storage/csi-external-health-monitor-controller:v0.10.0
       args:
       - --v=5
       - --leader-election
