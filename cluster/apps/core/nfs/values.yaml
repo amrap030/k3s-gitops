@@ -323,7 +323,7 @@ democratic-csi:
     # https://kubernetes-csi.github.io/docs/node-driver-registrar.html
     driverRegistrar:
       enabled: true
-      image: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.8.0
+      image: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.9.0
       args:
       - --v=5
       - --csi-address={{ .csiSocketAddress }}
