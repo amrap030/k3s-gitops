@@ -239,7 +239,11 @@ authelia:
       #   allowPrivilegeEscalation: false
       #   privileged: false
 
-    tolerations: []
+    tolerations:
+    - key: "storage"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
     # tolerations:
     # - key: key1
     #   operator: Equal
@@ -250,7 +254,8 @@ authelia:
     selectors:
       #   nodeName: worker-1
 
-      nodeSelector: {}
+      nodeSelector:
+        workload: storage
       # nodeSelector:
       #   disktype: ssd
       #   kubernetes.io/hostname: worker-1
@@ -1720,7 +1725,7 @@ authelia:
     existingClaim: "authelia-data"
     # existingClaim: my-claim-name
 
-    storageClass: ""
+    storageClass: "longhorn"
     # storageClass: "my-storage-class"
 
     ## Persistent Volume Name
