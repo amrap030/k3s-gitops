@@ -320,7 +320,7 @@ democratic-csi:
       enabled: true
 
     cleanup:
-      image: docker.io/busybox:1.32.0
+      image: docker.io/busybox:1.36.1
 
     # democratic-csi node
     driver:
