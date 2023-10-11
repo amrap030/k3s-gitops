@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: cloudflared
-  namespace: networking
+  namespace: cloudflared
 data:
   config.yaml: |
     tunnel: homelab
