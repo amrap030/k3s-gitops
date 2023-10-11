@@ -8,30 +8,120 @@ spec:
 apps:
   - name: secrets
     namespace: default
-    path: cluster/argocd/secrets
+    path: cluster/apps/core/secrets
     syncWave: 1
+    project: core
   - name: cert-manager
     namespace: cert-manager
-    path: cluster/core/cert-manager
+    path: cluster/apps/core/cert-manager
     syncWave: 2
     helm:
       valueFiles:
         - ./values.yaml
+    project: core
   - name: longhorn
     namespace: longhorn-system
-    path: cluster/core/longhorn
+    path: cluster/apps/core/longhorn
     syncWave: 3
     helm:
       valueFiles:
         - ./values.yaml
+    project: core
   - name: traefik
-    namespace: networking
+    namespace: traefik
     path: cluster/apps/networking/traefik
     syncWave: 4
     helm:
       valueFiles:
         - ./values.yaml
+    project: networking
   - name: cloudflared
-    namespace: networking
+    namespace: cloudflared
     path: cluster/apps/networking/cloudflared
     syncWave: 5
+    project: networking
+  - name: uptime-kuma
+    namespace: uptime-kuma
+    path: cluster/apps/monitoring/uptime-kuma
+    syncWave: 6
+    helm:
+      valueFiles:
+        - ./values.yaml
+    project: monitoring
+  - name: vaultwarden
+    namespace: vaultwarden
+    path: cluster/apps/services/vaultwarden
+    syncWave: 7
+    helm:
+      valueFiles:
+        - ./values.yaml
+    project: services
+  - name: photoprism
+    namespace: photoprism
+    path: cluster/apps/services/photoprism
+    syncWave: 8
+    project: services
+  - name: paperless
+    namespace: paperless
+    path: cluster/apps/services/paperless
+    syncWave: 9
+    project: services
+  - name: iobroker
+    namespace: iobroker
+    path: cluster/apps/home/iobroker
+    syncWave: 10
+    project: home
+  - name: nfs
+    namespace: nfs
+    path: cluster/apps/core/nfs
+    syncWave: 11
+    ignoreDifferences: true
+    helm:
+      valueFiles:
+        - ./values.yaml
+    project: core
+  - name: iscsi
+    namespace: iscsi
+    path: cluster/apps/core/iscsi
+    syncWave: 12
+    ignoreDifferences: true
+    helm:
+      valueFiles:
+        - ./values.yaml
+    project: core
+  # - name: unifi-controller
+  #   namespace: networking
+  #   path: cluster/apps/networking/unifi
+  #   syncWave: 13
+  #   helm:
+  #     valueFiles:
+  #       - ./values.yaml
+  #   project: networking
+  - name: system-upgrade
+    namespace: system-upgrade
+    path: cluster/apps/core/system-upgrade
+    syncWave: 14
+    project: core
+  - name: kube-prometheus
+    namespace: kube-prometheus
+    path: cluster/apps/monitoring/kube-prometheus
+    syncWave: 15
+    helm:
+      valueFiles:
+        - ./values.yaml
+    project: monitoring
+  - name: authelia
+    namespace: authelia
+    path: cluster/apps/services/authelia
+    syncWave: 16
+    helm:
+      valueFiles:
+        - ./values.yaml
+    project: services
+
+projects:
+  - name: core
+  - name: services
+  - name: home
+  - name: monitoring
+  - name: networking

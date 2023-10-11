@@ -8,10 +8,17 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: '{{ default 0 $app.syncWave }}'
 spec:
+{{- if $app.ignoreDifferences }}
+  ignoreDifferences:
+    - group: storage.k8s.io
+      kind: CSIDriver
+      jqPathExpressions:
+        - .spec.seLinuxMount
+{{- end }}
   destination:
     namespace: {{ $app.namespace }}
     server: {{ $.Values.spec.destination.server }}
-  project: default
+  project: '{{ default "default" $app.project }}'
   source:
     path: {{ $app.path }}
     repoURL: {{ $.Values.spec.source.repoURL }}
