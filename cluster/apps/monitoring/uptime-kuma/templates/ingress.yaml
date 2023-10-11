@@ -5,7 +5,7 @@ metadata:
     cert-manager.io/cluster-issuer: traefik-ca-issuer
     traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
   name: uptime-kuma-ingress
-  namespace: monitoring
+  namespace: uptime-kuma
 spec:
   rules:
     - host: uptime.amrap030.home
