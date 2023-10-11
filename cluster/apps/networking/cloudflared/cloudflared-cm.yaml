@@ -15,7 +15,7 @@ data:
         originRequest:
           noTLSVerify: true
       - hostname: uptime.amrap030.site
-        service: http://uptime-kuma.monitoring:3001
+        service: http://uptime-kuma.uptime-kuma:3001
         originRequest:
           noTLSVerify: true
       - hostname: vaultwarden.amrap030.site
@@ -39,7 +39,7 @@ data:
         originRequest:
           noTLSVerify: true
       - hostname: grafana.amrap030.site
-        service: http://kube-prometheus-grafana.grafana
+        service: http://kube-prometheus-grafana.kube-prometheus
         originRequest:
           noTLSVerify: true
       - hostname: truenas.amrap030.site
