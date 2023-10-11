@@ -1,20 +1,4 @@
 democratic-csi:
-  # Default values for democratic-csi.
-  # This is a YAML-formatted file.
-  # Declare variables to be passed into your templates.
-
-  nameOverride: ""
-  fullnameOverride: ""
-
-  extraCaCerts:
-  #extraCaCerts: |-
-  #  -----BEGIN CERTIFICATE-----
-  #  ...
-  #  -----END CERTIFICATE-----
-  #  -----BEGIN CERTIFICATE-----
-  #  ...
-  #  -----END CERTIFICATE-----
-
   driver:
     # see the driver-config-secret.yaml for syntax
     # NOTE: if setting an existing secret you must still set `driver.config.driver`
@@ -92,46 +76,9 @@ democratic-csi:
     # should be globally unique for a given cluster
     name: "org.democratic-csi.nfs"
     version: 1.5.0
-    # create the kubernetes CSIDriver
-    enabled: true
-    attachRequired: true
-    podInfoOnMount: true
-    # https://kubernetes-csi.github.io/docs/support-fsgroup.html
-    # k8s 1.19+ (ignored otherwise)
-    # None|File|ReadWriteOnceWithFSType
-    # fsGroupPolicy: ReadWriteOnceWithFSType
-    
-    # k8s 1.16+
-    # volumeLifecycleModes: []
-    
-    # k8s 1.20+
-    # tokenRequests: []
-
-    # k8s 1.20+
-    # requiresRepublish: false
-
-    # k8s 1.19+
-    # storageCapacity: false
 
   controller:
-    enabled: true
-    rbac:
-      enabled: true
-      openshift:
-        # set to true if running on openshift *and* you have need
-        # ie: hostNetwork, hostIPC, etc are turned on
-        privileged: false
     replicaCount: 1
-    hostNetwork: false
-    hostAliases: []
-    hostIPC: false
-    podAnnotations: {}
-    podLabels: {}
-    priorityClassName: ""
-    
-    # deployment = deploy controller parts in a distinct deployment
-    # node       = deploy controller as sidecars with node daemonset
-    strategy: deployment
 
     # https://kubernetes-csi.github.io/docs/external-attacher.html
     externalAttacher:
@@ -213,50 +160,11 @@ democratic-csi:
       extraArgs: []
       resources:
 
-    # https://kubernetes-csi.github.io/docs/cluster-driver-registrar.html
-    # not implemented, likely uncessary at this point
-    clusterDriverRegistrar:
-      enabled: false
-
-    livenessProbe:
-      enabled: true
-
     # democratic-csi controller
     driver:
       enabled: true
-      image: docker.io/democraticcsi/democratic-csi:latest
+      image: docker.io/democraticcsi/democratic-csi:v1.8.3
       # imagePullPolicy: Always
-      logLevel: info
-      lifecycle:
-  #      postStart:
-  #        exec:
-  #          command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
-  #      preStop:
-  #        exec:
-  #          command: ["/bin/sh","-c","nginx -s quit; while killall -0 nginx; do sleep 1; done"]
-
-      securityContext:
-  #      allowPrivilegeEscalation: true
-  #      capabilities:
-  #        add:
-  #        - SYS_ADMIN
-  #      privileged: true
-
-      resources:
-      extraEnv: []
-      extraVolumeMounts: []
-  #    - name: foo
-  #      mountPath: /foo
-
-    extraVolumes: []
-  #  - name: foo
-  #    hostPath:
-  #      path: /dev
-  #      type: Directory
-
-    nodeSelector: {}
-
-    tolerations: []
 
     affinity:
       nodeAffinity:
@@ -271,34 +179,13 @@ democratic-csi:
               - k3s-w03
 
   node:
-    # windows support
-    windows:
-      enabled: false
-    rbac:
-      enabled: true
-      openshift:
-        # set to true if running on openshift
-        privileged: false
-    enabled: true
-    hostNetwork: true
-    hostAliases: []
-    hostIPC: true
-    hostPID: false
-    kubeletHostPath: /var/lib/kubelet
-    podAnnotations: {}
-    podLabels: {}
-    priorityClassName: ""
-
-    livenessProbe:
-      enabled: true
-
     cleanup:
       image: docker.io/busybox:1.36.1
 
     # democratic-csi node
     driver:
       enabled: true
-      image: docker.io/democraticcsi/democratic-csi:latest
+      image: docker.io/democraticcsi/democratic-csi:v1.8.3
       # imagePullPolicy: Always
       logLevel: info
       # set path to null if your OS has no localtime file
@@ -331,16 +218,6 @@ democratic-csi:
       # if you do not want to completely override the defaults use this
       extraArgs: []
       resources:
-
-    extraVolumes: []
-  #  - name: foo
-  #    hostPath:
-  #      path: /dev
-  #      type: Directory
-
-    nodeSelector: {}
-
-    tolerations: []
 
     affinity:
       nodeAffinity:
@@ -384,18 +261,6 @@ democratic-csi:
       node-publish-secret:
       controller-expand-secret:
 
-  # if your cluster supports snapshots you may enable below
-  volumeSnapshotClasses: []
-  # - name: nfs
-  #   parameters:
-  #     detachedSnapshots: "true"
-  #- name: freenas-nfs-csi
-  #  parameters:
-  #  # if true, snapshots will be created with zfs send/receive
-  #  # detachedSnapshots: "false"
-  #  secrets:
-  #    snapshotter-secret:
-
   # this is a temporary measure until all the k8s components are proper
   # grpc clients and send valid :authority headers
   # required to remove the deprecated/custom `grpc-uds` package with
@@ -407,6 +272,3 @@ democratic-csi:
     enabled: true
     image: docker.io/democraticcsi/csi-grpc-proxy:v0.5.3
     resources:
-
-  # Configure a pod security policy to allow privileged pods
-  enablePSP: false
