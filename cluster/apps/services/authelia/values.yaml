@@ -162,6 +162,9 @@ authelia:
       filesystem:
         enabled: true
         filename: /config/notification.txt
+      
+      smtp:
+        enabled: true
 
     identity_providers:
       oidc:
