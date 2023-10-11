@@ -5,7 +5,7 @@ metadata:
     cert-manager.io/cluster-issuer: traefik-ca-issuer
     traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
   name: vaultwarden-ingress
-  namespace: services
+  namespace: vaultwarden
 spec:
   rules:
     - host: vaultwarden.amrap030.home
