@@ -112,19 +112,18 @@ authelia:
       ## resource if there is no policy to be applied to the user.
       default_policy: deny
 
-      ##
-      ## Session Provider Configuration
-      ##
-      ## The session cookies identify the user once logged in.
-      ## The available providers are: `memory`, `redis`. Memory is the provider unless redis is defined.
-      session:
-        redis:
-          enabled: false
-
       rules:
         - domain_regex: '^.*\.amrap030.site$'
           policy: two_factor
-
+    ##
+    ## Session Provider Configuration
+    ##
+    ## The session cookies identify the user once logged in.
+    ## The available providers are: `memory`, `redis`. Memory is the provider unless redis is defined.
+    session:
+      redis:
+        enabled: false
+        
     ##
     ## Storage Provider Configuration
     ##
