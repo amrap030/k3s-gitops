@@ -6,6 +6,7 @@ kind: Deployment
 metadata:
   # The name of the Deployment
   name: paperless-postgres
+  namespace: paperless
 spec:
   # Replicas for this Deployment
   replicas: 1

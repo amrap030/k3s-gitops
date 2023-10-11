@@ -5,6 +5,7 @@ metadata:
   name: paperless
   labels:
     app: paperless
+  namespace: paperless
 spec:
   replicas: 1
   selector:

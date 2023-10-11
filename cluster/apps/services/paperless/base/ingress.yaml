@@ -5,7 +5,7 @@ metadata:
     cert-manager.io/cluster-issuer: traefik-ca-issuer
     traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
   name: paperless-ingress
-  namespace: services
+  namespace: paperless
 spec:
   rules:
     - host: paperless.amrap030.home

@@ -2,6 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: paperless
+  namespace: paperless
 spec:
   selector:
     app: paperless
