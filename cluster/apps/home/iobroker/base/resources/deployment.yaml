@@ -23,7 +23,7 @@ spec:
         kubernetes.io/hostname: k3s-w01
       containers:
       - name: iobroker
-        image: buanet/iobroker:v8.1.0
+        image: buanet/iobroker:v9.0.0
         env:
           - name: USBDEVICES
             value: "/dev/ttyACM0"
