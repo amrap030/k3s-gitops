@@ -1,4 +1,5 @@
 resources:
+- resources/namespace.yaml
 - resources/pvc.yaml
 - resources/deployment.yaml
 - resources/service.yaml

@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: iobroker
-  namespace: home
+  namespace: iobroker
   labels:
     app.kubernetes.io/instance: iobroker
     app.kubernetes.io/name: iobroker
