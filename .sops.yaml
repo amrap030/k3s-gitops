@@ -10,3 +10,6 @@ creation_rules:
     encrypted-regex: "^(data|stringData)$"
     age: >-
       age1u30r06zu0jacsxj3m33rqggfw49up55jm0cs4hcax0vsrq4nl34s5xpg76
+  - path_regex: terraform/credentials.*.tfvars.json
+    age: >-
+      age1u30r06zu0jacsxj3m33rqggfw49up55jm0cs4hcax0vsrq4nl34s5xpg76

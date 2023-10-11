@@ -434,3 +434,7 @@ keys.txt
 .next
 node_modules
 dist
+
+# project
+ca.crt
+ca.key

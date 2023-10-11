@@ -4,7 +4,7 @@
 
 variable "worker_nodes" {
   type    = number
-  default = 2
+  default = 3
 }
 
 variable "master_nodes" {
@@ -12,11 +12,16 @@ variable "master_nodes" {
   default = 3
 }
 
+variable "nameserver" {
+  type    = string
+  default = "192.168.1.2"
+}
+
 resource "proxmox_vm_qemu" "worker" {
   count = var.worker_nodes
 
   # VM General Settings
-  target_node = "proxmox"
+  target_node = "pve"
   vmid        = "20${count.index + 1}"
   name        = "k3s-w0${count.index + 1}"
   desc        = "Kubernetes Worker Node ${count.index + 1}"
@@ -31,7 +36,7 @@ resource "proxmox_vm_qemu" "worker" {
   agent = 1
 
   # VM CPU Settings
-  cores   = 2
+  cores   = 4
   sockets = 1
   cpu     = "host"
 
@@ -49,7 +54,7 @@ resource "proxmox_vm_qemu" "worker" {
 
   # (Optional) IP Address and Gateway
   #ipconfig0 = "ip=192.168.1.125/16,gw=192.168.1.1"
-  nameserver = "192.168.1.2"
+  nameserver = var.nameserver
 
   # (Optional) Default User
   # ciuser = "your-username"
@@ -64,7 +69,7 @@ resource "proxmox_vm_qemu" "master" {
   count = var.master_nodes
 
   # VM General Settings
-  target_node = "proxmox"
+  target_node = "pve"
   vmid        = "30${count.index + 1}"
   name        = "k3s-m0${count.index + 1}"
   desc        = "Kubernetes Master Node ${count.index + 1}"
@@ -97,7 +102,7 @@ resource "proxmox_vm_qemu" "master" {
 
   # (Optional) IP Address and Gateway
   #ipconfig0 = "ip=192.168.1.125/16,gw=192.168.1.1"
-  nameserver = "192.168.1.2"
+  nameserver = var.nameserver
 
   # (Optional) Default User
   # ciuser = "your-username"
