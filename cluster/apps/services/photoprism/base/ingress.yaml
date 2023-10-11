@@ -5,7 +5,7 @@ metadata:
     cert-manager.io/cluster-issuer: traefik-ca-issuer
     traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
   name: photoprism-ingress
-  namespace: services
+  namespace: photoprism
 spec:
   rules:
     - host: photoprism.amrap030.home

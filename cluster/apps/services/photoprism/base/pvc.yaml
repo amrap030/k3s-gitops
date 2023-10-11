@@ -10,6 +10,7 @@ metadata:
     volume.beta.kubernetes.io/storage-class: "truenas-nfs"
     argocd.argoproj.io/sync-options: Delete=false
   name: photoprism-originals
+  namespace: photoprism
 spec:
   accessModes:
     - ReadWriteOnce
@@ -28,6 +29,7 @@ metadata:
     volume.beta.kubernetes.io/storage-class: "truenas-nfs"
     argocd.argoproj.io/sync-options: Delete=false
   name: photoprism-storage
+  namespace: photoprism
 spec:
   accessModes:
     - ReadWriteOnce
