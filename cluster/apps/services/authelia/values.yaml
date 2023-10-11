@@ -119,7 +119,7 @@ authelia:
       ## The available providers are: `memory`, `redis`. Memory is the provider unless redis is defined.
       session:
         redis:
-          enabled: true
+          enabled: false
 
       rules:
         - domain_regex: '^.*\.amrap030.site$'
