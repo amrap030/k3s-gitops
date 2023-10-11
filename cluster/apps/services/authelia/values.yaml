@@ -239,11 +239,7 @@ authelia:
       #   allowPrivilegeEscalation: false
       #   privileged: false
 
-    tolerations:
-    - key: "storage"
-      operator: "Equal"
-      value: "true"
-      effect: "NoSchedule"
+    tolerations: []
     # tolerations:
     # - key: key1
     #   operator: Equal
@@ -255,7 +251,6 @@ authelia:
       #   nodeName: worker-1
 
       nodeSelector:
-        workload: storage
       # nodeSelector:
       #   disktype: ssd
       #   kubernetes.io/hostname: worker-1
