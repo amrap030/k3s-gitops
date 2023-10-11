@@ -36,3 +36,12 @@ spec:
       - name: iobroker-data
         persistentVolumeClaim:
           claimName: iobroker-data
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: k3s.amrap030.home/hardware
+                    operator: In
+                    values:
+                      - zigbee
