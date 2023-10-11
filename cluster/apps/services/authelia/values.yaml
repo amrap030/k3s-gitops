@@ -164,7 +164,7 @@ authelia:
         filename: /config/notification.txt
       
       smtp:
-        enabled: true
+        enabled: false
 
     identity_providers:
       oidc:
