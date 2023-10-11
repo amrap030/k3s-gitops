@@ -1,6 +1,6 @@
 # Ubuntu Server Focal
 # ---
-# Packer Template to create an Ubuntu Server (Focal) on Proxmox
+# Packer Template to create an Ubuntu Server (focal) on Proxmox
 packer {
   required_plugins {
     proxmox = {
@@ -35,8 +35,8 @@ source "proxmox-iso" "ubuntu-server-focal" {
     insecure_skip_tls_verify = true
     
     # VM general settings
-    node = "proxmox"
-    vm_id = "901"
+    node = "pve"
+    vm_id = "903"
     vm_name = "ubuntu-server-focal"
     template_description = "Ubuntu Server Focal Cloud Image"
 
@@ -45,7 +45,7 @@ source "proxmox-iso" "ubuntu-server-focal" {
     # iso_file = "local:iso/ubuntu-20.04.2-live-server-amd64.iso"
     # - or -
     # (Option 2) download ISO
-    iso_url = "https://releases.ubuntu.com/20.04/ubuntu-20.04.6-live-server-amd64.iso"
+    iso_url = "https://releases.ubuntu.com/focal/ubuntu-20.04.6-live-server-amd64.iso"
     iso_checksum = "b8f31413336b9393ad5d8ef0282717b2ab19f007df2e9ed5196c13d8f9153c8b"
     iso_storage_pool = "local"
     unmount_iso = true
@@ -58,9 +58,9 @@ source "proxmox-iso" "ubuntu-server-focal" {
 
     # disks attached to the virtual machine
     disks {
-        disk_size = "64G"
+        disk_size = "50G"
         format = "raw"
-        storage_pool = "vm-data"
+        storage_pool = "local-lvm"
         type = "virtio"
     }
 
@@ -83,16 +83,16 @@ source "proxmox-iso" "ubuntu-server-focal" {
 
     # VM cloud-init settings
     cloud_init = true
-    cloud_init_storage_pool = "vm-data"
+    cloud_init_storage_pool = "local-lvm"
 
     # packer boot commands
     boot_command = [
-        "<esc><wait><esc><wait>",
-        "<f6><wait><esc><wait>",
+        "<esc><wait><esc><wait><f6><wait><esc><wait>",
         "<bs><bs><bs><bs><bs>",
         "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ ",
         "--- <enter>"
     ]
+
     #boot = "c" # override default boot order -> c: CD-ROM
     boot_wait = "5s"
 
@@ -112,7 +112,7 @@ source "proxmox-iso" "ubuntu-server-focal" {
     ssh_private_key_file = "~/.ssh/id_rsa"
 
     # Raise the timeout, when installation takes longer
-    ssh_timeout = "20m"
+    ssh_timeout = "120m"
 }
 
 # build definition to create the VM template
