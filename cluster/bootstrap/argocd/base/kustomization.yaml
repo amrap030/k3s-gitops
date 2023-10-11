@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: argocd
 resources:
-  - base/namespace.yaml
+  - namespace.yaml
   - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
 generatorOptions:
@@ -13,7 +13,3 @@ secretGenerator:
     files:
       - "keys.txt"
     type: Opaque
-
-patchesStrategicMerge:
-  - overlay/argocd-cm.yaml
-  - overlay/ksops-patch.yaml
