@@ -34,6 +34,38 @@ kube-prometheus-stack:
     grafana.ini:
       date_formats:
         default_timezone: UTC
+      sidecar:
+        logLevel: WARN
+        dashboards:
+          enabled: true
+          searchNamespace: ALL
+          label: grafana-dashboard
+          labelValue: 'true'
+          provider:
+            foldersFromFilesStructure: true
+    
+    dashboardProviders:
+      dashboardproviders.yaml:
+        apiVersion: 1
+        providers:
+          - type: file
+            name: Network
+            folder: Network
+            editable: true
+            allowUiUpdates: true
+            disableDeletion: false
+            options:
+              path: /tmp/dashboards/Network
+              foldersFromFilesStructure: true
+          - type: file
+            name: Storage
+            folder: Storage
+            editable: true
+            allowUiUpdates: true
+            disableDeletion: false
+            options:
+              path: /tmp/dashboards/Cluster
+              foldersFromFilesStructure: true
 
   ## Deploy a Prometheus instance
   ##
