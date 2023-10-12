@@ -34,15 +34,16 @@ kube-prometheus-stack:
     grafana.ini:
       date_formats:
         default_timezone: UTC
-      sidecar:
-        logLevel: WARN
-        dashboards:
-          enabled: true
-          searchNamespace: ALL
-          label: grafana-dashboard
-          labelValue: 'true'
-          provider:
-            foldersFromFilesStructure: true
+    
+    sidecar:
+      logLevel: WARN
+      dashboards:
+        enabled: true
+        searchNamespace: ALL
+        label: grafana-dashboard
+        labelValue: 'true'
+        provider:
+          foldersFromFilesStructure: true
     
     dashboardProviders:
       dashboardproviders.yaml:
