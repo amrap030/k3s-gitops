@@ -123,6 +123,11 @@ apps:
     path: cluster/apps/core/descheduler
     syncWave: 17
     project: core
+  - name: kured
+    namespace: kured
+    path: cluster/apps/core/kured
+    syncWave: 18
+    project: core
 
 projects:
   - name: core
