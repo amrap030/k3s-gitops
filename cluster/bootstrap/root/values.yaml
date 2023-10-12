@@ -128,6 +128,11 @@ apps:
     path: cluster/apps/core/kured
     syncWave: 18
     project: core
+  - name: node-problem-detector
+    namespace: node-problem-detector
+    path: cluster/apps/core/node-problem-detector
+    syncWave: 19
+    project: core
 
 projects:
   - name: core

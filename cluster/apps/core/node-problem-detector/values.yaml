@@ -1,0 +1,25 @@
+node-problem-detector:
+  image:
+    repository: registry.k8s.io/node-problem-detector/node-problem-detector
+    tag: v0.8.14
+    # image.digest -- the image digest. If given it takes precedence over a given tag.
+    digest: ""
+    pullPolicy: IfNotPresent
+
+  metrics:
+    # metrics.enabled -- Expose metrics in Prometheus format with default configuration.
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      additionalLabels: {}
+      additionalRelabelings: []
+      metricRelabelings: []
+    prometheusRule:
+      enabled: true
+      defaultRules:
+        create: true
+        disabled: []
+      additionalLabels: {}
+      additionalRules: []
+  # maxUnavailable -- The max pods unavailable during an update
+  maxUnavailable: 1
