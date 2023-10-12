@@ -6,6 +6,7 @@ metadata:
     grafana-dashboard: "true"
   annotations:
     k8s-sidecar-target-directory: "/tmp/dashboards/Cluster"
+    grafana-folder: "Cluster"
 data:
   kubernetes.json: |
 {{ .Files.Get "dashboard/dashboard.json" | indent 4 }}

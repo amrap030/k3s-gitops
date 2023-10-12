@@ -41,6 +41,7 @@ kube-prometheus-stack:
         enabled: true
         searchNamespace: ALL
         label: grafana-dashboard
+        folderAnnotation: grafana-folder
         labelValue: 'true'
         provider:
           foldersFromFilesStructure: true
