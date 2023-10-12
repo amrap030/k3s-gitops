@@ -47,8 +47,7 @@ kube-prometheus-stack:
       datasources:
         enabled: true
         searchNamespace: ALL
-        label: grafana-datasource
-        labelValue: 'true'
+        label: grafana_datasource
     
     dashboardProviders:
       dashboardproviders.yaml:
