@@ -43,8 +43,6 @@ kube-prometheus-stack:
         label: grafana-dashboard
         folderAnnotation: grafana-folder
         labelValue: 'true'
-        provider:
-          foldersFromFilesStructure: true
     
     dashboardProviders:
       dashboardproviders.yaml:
@@ -58,7 +56,6 @@ kube-prometheus-stack:
             disableDeletion: false
             options:
               path: /tmp/dashboards/Network
-              foldersFromFilesStructure: true
           - type: file
             name: Cluster
             folder: Cluster
@@ -67,7 +64,6 @@ kube-prometheus-stack:
             disableDeletion: false
             options:
               path: /tmp/dashboards/Cluster
-              foldersFromFilesStructure: true
 
   ## Deploy a Prometheus instance
   ##
