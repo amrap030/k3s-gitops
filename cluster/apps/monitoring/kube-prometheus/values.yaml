@@ -59,8 +59,8 @@ kube-prometheus-stack:
               path: /tmp/dashboards/Network
               foldersFromFilesStructure: true
           - type: file
-            name: Storage
-            folder: Storage
+            name: Cluster
+            folder: Cluster
             editable: true
             allowUiUpdates: true
             disableDeletion: false
