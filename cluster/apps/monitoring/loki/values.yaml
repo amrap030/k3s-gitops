@@ -32,3 +32,7 @@ loki:
       - -log.level=warn
   gateway:
     enabled: false
+  
+  memberlist:
+    service:
+      publishNotReadyAddresses: true
