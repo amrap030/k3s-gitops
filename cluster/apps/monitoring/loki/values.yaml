@@ -12,27 +12,3 @@ loki:
     rulerConfig:
       storage:
         type: local
-  test:
-    enabled: false
-  monitoring:
-    serviceMonitor:
-      # disabled due to requirement of grafana operator: https://github.com/grafana/loki/issues/7546
-      enabled: false
-    selfMonitoring:
-      enabled: false
-      grafanaAgent:
-        installOperator: false
-    lokiCanary:
-      enabled: false
-  singleBinary:
-    # workaround to fix helm error due to weird default value of zero replicas: https://github.com/grafana/loki/issues/8443#issuecomment-1421636858
-    replicas: 1
-    extraArgs:
-      - -config.expand-env=true
-      - -log.level=warn
-  gateway:
-    enabled: false
-  
-  memberlist:
-    service:
-      publishNotReadyAddresses: true
