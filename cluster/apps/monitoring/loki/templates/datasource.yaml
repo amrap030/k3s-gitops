@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: grafana-datasource
+  labels:
+    grafana-datasource: 'true'
+stringData:
+  loki-datasource.yaml: |-
+    apiVersion: 1
+    datasources:
+      - type: loki
+        name: Loki
+        uid: loki
+        url: http://loki.loki.svc.cluster.local:3100
+        access: proxy
+        editable: false
