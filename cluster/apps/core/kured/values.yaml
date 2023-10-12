@@ -45,10 +45,3 @@ kured:
     preRebootNodeLabels: []       # labels to add to nodes before cordoning (default [])
     postRebootNodeLabels: []      # labels to add to nodes after uncordoning (default [])
     concurrency: 1                # amount of nodes to concurrently reboot. (default 1)
-
-  service:
-    create: true
-    port: 8080
-    annotations: {}
-    name: ""
-    type: ClusterIP
