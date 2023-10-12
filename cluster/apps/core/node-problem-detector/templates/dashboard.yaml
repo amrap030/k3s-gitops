@@ -5,7 +5,6 @@ metadata:
   labels:
     grafana-dashboard: "true"
   annotations:
-    k8s-sidecar-target-directory: "/tmp/dashboards/Cluster"
     grafana_folder: "Cluster"
 data:
   kubernetes.json: |
