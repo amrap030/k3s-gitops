@@ -18,7 +18,18 @@ spec:
                 name: kube-prometheus-grafana
                 port:
                   number: 80 
+    - host: prometheus.amrap030.home
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kube-prometheus-kube-prome-prometheus
+                port:
+                  number: 9090 
   tls:
     - hosts:
         - grafana.amrap030.home
+        - prometheus.amrap030.home
       secretName: grafana-cert
