@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: traefik-ca-issuer
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+  name: kured-ingress
+  namespace: kured
+spec:
+  rules:
+    - host: kured.amrap030.home
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kured
+                port:
+                  number: 8080    
+  tls:
+    - hosts:
+        - kured.amrap030.home
+      secretName: traefik-cert
