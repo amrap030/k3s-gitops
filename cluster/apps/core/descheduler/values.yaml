@@ -1,0 +1,63 @@
+descheduler:
+  image:
+    repository: registry.k8s.io/descheduler/descheduler
+    # Overrides the image tag whose default is the chart version
+    tag: "v0.28.0"
+    pullPolicy: IfNotPresent
+
+  schedule: "*/30 * * * *"
+  suspend: false
+
+  # Specifies the replica count for Deployment
+  # Set leaderElection if you want to use more than 1 replica
+  # Set affinity.podAntiAffinity rule if you want to schedule onto a node
+  # only if that node is in the same zone as at least one already-running descheduler
+  replicas: 1
+
+  deschedulerPolicy:
+    # nodeSelector: "key1=value1,key2=value2"
+    # maxNoOfPodsToEvictPerNode: 10
+    # maxNoOfPodsToEvictPerNamespace: 10
+    # ignorePvcPods: true
+    # evictLocalStoragePods: true
+    # tracing:
+    #   collectorEndpoint: otel-collector.observability.svc.cluster.local:4317
+    #   transportCert: ""
+    #   serviceName: ""
+    #   serviceNamespace: ""
+    #   sampleRate: 1.0
+    #   fallbackToNoOpProviderOnError: true
+    strategies:
+      RemoveDuplicates:
+        enabled: true
+      RemovePodsHavingTooManyRestarts:
+        enabled: true
+        params:
+          podsHavingTooManyRestarts:
+            podRestartThreshold: 100
+            includingInitContainers: true
+      RemovePodsViolatingNodeTaints:
+        enabled: true
+      RemovePodsViolatingNodeAffinity:
+        enabled: true
+        params:
+          nodeAffinityType:
+          - requiredDuringSchedulingIgnoredDuringExecution
+      RemovePodsViolatingInterPodAntiAffinity:
+        enabled: true
+      RemovePodsViolatingTopologySpreadConstraint:
+        enabled: true
+        params:
+          includeSoftConstraints: false
+      LowNodeUtilization:
+        enabled: true
+        params:
+          nodeResourceUtilizationThresholds:
+            thresholds:
+              cpu: 20
+              memory: 20
+              pods: 20
+            targetThresholds:
+              cpu: 50
+              memory: 50
+              pods: 50

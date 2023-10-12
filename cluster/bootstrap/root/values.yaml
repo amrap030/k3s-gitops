@@ -118,6 +118,11 @@ apps:
       valueFiles:
         - ./values.yaml
     project: services
+  - name: descheduler
+    namespace: descheduler
+    path: cluster/apps/core/descheduler
+    syncWave: 17
+    project: core
 
 projects:
   - name: core
