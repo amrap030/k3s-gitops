@@ -11,6 +11,6 @@ stringData:
       - type: loki
         name: Loki
         uid: loki
-        url: http://loki.loki.svc.cluster.local:3100
+        url: http://loki.loki:3100
         access: proxy
         editable: false
