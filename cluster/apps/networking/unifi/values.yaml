@@ -10,7 +10,7 @@ unifi:
     # -- image repository
     repository: jacobalberty/unifi
     # @default -- chart.appVersion
-    tag: 'v7.5.174'
+    tag: 'v7.5.176'
     # -- image pull policy
     pullPolicy: IfNotPresent
 
