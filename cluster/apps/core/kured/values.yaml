@@ -1,7 +1,7 @@
 kured:
   image:
     repository: ghcr.io/kubereboot/kured
-    tag: "1.10.2"  # will default to the appVersion in Chart.yaml
+    tag: "1.14.0"  # will default to the appVersion in Chart.yaml
     pullPolicy: IfNotPresent
     pullSecrets: []
 
