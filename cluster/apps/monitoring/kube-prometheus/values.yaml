@@ -74,3 +74,8 @@ kube-prometheus-stack:
           # selector:
           #   matchLabels:
           #     app.kubernetes.io/name: prometheus-metrics
+      
+      ruleSelectorNilUsesHelmValues: false
+      serviceMonitorSelectorNilUsesHelmValues: false
+      podMonitorSelectorNilUsesHelmValues: false
+      probeSelectorNilUsesHelmValues: false
