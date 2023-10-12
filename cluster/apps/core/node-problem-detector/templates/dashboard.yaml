@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: node-problem-detector-dashboard
   labels:
-    grafana_dashboard: "1"
+    grafana-dashboard: "true"
 data:
   kubernetes.json: |
 {{ .Files.Get "dashboard/dashboard.json" | indent 4 }}
