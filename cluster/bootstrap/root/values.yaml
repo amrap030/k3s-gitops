@@ -89,14 +89,14 @@ apps:
       valueFiles:
         - ./values.yaml
     project: core
-  # - name: unifi-controller
-  #   namespace: networking
-  #   path: cluster/apps/networking/unifi
-  #   syncWave: 13
-  #   helm:
-  #     valueFiles:
-  #       - ./values.yaml
-  #   project: networking
+  - name: unifi
+    namespace: unifi
+    path: cluster/apps/networking/unifi
+    syncWave: 13
+    helm:
+      valueFiles:
+        - ./values.yaml
+    project: networking
   - name: system-upgrade
     namespace: system-upgrade
     path: cluster/apps/core/system-upgrade
@@ -133,6 +133,11 @@ apps:
     path: cluster/apps/core/node-problem-detector
     syncWave: 19
     project: core
+  - name: loki-stack
+    namespace: loki-stack
+    path: cluster/apps/monitoring/loki-stack
+    syncWave: 20
+    project: monitoring
 
 projects:
   - name: core
