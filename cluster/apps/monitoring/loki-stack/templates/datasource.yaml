@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: grafana-datasource
+  name: loki-datasource
   labels:
     grafana_datasource: "1"
   namespace: loki-stack
