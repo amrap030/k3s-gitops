@@ -2,3 +2,12 @@ unifi-poller:
   image:
       repository: ghcr.io/unpoller/unpoller
       tag: 'v2.9.2'
+
+  envFrom:
+    - secretRef:
+        name: unifi-poller-secrets
+
+  metrics:
+    enabled: true
+    prometheusRule:
+      enabled: false
