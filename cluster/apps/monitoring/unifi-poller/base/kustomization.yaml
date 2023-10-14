@@ -4,3 +4,4 @@ namespace: unifi-poller
 resources:
   - namespace.yaml
   - deployment.yaml
+  - servicemonitor.yaml
