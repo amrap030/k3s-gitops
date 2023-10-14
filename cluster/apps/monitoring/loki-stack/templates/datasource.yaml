@@ -3,7 +3,7 @@ kind: Secret
 metadata:
   name: loki-datasource
   labels:
-    grafana_datasource: "true"
+    grafana-datasource: "true"
   namespace: loki-stack
 stringData:
   loki-datasource.yaml: |-
