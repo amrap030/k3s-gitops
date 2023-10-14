@@ -3,11 +3,11 @@ unifi-poller:
       repository: ghcr.io/unpoller/unpoller
       tag: 'v2.9.2'
 
-  envFrom:
-    - secretRef:
-        name: unifi-poller-secrets
-
-  metrics:
-    enabled: true
-    prometheusRule:
-      enabled: false
+  extraVolumes:
+    - name: config-volume
+      secret:
+        secretName: unifi-poller-secrets
+  extraVolumeMounts:
+    - name: config-volume
+      mountPath: /etc/unpoller/up.conf
+      subPath: unifi-poller.conf
