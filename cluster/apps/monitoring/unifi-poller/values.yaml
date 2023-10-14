@@ -2,24 +2,3 @@ unifi-poller:
   image:
       repository: ghcr.io/unpoller/unpoller
       tag: 'v2.9.2'
-
-  env:
-    - name: UP_POLLER_DEBUG
-      value: false
-    - name: UP_POLLER_QUIET
-      value: true
-    - name: UP_UNIFI_DYNAMIC
-      value: false
-    - name: UP_UNIFI_DEFAULT_URL
-      value: https://unifi.unifi:8443
-    # - name: UP_UNIFI_DEFAULT_USER
-    #   value: ${UNIFI_POLLER_USERNAME}
-    # - name: UP_UNIFI_DEFAULT_PASS
-    #   value: ${UNIFI_POLLER_PASSWORD}
-    - name: UP_INFLUXDB_DISABLE
-      value: true
-
-  metrics:
-    enabled: true
-    prometheusRule:
-      enabled: false
