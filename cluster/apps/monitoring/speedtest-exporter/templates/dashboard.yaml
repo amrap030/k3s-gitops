@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: speedtest-dashboard
+  labels:
+    grafana-dashboard: "true"
+  annotations:
+    grafana_folder: "Network"
+  namespace: speedtest-exporter
+data:
+  speedtest.json: |
+{{ .Files.Get "dashboard/dashboard.json" | indent 4 }}
