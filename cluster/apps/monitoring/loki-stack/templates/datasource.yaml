@@ -4,6 +4,7 @@ metadata:
   name: grafana-datasource
   labels:
     grafana_datasource: "1"
+  namespace: loki-stack
 stringData:
   loki-datasource.yaml: |-
     apiVersion: 1
@@ -11,6 +12,6 @@ stringData:
       - type: loki
         name: Loki
         uid: loki
-        url: http://loki.loki:3100
+        url: http://loki-stack.loki-stack:3100
         access: proxy
         editable: false
