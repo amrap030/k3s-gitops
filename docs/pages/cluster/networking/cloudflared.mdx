@@ -1,0 +1,76 @@
+## Introduction
+
+[`cloudflared`](https://github.com/cloudflare/cloudflared) is a client for tunneling traffic via a tunneling daemon into my homelab network, without requiring to poke holes into the firewall. In addition, it also provides SSL certificates for my applications.
+
+## Prerequisites
+
+As a pre-requisite it is first necessary to have a valid domain which is registered at cloudflare. My domain [amrap030.site](amrap030.site) is obtained from [Namecheap](https://www.namecheap.com/). The second thing that is necessary is the [cloudflared CLI](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/get-started/create-local-tunnel/). To install `cloudflared` just run `brew install cloudflared`.
+
+Once installed, you can use the `tunnel login` command from `cloudflared` to obtain a certificate.
+
+```shell copy
+cloudflared tunnel login
+```
+
+Next, create a new tunnel with the tunnel id, in my case `homelab`, by running the following. The resulting file with the necessary credentials can be found in `/Users/<username>/.cloudflared/<uuid>.json`.
+
+```shell copy
+cloudflared tunnel create homelab
+```
+
+Next, it is necessary to generate a tunnel credential file as a secret in the K3S cluster. For sensitive information, my cluster uses [SOPS](https://github.com/getsops/sops) in combination with [age](https://github.com/FiloSottile/age) to encrypt secrets, before adding it to the repository, and decrypting secrets inside the cluster. The following example is the decrypted secret containing a JWT of the file content.
+
+```yaml filename="secrets.sops.yaml" copy
+apiVersion: v1
+kind: Secret
+metadata:
+  name: tunnel-credentials
+  namespace: cloudflared
+data:
+  credentials.json: eyJBY2N***yIn0=
+type: Opaque
+```
+
+Lastly it is necessary to associate the tunnel with a DNS record.
+
+```shell copy
+cloudflared tunnel route dns homelab <subdomain>.<domain>
+```
+
+## Configuration
+
+`cloudflared` is deployed via [Kustomize](https://kustomize.io/) and configured as follows.
+
+### `deployment.yaml`
+
+This file contains the deployment of `cloudflared` and specifies the configuration file directory via container startup arguments as `/etc/cloudflared/config/config.yaml`. In addition, the configuration file and the credentials of the tunnel are provided via volume mounts.
+
+### `cloudflared-cm.yaml`
+
+This `configmap` contains the ingress configuration for proxying traffic via cloudflare into my cluster. It always needs a `hostname`, a `service` which is the application to be reached in the form of `<protocol>://<servicename>.<namespace>:<port>` and `originRequest` to disable TLS verification.
+
+```yaml filename="cloudflared-cm.yaml" copy
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared
+  namespace: cloudflared
+data:
+  config.yaml: |
+    tunnel: homelab
+    credentials-file: /etc/cloudflared/creds/credentials.json
+    metrics: 0.0.0.0:2000
+    no-autoupdate: true
+    ingress:
+      - hostname: argocd.amrap030.site
+        service: https://argocd-server.argocd
+        originRequest:
+          noTLSVerify: true
+      - ...
+      - service: http_status:404
+```
+
+## Links
+
+- [Documentation](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/get-started/)
+- [GitHub Repository](https://github.com/cloudflare/cloudflared)

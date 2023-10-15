@@ -1,6 +1,6 @@
 ## Introduction
 
-[Authelia](https://www.authelia.com) is an open-source authentication and authorization server providing two-factor authentication and single sign-on (SSO) for your applications via a web portal. It acts as a companion for reverse proxies by allowing, denying, or redirecting requests.
+[`Authelia`](https://www.authelia.com) is an open-source authentication and authorization server providing two-factor authentication and single sign-on (SSO) for your applications via a web portal. It acts as a companion for reverse proxies by allowing, denying, or redirecting requests.
 
 ![authelia](/authelia-ui.png)
 
@@ -12,7 +12,7 @@ Authelia is deployed via [Helm](https://helm.sh) and configured with the followi
 
 ### `domain`
 
-If Authelia is served from `\*.example.com` it should be `example.com`. In my homelab it is set to `amrap030.site`.
+If Authelia is served from `*.example.com` it should be `example.com`. In my homelab it is set to `amrap030.site`.
 
 ### `ingress.enabled`
 
@@ -116,7 +116,17 @@ data:
 type: Opaque
 ```
 
-The `OIDC_PRIVATE_KEY` was created by running `docker run -u "$(id -u):$(id -g)" -v "$(pwd)":/keys authelia/authelia:latest authelia crypto pair rsa generate --bits 4096 --directory /keys`. The `OIDC_HMAC_SECRET`, `SESSION_ENCRYPTION_KEY`, `JWT_TOKEN` and `STORAGE_ENCRYPTION_KEY` are random alphanumeric strings with 64 or more characters created by `docker run authelia/authelia:latest authelia crypto rand --length 64 --charset alphanumeric`.
+The `OIDC_PRIVATE_KEY` can be created by running the following command:
+
+```shell copy
+docker run -u "$(id -u):$(id -g)" -v "$(pwd)":/keys authelia/authelia:latest authelia crypto pair rsa generate --bits 4096 --directory /keys
+```
+
+The `OIDC_HMAC_SECRET`, `SESSION_ENCRYPTION_KEY`, `JWT_TOKEN` and `STORAGE_ENCRYPTION_KEY` are random alphanumeric strings with 64 or more characters created with the following command:
+
+```shell copy
+docker run authelia/authelia:latest authelia crypto rand --length 64 --charset alphanumeric
+```
 
 ### `persistence.enabled`
 
@@ -144,15 +154,6 @@ spec:
 ```
 
 > The `argocd.argoproj.io/sync-options: Delete=false` annotation prevents deleting persistent volumes when deleting ArgoCD applications.
-
-## Created Resources
-
-| Kind       | Name                                                  |
-| :--------- | :---------------------------------------------------- |
-| Helm Chart | `https://charts.authelia.com`                         |
-| Namespace  | `authelia`                                            |
-| PVC        | `authelia-data`                                       |
-| Secret     | `authelia-oidc`, `authelia-secrets`, `users-database` |
 
 ## Links
 
