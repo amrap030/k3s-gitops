@@ -1,0 +1,61 @@
+cloudflared:
+  image:
+    repository: cloudflare/cloudflared
+    tag: "2023.8.2"
+    imagePullPolicy: IfNotPresent
+
+  ## @section Deployment parameters
+
+  ## @param replicaCount The number of replicas to deploy.
+  ##
+  replicaCount: 1
+  ## @param tunnelID The Argo Tunnel ID you created. Check the configuration section for details.
+  ##
+  tunnelID: "homelab"
+
+  ## @param existingSecret The name of an existing secret containing the Argo tunnel settings.
+  ##
+  existingSecret: "tunnel-credentials"
+  ## @param warpRouting Whether to enable WARP traffic routing to local subnets.
+  ##
+  warpRouting: false
+  ## @param ingress The ingress settings to apply. Check the configuration section for examples.
+  ##
+  ingress:
+    - hostname: argocd.amrap030.site
+      service: https://argocd-server.argocd
+      originRequest:
+        noTLSVerify: true
+    - hostname: uptime.amrap030.site
+      service: http://uptime-kuma.uptime-kuma:3001
+      originRequest:
+        noTLSVerify: true
+    - hostname: vaultwarden.amrap030.site
+      service: http://vaultwarden.vaultwarden
+      originRequest:
+        noTLSVerify: true
+    - hostname: photoprism.amrap030.site
+      service: http://photoprism.photoprism
+      originRequest:
+        noTLSVerify: true
+    - hostname: paperless.amrap030.site
+      service: http://paperless.paperless:8000
+      originRequest:
+        noTLSVerify: true
+    - hostname: iobroker.amrap030.site
+      service: http://iobroker.iobroker:8081
+      originRequest:
+        noTLSVerify: true
+    - hostname: auth.amrap030.site
+      service: http://authelia.authelia
+      originRequest:
+        noTLSVerify: true
+    - hostname: grafana.amrap030.site
+      service: http://kube-prometheus-grafana.kube-prometheus
+      originRequest:
+        noTLSVerify: true
+    - hostname: truenas.amrap030.site
+      service: http://192.168.1.192
+      originRequest:
+        noTLSVerify: true
+    - service: http_status:404
