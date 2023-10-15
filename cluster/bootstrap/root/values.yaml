@@ -138,6 +138,11 @@ apps:
     path: cluster/apps/monitoring/loki-stack
     syncWave: 20
     project: monitoring
+  - name: speedtest-exporter
+    namespace: speedtest-exporter
+    path: cluster/apps/monitoring/speedtest-exporter
+    syncWave: 21
+    project: monitoring
 
 projects:
   - name: core
