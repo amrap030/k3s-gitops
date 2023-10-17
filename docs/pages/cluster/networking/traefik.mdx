@@ -1,0 +1,86 @@
+## Introduction
+
+[`Traefik`](https://traefik.io/traefik/) (pronounced traffic) is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy. It is used as an ingress controller for my cluster, but only when accessing the cluster from my local network via `<subdomain>.amrap030.home`. To allow more flexible configurations I disabled the built-in Traefik installation of K3s and installed it separately via the [Helm Chart](https://helm.traefik.io/traefik).
+
+## Configuration
+
+`Traefik` is deployed via [Helm](https://helm.sh) and configured with the following values under `values.yaml`.
+
+### `ingressRoute.dashboard.enabled`
+
+Set to `false` because I don't want the `Traefik` dashboard to be exposed.
+
+### `providers.kubernetesCRD.ingressClassin`
+
+Set to `traefik-external` to be referenced.
+
+### `globalArguments`
+
+There are two additional `globalArguments` arguments used:
+
+- `--global.checknewversion=false` to disable the periodic check of a new version. This is handled by Renovate Bot.
+- `--global.sendanonymoususage=false` to disable the periodic transfer of anonymous usage statistics.
+
+### `additionalArguments`
+
+There are two more `additionalArguments` arguments used:
+
+- `--serversTransport.insecureSkipVerify=true` to disable SSL certificate verification for backend applications. This has no effect on the SSL certificate provided by `Traefik` and `Cert-Manager` for the initial access of applications in the browser.
+- `--log.level=INFO` to set the log level to `info`.
+
+### `ports.web.redirectTo`
+
+Set to `websecure` to automatically redirect all incoming HTTP requests to HTTPS.
+
+### `service.spec.loadBalancerIP`
+
+Set to `192.168.1.180` which is one of the VIPs provided by MetalLB used as the entrypoint into the cluster.
+
+## Resources
+
+|  Kind      | Name              |
+| :--------- | :---------------- |
+| Deployment | `traefik`         |
+| Middleware | `default-headers` |
+| Namespace  | `traefik`         |
+| Service    | `traefik`         |
+
+### Ingress
+
+The `Ingress` is the most important resource, to provide an ingress controller for routing ingress traffic from the outside world to `Service` objects inside the cluster. For each specification, it is necessary to adapt the `name`, `namespace`, `rules` and the `hosts` section under the `tls` configuration, by using the corresponding application name.
+
+```yaml filename="ingress.yaml" copy
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: traefik-ca-issuer
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+  name: argocd-ingress
+  namespace: argocd
+spec:
+  rules:
+    - host: argocd.amrap030.home
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 443
+
+  tls:
+    - hosts:
+        - argocd.amrap030.home
+      secretName: argocd-cert
+```
+
+> This resource needs to be in the same namespace of the application!
+
+## Links
+
+- [Documentation](https://doc.traefik.io/traefik/)
+- [Helm Chart](https://github.com/traefik/traefik-helm-chart/)
+- [GitHub Repository](https://github.com/traefik/traefik/)
