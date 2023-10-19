@@ -155,6 +155,15 @@ spec:
 
 > The `argocd.argoproj.io/sync-options: Delete=false` annotation prevents deleting persistent volumes when deleting ArgoCD applications.
 
+## Resources
+
+|  Kind                 | Name            |
+| :-------------------- | :-------------- |
+| Deployment            | `authelia`      |
+| Namespace             | `authelia`      |
+| ConfigMap             | `authelia`      |
+| PersistentVolumeClaim | `authelia-data` |
+
 ## Links
 
 - [Documentation](https://www.authelia.com/integration/prologue/get-started/)
