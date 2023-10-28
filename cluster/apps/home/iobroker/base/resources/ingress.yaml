@@ -27,9 +27,20 @@ spec:
               service:
                 name: iobroker
                 port:
-                  number: 1880 
+                  number: 1880
+    - host: esphome.amrap030.home
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: iobroker
+                port:
+                  number: 6052 
   tls:
     - hosts:
         - iobroker.amrap030.home
         - nodered.amrap030.home
+        - esphome.amrap030.home
       secretName: iobroker-cert
