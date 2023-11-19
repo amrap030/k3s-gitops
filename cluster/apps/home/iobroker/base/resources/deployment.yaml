@@ -29,6 +29,7 @@ spec:
             value: "/dev/ttyACM0"
         securityContext:
           privileged: true
+          runAsUser: 0
         volumeMounts:
         - name: iobroker-data
           mountPath: /opt/iobroker
