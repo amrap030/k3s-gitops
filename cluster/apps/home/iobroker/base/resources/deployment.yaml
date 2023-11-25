@@ -24,7 +24,7 @@ spec:
       containers:
       - name: iobroker
         image: buanet/iobroker:v9.0.1
-        command: ["sysctl -w net.ipv4.ip_unprivileged_port_start=80"]
+        command: ["/bin/bash -c sysctl -w net.ipv4.ip_unprivileged_port_start=80"]
         env:
           - name: USBDEVICES
             value: "/dev/ttyACM0"
