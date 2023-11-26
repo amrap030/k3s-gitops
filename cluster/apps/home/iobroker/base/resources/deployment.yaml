@@ -22,6 +22,8 @@ spec:
       nodeSelector:
         kubernetes.io/hostname: k3s-w01
       securityContext:
+        runAsUser: 0
+        runAsGroup: 0
         sysctls:
         - name: "net.ipv4.ip_unprivileged_port_start"
           value: "80"
