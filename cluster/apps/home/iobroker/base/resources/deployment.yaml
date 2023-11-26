@@ -30,9 +30,9 @@ spec:
             value: "/dev/ttyACM0"
         securityContext:
           privileged: true
-          # sysctls:
-          # - name: net.ipv4.ip_unprivileged_port_start
-          #   value: "80"
+          sysctls:
+          - name: net.ipv4.ip_unprivileged_port_start
+            value: "80"
           # runAsUser: 0
           #capabilities:
           #  add: ["NET_BIND_SERVICE"]
