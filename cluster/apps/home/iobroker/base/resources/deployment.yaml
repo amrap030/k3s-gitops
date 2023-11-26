@@ -24,15 +24,15 @@ spec:
       containers:
       - name: iobroker
         image: buanet/iobroker:v9.0.1
-        # command: ["/usr/bin/bash -c sysctl -w net.ipv4.ip_unprivileged_port_start=80"]
+        command: ["/bin/bash", "-c", "sysctl -w net.ipv4.ip_unprivileged_port_start=80"]
         env:
           - name: USBDEVICES
             value: "/dev/ttyACM0"
         securityContext:
           privileged: true
-          runAsUser: 0
-          capabilities:
-            add: ["NET_BIND_SERVICE"]
+          #runAsUser: 0
+          #capabilities:
+          #  add: ["NET_BIND_SERVICE"]
         volumeMounts:
         - name: iobroker-data
           mountPath: /opt/iobroker
