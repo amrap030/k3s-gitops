@@ -23,7 +23,7 @@ spec:
         kubernetes.io/hostname: k3s-w01
       securityContext:
         sysctls:
-        - name: net.ipv4.ip_unprivileged_port_start
+        - name: "net.ipv4.ip_unprivileged_port_start"
           value: "80"
       containers:
       - name: iobroker
@@ -35,8 +35,8 @@ spec:
         securityContext:
           privileged: true
           # runAsUser: 0
-          capabilities:
-            add: ["NET_BIND_SERVICE"]
+          # capabilities:
+          #   add: ["NET_BIND_SERVICE"]
         volumeMounts:
         - name: iobroker-data
           mountPath: /opt/iobroker
