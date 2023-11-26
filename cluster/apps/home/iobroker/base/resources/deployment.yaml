@@ -21,6 +21,8 @@ spec:
       hostNetwork: true 
       nodeSelector:
         kubernetes.io/hostname: k3s-w01
+      allowedUnsafeSysctls:
+      - net.ipv4.*
       securityContext:
         runAsUser: 0
         runAsGroup: 0
