@@ -46,4 +46,8 @@ data:
         service: http://192.168.1.192
         originRequest:
           noTLSVerify: true
+      - hostname: cam.amrap030.site
+        service: http://192.168.1.139
+        originRequest:
+          noTLSVerify: true
       - service: http_status:404
