@@ -46,6 +46,10 @@ data:
         service: http://192.168.1.192
         originRequest:
           noTLSVerify: true
+      - hostname: homeassistant.amrap030.site
+        service: http://192.168.1.173:8123
+        originRequest:
+          noTLSVerify: true
       - hostname: cats.amrap030.site
         service: http://192.168.1.139
         originRequest:
