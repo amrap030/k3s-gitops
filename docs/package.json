@@ -27,6 +27,6 @@
   "devDependencies": {
     "@iconify/react": "^4.1.1",
     "@types/node": "18.11.10",
-    "typescript": "^4.9.3"
+    "typescript": "^5.0.0"
   }
 }
