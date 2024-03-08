@@ -57,11 +57,3 @@ descheduler:
               pods: 30  
             targetThresholds:
               pods: 20
-      LowNodeUtilization:
-        enabled: true
-        params:
-          nodeResourceUtilizationThresholds:
-            thresholds:
-              pods: 15  
-            targetThresholds:
-              pods: 20
