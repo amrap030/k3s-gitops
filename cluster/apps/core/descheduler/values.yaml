@@ -56,4 +56,4 @@ descheduler:
             thresholds:
               memory: 85
             targetThresholds:
-              cpu: 50
+              memory: 50
