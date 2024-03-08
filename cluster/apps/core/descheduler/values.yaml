@@ -49,15 +49,11 @@ descheduler:
         enabled: true
         params:
           includeSoftConstraints: false
-      LowNodeUtilization:
+      HighNodeUtilization:
         enabled: true
         params:
           nodeResourceUtilizationThresholds:
             thresholds:
-              cpu: 90
               memory: 85
-              pods: 100
             targetThresholds:
               cpu: 50
-              memory: 50
-              pods: 50
