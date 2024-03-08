@@ -49,7 +49,7 @@ descheduler:
         enabled: true
         params:
           includeSoftConstraints: false
-      HighNodeUtilization:
+      LowNodeUtilization:
         enabled: true
         params:
           nodeResourceUtilizationThresholds:
