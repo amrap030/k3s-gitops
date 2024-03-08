@@ -61,3 +61,15 @@ descheduler:
               cpu: 50
               memory: 50
               pods: 50
+      HighNodeUtilization:
+        enabled: true
+        params:
+          nodeResourceUtilizationThresholds:
+            thresholds:
+              cpu: 90
+              memory: 85
+              pods: 20
+            targetThresholds:
+              cpu: 50
+              memory: 50
+              pods: 50
