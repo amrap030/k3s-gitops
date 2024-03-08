@@ -54,6 +54,6 @@ descheduler:
         params:
           nodeResourceUtilizationThresholds:
             thresholds:
-              memory: 85
+              memory: 30
             targetThresholds:
-              memory: 50
+              memory: 20
