@@ -6,6 +6,8 @@ metadata:
   labels:
     app: paperless
   namespace: paperless
+  annotations:
+    descheduler.alpha.kubernetes.io/evict: true
 spec:
   replicas: 1
   selector:
