@@ -6,8 +6,6 @@ metadata:
   labels:
     app: paperless
   namespace: paperless
-  annotations:
-    descheduler.alpha.kubernetes.io/evict: true
 spec:
   replicas: 1
   selector:
@@ -17,6 +15,8 @@ spec:
     metadata:
       labels:
         app: paperless
+      annotations:
+        descheduler.alpha.kubernetes.io/evict: "true"
     spec:
       enableServiceLinks: false
       containers:
