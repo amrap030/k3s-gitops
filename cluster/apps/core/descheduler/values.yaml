@@ -49,11 +49,17 @@ descheduler:
         enabled: true
         params:
           includeSoftConstraints: false
+      LowNodeUtilization:
+        enabled: false
       HighNodeUtilization:
         enabled: true
         params:
           nodeResourceUtilizationThresholds:
             thresholds:
-              memory: 25
-            targetThresholds:
-              memory: 15
+              memory: 20
+          namespaces:
+            exclude:
+            - "kube-system"
+            - "longhorn-system"
+            - "nfs"
+            - "iscsi"
