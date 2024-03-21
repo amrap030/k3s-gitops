@@ -83,7 +83,7 @@ democratic-csi:
     # https://kubernetes-csi.github.io/docs/external-attacher.html
     externalAttacher:
       enabled: true
-      image: registry.k8s.io/sig-storage/csi-attacher:v4.4.0
+      image: registry.k8s.io/sig-storage/csi-attacher:v4.5.1
       args:
       - --v=5
       - --leader-election
