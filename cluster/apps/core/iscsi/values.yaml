@@ -190,7 +190,7 @@ democratic-csi:
     # democratic-csi controller
     driver:
       enabled: true
-      image: docker.io/democraticcsi/democratic-csi:v1.8.3
+      image: docker.io/democraticcsi/democratic-csi:v1.9.0
       # imagePullPolicy: Always
       logLevel: info
       lifecycle:
@@ -233,7 +233,7 @@ democratic-csi:
     # democratic-csi node
     driver:
       enabled: true
-      image: docker.io/democraticcsi/democratic-csi:v1.8.3
+      image: docker.io/democraticcsi/democratic-csi:v1.9.0
       # imagePullPolicy: Always
       logLevel: info
       # set path to null if your OS has no localtime file
