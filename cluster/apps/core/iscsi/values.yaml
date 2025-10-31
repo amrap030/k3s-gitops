@@ -325,5 +325,5 @@ democratic-csi:
   # https://github.com/democratic-csi/csi-grpc-proxy
   csiProxy:
     enabled: true
-    image: docker.io/democraticcsi/csi-grpc-proxy:v0.5.3
+    image: docker.io/democraticcsi/csi-grpc-proxy:v0.5.7
     resources:
